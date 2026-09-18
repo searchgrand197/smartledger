@@ -1,0 +1,1352 @@
+INFO 2026-06-11 14:14:30,073 services 16632 4152 [Queue] Message enqueued: ID 1 to 919876543210
+INFO 2026-06-11 14:14:30,529 services 16632 11680 [Queue] Message ID 1 delivered successfully.
+INFO 2026-06-11 14:15:56,443 services 19200 9420 [Queue] Message enqueued: ID 2 to 919876543210
+WARNING 2026-06-11 14:16:00,749 services 19200 18504 [Queue] Message ID 2 delivery failed: Gateway connection failed — Service may be offline
+INFO 2026-06-11 14:21:42,913 services 1912 17528 [Queue] Message enqueued: ID 3 to 917988776405
+WARNING 2026-06-11 14:21:58,814 services 1912 19648 [Queue] Message ID 3 delivery failed: Gateway timeout (15 seconds reached)
+INFO 2026-06-12 09:27:34,201 services 20672 5720 [Queue] Message enqueued: ID 1 to 919876543210
+INFO 2026-06-12 09:30:25,648 services 20008 21284 [Queue] Message enqueued: ID 1 to 919876543210
+ERROR 2026-06-12 09:30:25,666 services 20008 10988 [Queue] Message ID 1 fetch failed: database table is locked: messaging_messagequeue
+INFO 2026-06-12 09:44:14,450 services 11424 15892 [Queue] Message enqueued: ID 1 to 919876543210
+ERROR 2026-06-12 09:44:14,462 services 11424 928 [Queue] Message ID 1 fetch failed: database table is locked: messaging_messagequeue
+INFO 2026-06-12 10:16:48,940 services 3792 9036 [Queue] Message enqueued: ID 1 to 919876543210
+ERROR 2026-06-12 10:16:48,949 services 3792 16860 [Queue] Message ID 1 fetch failed: database table is locked: messaging_messagequeue
+INFO 2026-06-12 10:25:27,947 services 19636 19408 [Queue] Message enqueued: ID 1 to 919876543210
+ERROR 2026-06-12 10:25:27,963 services 19636 19296 [Queue] Message ID 1 fetch failed: database table is locked: messaging_messagequeue
+INFO 2026-06-12 10:35:26,635 services 3688 17448 [Queue] Message enqueued: ID 1 to 919876543210
+ERROR 2026-06-12 10:35:26,668 services 3688 10192 [Queue] Message ID 1 fetch failed: database table is locked: messaging_messagequeue
+INFO 2026-06-12 11:12:59,167 services 7256 15808 [Queue] Message enqueued: ID 1 to 919876543210
+ERROR 2026-06-12 11:12:59,180 services 7256 20964 [Queue] Message ID 1 fetch failed: database table is locked: messaging_messagequeue
+INFO 2026-06-12 11:23:27,674 services 21224 10648 [Queue] Message enqueued: ID 1 to 919876543210
+ERROR 2026-06-12 11:23:27,698 services 21224 20676 [Queue] Message ID 1 fetch failed: database table is locked: messaging_messagequeue
+INFO 2026-06-12 11:29:03,785 services 2080 20388 [Queue] Message enqueued: ID 1 to 919876543210
+ERROR 2026-06-12 11:29:03,874 services 2080 20156 [Queue] Message ID 1 fetch failed: database table is locked: messaging_messagequeue
+INFO 2026-06-12 11:54:27,984 services 16500 19340 [Queue] Message enqueued: ID 1 to 919876543210
+ERROR 2026-06-12 11:54:28,001 services 16500 21052 [Queue] Message ID 1 fetch failed: database table is locked: messaging_messagequeue
+INFO 2026-06-12 12:02:15,693 services 11104 6920 [Queue] Message enqueued: ID 1 to 919876543210
+ERROR 2026-06-12 12:02:16,231 services 11104 21232 [Queue] Message ID 1 fetch failed: database table is locked: messaging_messagequeue
+INFO 2026-06-12 12:10:39,811 services 19516 20664 [Queue] Message enqueued: ID 1 to 919876543210
+ERROR 2026-06-12 12:10:39,826 services 19516 7240 [Queue] Message ID 1 fetch failed: database table is locked: messaging_messagequeue
+INFO 2026-06-12 12:25:25,127 services 15124 1244 [Queue] Message enqueued: ID 4 to 702747926
+WARNING 2026-06-12 12:25:26,312 services 15124 10136 [Queue] Message ID 4 delivery failed: Gateway returned error code 400: {"error":"Number not on WhatsApp"}
+INFO 2026-06-12 12:27:10,282 services 10648 6928 [Queue] Message enqueued: ID 1 to 919876543210
+ERROR 2026-06-12 12:27:10,286 services 10648 828 [Queue] Message ID 1 fetch failed: database table is locked: messaging_messagequeue
+INFO 2026-06-12 12:31:07,822 services 18544 6720 [Queue] Message enqueued: ID 1 to 919876543210
+ERROR 2026-06-12 12:31:07,839 services 18544 15388 [Queue] Message ID 1 fetch failed: database table is locked: messaging_messagequeue
+INFO 2026-06-12 12:41:22,296 services 14628 21092 [Queue] Message enqueued: ID 1 to 919876543210
+ERROR 2026-06-12 12:41:22,316 services 14628 16828 [Queue] Message ID 1 fetch failed: database table is locked: messaging_messagequeue
+INFO 2026-06-12 14:05:32,134 services 13432 12556 [Queue] Message enqueued: ID 5 to 918814067670
+INFO 2026-06-12 14:05:38,391 services 13432 13720 [Queue] Message ID 5 delivered successfully.
+INFO 2026-06-12 15:24:47,573 apps 7604 14736 Starting WhatsApp Sender on port 3000 in background...
+INFO 2026-06-12 15:24:48,003 apps 7604 14736 WhatsApp Sender background startup initiated.
+INFO 2026-06-12 15:26:09,940 services 7604 8200 [Queue] Message enqueued: ID 6 to 918930915064
+WARNING 2026-06-12 15:26:12,054 services 7604 15044 [Queue] Message ID 6 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-06-12 15:46:22,772 services 7604 13956 [Queue] Message enqueued: ID 7 to 918930915064
+WARNING 2026-06-12 15:46:23,613 services 7604 2612 [Queue] Message ID 7 delivery failed: Gateway returned error code 400: {"error":"Number not on WhatsApp"}
+INFO 2026-06-12 14:03:43,460 apps 3888 6976 Starting WhatsApp Sender on port 3000 in background...
+INFO 2026-06-12 14:03:44,065 apps 3888 6976 WhatsApp Sender background startup initiated.
+INFO 2026-06-12 14:03:48,251 apps 11884 13860 Starting WhatsApp Sender on port 3000 in background...
+INFO 2026-06-12 14:03:48,745 apps 11884 13860 WhatsApp Sender background startup initiated.
+INFO 2026-06-12 14:13:28,114 apps 12384 9948 WhatsApp Sender service is already running on port 3000
+INFO 2026-06-12 14:15:05,780 whatsapp_runtime 6976 7332 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-12 14:15:16,927 whatsapp_runtime 7756 12416 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-12 15:12:38,994 whatsapp_runtime 2716 9076 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 10:01:20,707 whatsapp_runtime 7584 8172 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-13 10:01:22,174 whatsapp_runtime 14756 4828 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-13 10:18:14,081 services 14756 8952 [Queue] Message enqueued: ID 8 to 918930515064
+INFO 2026-06-13 10:18:18,824 services 14756 15212 [Queue] Message ID 8 delivered successfully.
+INFO 2026-06-13 10:23:28,380 whatsapp_runtime 10104 2524 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 10:33:00,762 whatsapp_runtime 228 3344 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 10:45:49,811 whatsapp_runtime 8568 12984 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 10:45:57,006 whatsapp_runtime 10032 6748 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 10:46:01,709 whatsapp_runtime 12788 5440 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 10:47:01,709 whatsapp_runtime 12316 12240 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 10:47:06,462 whatsapp_runtime 3772 9592 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 10:47:13,265 whatsapp_runtime 14760 13044 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 11:52:24,453 whatsapp_runtime 10400 11432 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-13 11:52:26,820 whatsapp_runtime 6224 6760 Starting WhatsApp sender on 127.0.0.1:8787
+WARNING 2026-06-13 12:01:05,513 whatsapp_runtime 6952 8104 WhatsApp sender directory not found at D:\poc of monu\message-sender
+WARNING 2026-06-13 12:01:06,552 whatsapp_runtime 5916 2460 WhatsApp sender directory not found at D:\poc of monu\message-sender
+WARNING 2026-06-13 12:02:06,351 whatsapp_runtime 12296 14976 WhatsApp sender directory not found at D:\poc of monu\message-sender
+WARNING 2026-06-13 12:02:07,252 whatsapp_runtime 2816 11840 WhatsApp sender directory not found at D:\poc of monu\message-sender
+WARNING 2026-06-13 12:04:13,788 whatsapp_runtime 14620 10764 WhatsApp sender directory not found at D:\poc of monu\message-sender
+WARNING 2026-06-13 12:04:13,804 whatsapp_runtime 5840 11328 WhatsApp sender directory not found at D:\poc of monu\message-sender
+WARNING 2026-06-13 12:05:48,595 whatsapp_runtime 6680 11840 WhatsApp sender directory not found at D:\poc of monu\message-sender
+WARNING 2026-06-13 12:05:49,599 whatsapp_runtime 2064 11528 WhatsApp sender directory not found at D:\poc of monu\message-sender
+INFO 2026-06-13 12:07:47,176 whatsapp_runtime 104 12340 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-13 12:08:40,746 whatsapp_runtime 7404 8048 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 12:08:42,038 whatsapp_runtime 2352 12748 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 12:10:23,030 services 2352 5068 [Queue] Message enqueued: ID 9 to 918708772883
+INFO 2026-06-13 12:10:28,820 services 2352 10316 [Queue] Message ID 9 delivered successfully.
+INFO 2026-06-13 12:18:12,444 whatsapp_runtime 12176 14456 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 12:18:13,582 whatsapp_runtime 5412 5628 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 12:18:52,595 services 2352 14376 [Queue] Message enqueued: ID 10 to 918708772883
+INFO 2026-06-13 12:18:57,025 services 2352 14804 [Queue] Message ID 10 delivered successfully.
+INFO 2026-06-13 15:43:28,582 whatsapp_runtime 17124 19680 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 15:44:12,825 whatsapp_runtime 2432 16328 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 15:44:19,784 whatsapp_runtime 10784 12788 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 15:44:41,472 whatsapp_runtime 7148 17112 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 15:44:42,825 whatsapp_runtime 18896 17960 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:05:40,880 services 18896 19720 [Queue] Message enqueued: ID 11 to 911234567890
+WARNING 2026-06-13 16:05:42,063 services 18896 4764 [Queue] Message ID 11 delivery failed: Gateway returned error code 500: {"error":"Attempted to use detached Frame '2C6746D276A45FDCF58100E2955A36AC'."}
+INFO 2026-06-13 16:16:50,831 whatsapp_runtime 19080 772 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:43:31,300 whatsapp_runtime 7072 19764 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:46:12,332 whatsapp_runtime 18192 3660 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:46:23,898 whatsapp_runtime 16660 19048 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:46:33,137 whatsapp_runtime 11484 940 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:46:40,100 whatsapp_runtime 8392 18332 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:46:46,462 whatsapp_runtime 16140 8744 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:46:58,400 whatsapp_runtime 15192 492 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:47:04,495 whatsapp_runtime 19316 18540 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:47:10,758 whatsapp_runtime 16796 15412 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:47:17,937 whatsapp_runtime 14148 15976 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:47:25,054 whatsapp_runtime 4352 18940 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:47:31,521 whatsapp_runtime 19028 17480 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:47:37,877 whatsapp_runtime 12340 19044 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:47:50,113 whatsapp_runtime 19764 20280 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:48:01,283 whatsapp_runtime 5636 17880 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:48:07,538 whatsapp_runtime 18072 11776 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-13 16:48:14,452 whatsapp_runtime 15244 19504 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-14 11:13:15,814 whatsapp_runtime 11116 17472 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-14 11:43:07,960 services 11116 15844 [Queue] Message enqueued: ID 12 to 917988776405
+WARNING 2026-06-14 11:43:08,516 services 11116 17920 [Queue] Message ID 12 delivery failed: Gateway returned error code 500: {"error":"Attempted to use detached Frame '2C6746D276A45FDCF58100E2955A36AC'."}
+INFO 2026-06-14 16:46:45,102 whatsapp_runtime 2684 13668 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-14 16:46:46,574 whatsapp_runtime 3720 7384 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-15 09:33:45,921 whatsapp_runtime 7272 1320 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-15 09:33:47,574 whatsapp_runtime 3364 8920 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-15 10:13:33,063 whatsapp_runtime 18416 17536 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 10:13:38,022 services 15164 8200 [Queue] Message enqueued: ID 1 to 919876543210
+ERROR 2026-06-15 10:13:38,025 services 15164 17064 [Queue] Message ID 1 fetch failed: database table is locked: messaging_messagequeue
+INFO 2026-06-15 12:43:13,711 whatsapp_runtime 17888 18312 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-15 12:43:15,009 whatsapp_runtime 2228 17180 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-15 12:48:56,898 whatsapp_runtime 10156 16508 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 12:49:06,211 whatsapp_runtime 7392 7920 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 12:49:14,709 whatsapp_runtime 6856 13928 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 12:49:28,901 whatsapp_runtime 10956 11688 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 12:55:29,606 whatsapp_runtime 14644 11236 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 13:53:04,314 services 14644 9740 [Queue] Message enqueued: ID 13 to 919999900001
+WARNING 2026-06-15 13:53:05,189 services 14644 3472 [Queue] Message ID 13 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-06-15 14:03:42,101 whatsapp_runtime 18232 7172 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 15:02:20,061 services 18232 7992 [Queue] Message enqueued: ID 14 to 917988776405
+WARNING 2026-06-15 15:02:20,639 services 18232 17388 [Queue] Message ID 14 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-06-15 15:02:52,694 services 18232 14204 [Queue] Message enqueued: ID 15 to 917988776405
+WARNING 2026-06-15 15:02:52,939 services 18232 6952 [Queue] Message ID 15 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-06-15 15:14:17,740 whatsapp_runtime 3824 15384 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 15:25:15,874 whatsapp_runtime 8016 3388 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 16:00:24,869 whatsapp_runtime 14252 18252 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 16:00:33,445 whatsapp_runtime 13264 16156 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 16:10:43,740 services 13264 3324 [Queue] Message enqueued: ID 16 to 918814067670
+WARNING 2026-06-15 16:10:44,119 services 13264 13352 [Queue] Message ID 16 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-06-15 16:13:46,587 whatsapp_runtime 14464 4016 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 16:14:05,762 whatsapp_runtime 17168 7640 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 16:22:11,598 services 17168 5968 [Queue] Message enqueued: ID 17 to 918814067670
+INFO 2026-06-15 16:22:16,294 services 17168 2168 [Queue] Message ID 17 delivered successfully.
+INFO 2026-06-15 16:28:09,584 whatsapp_runtime 13988 1784 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 16:28:39,780 whatsapp_runtime 13576 7340 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 16:28:53,409 whatsapp_runtime 15952 3540 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-15 17:17:10,627 whatsapp_runtime 16016 15648 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-15 17:17:11,758 whatsapp_runtime 13648 11724 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-16 09:51:39,459 whatsapp_runtime 1460 11028 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-16 10:01:22,210 whatsapp_runtime 6904 20176 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-16 10:15:04,344 whatsapp_runtime 17576 6312 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-16 10:26:39,709 whatsapp_runtime 15028 3496 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-16 10:27:36,388 whatsapp_runtime 18876 18752 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-16 10:45:57,848 whatsapp_runtime 11868 19652 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-16 10:45:59,666 whatsapp_runtime 3152 8272 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-16 10:46:58,383 whatsapp_runtime 8148 18316 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-16 10:51:04,483 whatsapp_runtime 16516 9912 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-16 10:51:12,983 whatsapp_runtime 932 20184 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-16 17:53:57,116 whatsapp_runtime 13484 6272 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-16 17:53:59,059 whatsapp_runtime 18320 20728 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-17 09:51:33,016 whatsapp_runtime 8892 16364 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-17 09:51:35,027 whatsapp_runtime 20024 21380 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-17 10:26:47,757 whatsapp_runtime 20696 17616 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-17 10:27:41,249 whatsapp_runtime 6524 9376 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-18 14:36:32,497 whatsapp_runtime 21532 10012 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-18 14:36:34,061 whatsapp_runtime 16980 4820 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-18 14:38:23,892 whatsapp_runtime 21896 13388 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-18 14:38:24,950 whatsapp_runtime 22444 9708 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-18 14:45:11,014 whatsapp_runtime 24068 20084 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-18 14:58:56,950 whatsapp_runtime 6924 1568 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-18 15:10:10,004 whatsapp_runtime 17592 21412 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-18 15:47:29,792 whatsapp_runtime 20380 14600 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-18 15:48:27,497 whatsapp_runtime 18124 22916 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-18 15:48:42,980 whatsapp_runtime 24428 16160 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-18 15:49:12,824 whatsapp_runtime 24000 15384 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-18 15:49:25,488 whatsapp_runtime 15396 1352 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-18 17:20:04,208 whatsapp_runtime 9640 17004 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-18 17:20:06,582 whatsapp_runtime 7768 21352 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-19 11:33:33,243 whatsapp_runtime 736 12108 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-19 11:33:37,784 whatsapp_runtime 24224 12608 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-19 11:49:25,575 whatsapp_runtime 24024 21532 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-06-19 16:59:49,258 whatsapp_runtime 15056 21812 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-19 16:59:52,376 whatsapp_runtime 25704 23472 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-20 10:00:25,240 whatsapp_runtime 6860 19708 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-20 10:00:26,669 whatsapp_runtime 12648 3320 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-20 10:44:01,302 whatsapp_runtime 21472 8172 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-20 10:44:03,916 whatsapp_runtime 1456 27528 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-06-20 10:48:38,517 whatsapp_runtime 19868 7140 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-03 10:35:22,902 whatsapp_runtime 3656 18268 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-03 10:35:24,055 whatsapp_runtime 2068 13528 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-03 10:54:25,331 whatsapp_runtime 3564 1636 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-03 10:54:37,157 whatsapp_runtime 12728 18944 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-03 10:55:20,714 whatsapp_runtime 7872 19104 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-03 10:55:33,645 whatsapp_runtime 3356 6796 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-03 10:55:46,357 whatsapp_runtime 9580 15560 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-03 10:55:56,589 whatsapp_runtime 9720 9604 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-03 10:56:04,265 whatsapp_runtime 15496 10244 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-03 10:56:12,285 whatsapp_runtime 15192 23532 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-03 10:58:34,198 whatsapp_runtime 9404 5280 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-03 10:58:59,494 whatsapp_runtime 22844 15908 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-03 11:13:29,452 services 22844 11432 [Queue] Message enqueued: ID 18 to 918814067670
+WARNING 2026-07-03 11:13:30,696 services 22844 12204 [Queue] Message ID 18 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-07-03 11:16:21,055 services 22844 1260 [Queue] Message enqueued: ID 19 to 918814067670
+INFO 2026-07-03 11:16:25,615 services 22844 3572 [Queue] Message ID 19 delivered successfully.
+INFO 2026-07-03 11:16:54,333 whatsapp_runtime 9332 20100 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-03 11:17:38,701 whatsapp_runtime 11288 14124 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-03 11:25:26,140 whatsapp_runtime 8380 19408 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-03 11:27:07,866 services 8380 23524 [Queue] Message enqueued: ID 20 to 918930515064
+INFO 2026-07-03 11:27:13,974 services 8380 6956 [Queue] Message ID 20 delivered successfully.
+INFO 2026-07-03 11:33:22,664 services 8380 8820 [Queue] Message enqueued: ID 21 to 918930515064
+INFO 2026-07-03 11:33:26,753 services 8380 15480 [Queue] Message ID 21 delivered successfully.
+INFO 2026-07-03 11:36:43,484 whatsapp_runtime 15832 10656 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-03 11:41:53,024 whatsapp_runtime 23404 21372 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-03 11:41:54,313 whatsapp_runtime 10544 20016 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-03 11:45:09,678 services 10544 2172 [Queue] Message enqueued: ID 22 to 910000000000
+WARNING 2026-07-03 11:45:10,664 services 10544 3544 [Queue] Message ID 22 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-07-06 16:10:05,901 whatsapp_runtime 22936 13048 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-06 16:10:07,818 whatsapp_runtime 15988 12800 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-06 16:31:58,603 services 15988 21128 [Queue] Message enqueued: ID 23 to 918888800001
+WARNING 2026-07-06 16:31:59,794 services 15988 16036 [Queue] Message ID 23 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-07-06 16:34:57,607 whatsapp_runtime 17968 8232 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-06 17:09:55,545 whatsapp_runtime 7916 20664 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-06 17:09:57,990 whatsapp_runtime 476 14160 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-09 17:29:37,751 whatsapp_runtime 15220 14372 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-09 17:29:39,693 whatsapp_runtime 12260 8672 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-09 17:47:43,433 whatsapp_runtime 19932 14980 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-09 17:47:56,942 whatsapp_runtime 7180 9868 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-09 17:48:17,299 whatsapp_runtime 20440 4152 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-09 17:48:30,614 whatsapp_runtime 14044 14680 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-09 17:57:40,048 whatsapp_runtime 20992 18328 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-09 17:57:47,481 whatsapp_runtime 21360 2440 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-09 17:58:02,779 whatsapp_runtime 17092 18204 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-09 18:03:32,861 whatsapp_runtime 3900 4716 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-09 18:03:53,884 whatsapp_runtime 10752 18820 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-09 18:05:00,549 services 10752 16000 [Queue] Message enqueued: ID 24 to 918708772883
+WARNING 2026-07-09 18:05:01,346 services 10752 19208 [Queue] Message ID 24 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-07-09 18:39:08,289 whatsapp_runtime 17288 316 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-09 18:39:09,782 whatsapp_runtime 15120 6372 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-10 10:36:05,696 whatsapp_runtime 16908 10556 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-10 10:36:08,810 whatsapp_runtime 13684 3768 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-10 10:46:24,597 whatsapp_runtime 8332 15864 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-10 10:56:03,744 services 8332 22592 [Queue] Message enqueued: ID 25 to 917988776405
+WARNING 2026-07-10 10:56:04,786 services 8332 4648 [Queue] Message ID 25 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-07-10 11:03:20,569 services 8332 13176 [Queue] Message enqueued: ID 26 to 917988776405
+WARNING 2026-07-10 11:03:36,063 services 8332 12568 [Queue] Message ID 26 delivery failed: Gateway timeout (15 seconds reached)
+INFO 2026-07-10 11:10:22,373 whatsapp_runtime 11188 21968 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-10 11:14:38,569 services 11188 16676 [Queue] Message enqueued: ID 27 to 917988776405
+WARNING 2026-07-10 11:14:38,951 services 11188 16500 [Queue] Message ID 27 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-07-11 11:42:11,367 whatsapp_runtime 18132 18772 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-11 11:42:16,738 whatsapp_runtime 4932 4024 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-11 11:47:17,167 whatsapp_runtime 10992 5760 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-11 11:47:18,823 whatsapp_runtime 16600 13428 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-30 10:53:24,173 whatsapp_runtime 8868 10876 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-30 10:53:25,242 whatsapp_runtime 8684 10508 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-30 11:24:26,912 whatsapp_runtime 17328 14456 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:24:38,225 whatsapp_runtime 20192 10756 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:24:45,608 whatsapp_runtime 14232 8848 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:24:52,154 whatsapp_runtime 1704 13320 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:24:58,939 whatsapp_runtime 11348 11676 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:25:04,690 whatsapp_runtime 14088 16096 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:25:16,309 whatsapp_runtime 6284 9308 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:25:22,935 whatsapp_runtime 19852 13072 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:25:31,444 whatsapp_runtime 18784 19420 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:25:36,966 whatsapp_runtime 8600 3816 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:25:43,534 whatsapp_runtime 18808 16536 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:25:51,384 whatsapp_runtime 15644 11136 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:25:58,546 whatsapp_runtime 5644 16324 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:26:04,123 whatsapp_runtime 16920 19572 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:26:10,663 whatsapp_runtime 16772 15624 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:26:17,159 whatsapp_runtime 14884 16804 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:26:22,651 whatsapp_runtime 13092 18768 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:26:31,798 whatsapp_runtime 18316 19632 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:26:39,205 whatsapp_runtime 13864 17064 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:26:45,757 whatsapp_runtime 16756 6288 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:26:53,772 whatsapp_runtime 14368 8240 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:26:58,956 whatsapp_runtime 17452 16996 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:27:04,832 whatsapp_runtime 19120 19660 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:30:28,784 whatsapp_runtime 15688 16528 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:30:34,381 whatsapp_runtime 11268 124 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:30:46,837 whatsapp_runtime 16928 15872 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:30:52,036 whatsapp_runtime 8596 12968 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 11:39:35,250 services 8596 18200 [Queue] Message enqueued: ID 28 to 918708772883
+WARNING 2026-07-30 11:39:36,065 services 8596 20164 [Queue] Message ID 28 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-07-30 11:40:27,200 services 8596 18504 [Queue] Message enqueued: ID 29 to 918930515064
+WARNING 2026-07-30 11:40:27,433 services 8596 10852 [Queue] Message ID 29 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-07-30 11:47:14,307 services 8596 19184 [Queue] Message enqueued: ID 30 to 917988776405
+WARNING 2026-07-30 11:47:14,939 services 8596 1532 [Queue] Message ID 30 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-07-30 11:53:25,507 whatsapp_runtime 15032 4636 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-07-30 12:25:32,083 whatsapp_runtime 19552 6796 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-07-30 12:25:34,209 whatsapp_runtime 6612 19212 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-03 10:13:15,584 whatsapp_runtime 1868 15676 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-03 10:13:22,035 whatsapp_runtime 14144 10304 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-07 11:07:06,004 whatsapp_runtime 15584 2744 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-07 11:07:07,457 whatsapp_runtime 8792 14444 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-07 11:23:54,540 whatsapp_runtime 2816 6920 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-07 11:23:56,353 whatsapp_runtime 18476 14812 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-07 11:32:59,685 whatsapp_runtime 14472 19828 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-08-07 11:33:01,429 whatsapp_runtime 8160 4700 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-08-13 09:49:25,184 whatsapp_runtime 9852 12928 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-13 09:49:26,496 whatsapp_runtime 8940 17520 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-19 15:35:27,204 whatsapp_runtime 12744 19392 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-19 15:35:29,700 whatsapp_runtime 6944 18240 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-19 15:42:26,056 whatsapp_runtime 7548 4748 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-08-19 15:59:54,243 services 7548 7756 [Queue] Message enqueued: ID 31 to 917845120369
+WARNING 2026-08-19 15:59:55,816 services 7548 9700 [Queue] Message ID 31 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-08-19 16:00:51,327 services 7548 5440 [Queue] Message enqueued: ID 32 to 123478956230
+WARNING 2026-08-19 16:00:51,617 services 7548 4076 [Queue] Message ID 32 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-08-20 10:10:00,718 whatsapp_runtime 10976 14060 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:10:07,706 whatsapp_runtime 8736 8404 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:10:17,880 whatsapp_runtime 6132 3656 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:10:20,572 whatsapp_runtime 12520 10628 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:16:16,199 whatsapp_runtime 1664 11068 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-08-20 10:16:17,719 whatsapp_runtime 8324 3452 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-08-20 10:18:23,465 services 8324 14816 [Queue] Message enqueued: ID 33 to 919123400003
+WARNING 2026-08-20 10:18:28,593 services 8324 15220 [Queue] Message ID 33 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-08-20 10:19:23,853 services 8324 14816 [Queue] Message enqueued: ID 34 to 918295110043
+WARNING 2026-08-20 10:19:24,269 services 8324 7880 [Queue] Message ID 34 delivery failed: Gateway returned error code 400: {"error":"WhatsApp not connected"}
+INFO 2026-08-20 10:32:30,142 whatsapp_runtime 1551469 126542261339840 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:32:30,148 whatsapp_runtime 1551468 126542261339840 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:32:30,336 whatsapp_runtime 1551470 126542261339840 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:34:44,498 whatsapp_runtime 1551740 137586036647616 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:34:44,510 whatsapp_runtime 1551741 137586036647616 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:34:44,617 whatsapp_runtime 1551742 137586036647616 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:35:36,747 whatsapp_runtime 1551974 139726636459712 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:35:37,083 whatsapp_runtime 1551975 139726636459712 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:35:37,231 whatsapp_runtime 1551976 139726636459712 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:37:35,717 whatsapp_runtime 1552270 131064601024192 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:37:35,903 whatsapp_runtime 1552271 131064601024192 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:37:35,927 whatsapp_runtime 1552272 131064601024192 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:38:30,873 whatsapp_runtime 1552476 138938800707264 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:38:30,870 whatsapp_runtime 1552475 138938800707264 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:38:31,053 whatsapp_runtime 1552477 138938800707264 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-20 10:39:04,274 services 1552477 138938856337728 [Queue] Message enqueued: ID 887 to 917027547926
+INFO 2026-08-20 10:39:07,007 services 1552477 138938800707264 [Queue] Message ID 887 delivered successfully.
+INFO 2026-08-20 10:56:45,734 services 1552476 138938856337728 [Queue] Message enqueued: ID 888 to 919034895638
+INFO 2026-08-20 10:56:47,502 services 1552476 138938800707264 [Queue] Message ID 888 delivered successfully.
+INFO 2026-08-20 10:58:23,225 services 1552475 138938856337728 [Queue] Message enqueued: ID 889 to 919034895638
+INFO 2026-08-20 10:58:24,653 services 1552475 138938809099968 [Queue] Message ID 889 delivered successfully.
+INFO 2026-08-20 11:00:09,739 services 1552477 138938856337728 [Queue] Message enqueued: ID 890 to 919406218767
+INFO 2026-08-20 11:00:11,300 services 1552477 138938800707264 [Queue] Message ID 890 delivered successfully.
+INFO 2026-08-20 11:00:47,487 services 1552475 138938856337728 [Queue] Message enqueued: ID 891 to 919406218767
+INFO 2026-08-20 11:00:48,914 services 1552475 138938809099968 [Queue] Message ID 891 delivered successfully.
+INFO 2026-08-20 11:01:24,308 services 1552477 138938856337728 [Queue] Message enqueued: ID 892 to 919406218767
+INFO 2026-08-20 11:01:25,747 services 1552477 138938800707264 [Queue] Message ID 892 delivered successfully.
+INFO 2026-08-20 12:21:04,031 services 1552477 138938856337728 [Queue] Message enqueued: ID 893 to 917027101717
+INFO 2026-08-20 12:21:05,710 services 1552477 138938800707264 [Queue] Message ID 893 delivered successfully.
+INFO 2026-08-20 12:56:10,751 services 1552475 138938856337728 [Queue] Message enqueued: ID 894 to 919416354422
+INFO 2026-08-20 12:56:12,906 services 1552475 138938809099968 [Queue] Message ID 894 delivered successfully.
+INFO 2026-08-20 12:59:51,058 services 1552475 138938856337728 [Queue] Message enqueued: ID 895 to 919416734618
+INFO 2026-08-20 12:59:52,623 services 1552475 138938809099968 [Queue] Message ID 895 delivered successfully.
+INFO 2026-08-20 14:16:15,292 services 1552476 138938856337728 [Queue] Message enqueued: ID 896 to 918295131043
+INFO 2026-08-20 14:16:17,459 services 1552476 138938800707264 [Queue] Message ID 896 delivered successfully.
+INFO 2026-08-20 14:20:57,973 services 1552476 138938856337728 [Queue] Message enqueued: ID 897 to 919518059011
+INFO 2026-08-20 14:20:59,434 services 1552476 138938800707264 [Queue] Message ID 897 delivered successfully.
+INFO 2026-08-20 14:45:37,566 services 1552477 138938856337728 [Queue] Message enqueued: ID 898 to 919466592675
+INFO 2026-08-20 14:45:39,518 services 1552477 138938800707264 [Queue] Message ID 898 delivered successfully.
+INFO 2026-08-20 17:24:42,344 services 1552476 138938856337728 [Queue] Message enqueued: ID 899 to 918053405232
+INFO 2026-08-20 17:24:43,969 services 1552476 138938800707264 [Queue] Message ID 899 delivered successfully.
+INFO 2026-08-20 18:31:43,255 services 1552475 138938856337728 [Queue] Message enqueued: ID 900 to 919406218767
+INFO 2026-08-20 18:31:44,758 services 1552475 138938809099968 [Queue] Message ID 900 delivered successfully.
+INFO 2026-08-20 18:36:29,340 services 1552475 138938856337728 [Queue] Message enqueued: ID 901 to 919467367788
+INFO 2026-08-20 18:36:30,998 services 1552475 138938809099968 [Queue] Message ID 901 delivered successfully.
+INFO 2026-08-21 09:28:42,118 services 1552476 138938856337728 [Queue] Message enqueued: ID 902 to 918221965824
+INFO 2026-08-21 09:28:44,269 services 1552476 138938800707264 [Queue] Message ID 902 delivered successfully.
+INFO 2026-08-21 10:29:25,593 services 1552476 138938856337728 [Queue] Message enqueued: ID 903 to 918168100920
+INFO 2026-08-21 10:29:27,464 services 1552476 138938800707264 [Queue] Message ID 903 delivered successfully.
+INFO 2026-08-21 10:46:44,738 services 1552475 138938856337728 [Queue] Message enqueued: ID 904 to 919992266046
+INFO 2026-08-21 10:46:46,559 services 1552475 138938809099968 [Queue] Message ID 904 delivered successfully.
+INFO 2026-08-21 10:53:40,258 services 1552475 138938856337728 [Queue] Message enqueued: ID 905 to 919992266046
+INFO 2026-08-21 10:53:41,822 services 1552475 138938809099968 [Queue] Message ID 905 delivered successfully.
+INFO 2026-08-21 11:13:33,048 services 1552477 138938856337728 [Queue] Message enqueued: ID 906 to 919466304080
+INFO 2026-08-21 11:13:34,702 services 1552477 138938800707264 [Queue] Message ID 906 delivered successfully.
+INFO 2026-08-21 11:51:14,508 services 1552476 138938856337728 [Queue] Message enqueued: ID 907 to 919467136536
+INFO 2026-08-21 11:51:16,112 services 1552476 138938800707264 [Queue] Message ID 907 delivered successfully.
+INFO 2026-08-21 14:27:39,406 services 1552477 138938856337728 [Queue] Message enqueued: ID 908 to 918168100920
+INFO 2026-08-21 14:27:41,170 services 1552477 138938800707264 [Queue] Message ID 908 delivered successfully.
+INFO 2026-08-21 15:41:56,847 whatsapp_runtime 1621480 123622765635264 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-21 15:41:56,849 whatsapp_runtime 1621479 123622765635264 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-21 15:41:56,845 whatsapp_runtime 1621478 123622765635264 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-22 08:41:20,220 services 1621478 123622820905280 [Queue] Message enqueued: ID 909 to 919354864180
+INFO 2026-08-22 08:41:22,591 services 1621478 123622765635264 [Queue] Message ID 909 delivered successfully.
+INFO 2026-08-22 09:36:07,454 services 1621480 123622820905280 [Queue] Message enqueued: ID 910 to 919991991949
+INFO 2026-08-22 09:36:09,132 services 1621480 123622765635264 [Queue] Message ID 910 delivered successfully.
+INFO 2026-08-22 10:50:55,026 services 1621480 123622820905280 [Queue] Message enqueued: ID 911 to 919467709122
+INFO 2026-08-22 10:50:56,964 services 1621480 123622765635264 [Queue] Message ID 911 delivered successfully.
+INFO 2026-08-22 10:52:46,588 services 1621478 123622820905280 [Queue] Message enqueued: ID 912 to 919467709122
+INFO 2026-08-22 10:52:48,522 services 1621478 123622765635264 [Queue] Message ID 912 delivered successfully.
+INFO 2026-08-22 11:32:42,133 services 1621479 123622820905280 [Queue] Message enqueued: ID 913 to 919416718908
+INFO 2026-08-22 11:32:43,847 services 1621479 123622774027968 [Queue] Message ID 913 delivered successfully.
+INFO 2026-08-22 11:33:23,890 services 1621480 123622820905280 [Queue] Message enqueued: ID 914 to 919996514624
+INFO 2026-08-22 11:33:25,859 services 1621480 123622765635264 [Queue] Message ID 914 delivered successfully.
+INFO 2026-08-22 12:22:06,719 services 1621478 123622820905280 [Queue] Message enqueued: ID 915 to 919050205943
+INFO 2026-08-22 12:22:08,602 services 1621478 123622765635264 [Queue] Message ID 915 delivered successfully.
+INFO 2026-08-22 12:26:54,634 services 1621479 123622820905280 [Queue] Message enqueued: ID 916 to 919050205943
+INFO 2026-08-22 12:26:56,127 services 1621479 123622774027968 [Queue] Message ID 916 delivered successfully.
+INFO 2026-08-22 14:38:46,929 services 1621480 123622820905280 [Queue] Message enqueued: ID 917 to 919466304080
+INFO 2026-08-22 14:38:48,595 services 1621480 123622765635264 [Queue] Message ID 917 delivered successfully.
+INFO 2026-08-22 15:14:55,298 services 1621480 123622820905280 [Queue] Message enqueued: ID 918 to 918168100920
+INFO 2026-08-22 15:14:56,900 services 1621480 123622765635264 [Queue] Message ID 918 delivered successfully.
+INFO 2026-08-22 17:30:29,941 services 1621478 123622820905280 [Queue] Message enqueued: ID 919 to 918684820447
+INFO 2026-08-22 17:30:31,657 services 1621478 123622765635264 [Queue] Message ID 919 delivered successfully.
+INFO 2026-08-22 17:31:34,899 services 1621480 123622820905280 [Queue] Message enqueued: ID 920 to 918684820447
+INFO 2026-08-22 17:31:36,623 services 1621480 123622765635264 [Queue] Message ID 920 delivered successfully.
+INFO 2026-08-22 17:31:58,190 services 1621479 123622820905280 [Queue] Message enqueued: ID 921 to 918684820447
+INFO 2026-08-22 17:31:59,804 services 1621479 123622774027968 [Queue] Message ID 921 delivered successfully.
+INFO 2026-08-22 17:34:28,242 services 1621478 123622820905280 [Queue] Message enqueued: ID 922 to 918684820447
+INFO 2026-08-22 17:34:29,870 services 1621478 123622765635264 [Queue] Message ID 922 delivered successfully.
+INFO 2026-08-22 17:44:47,326 services 1621480 123622820905280 [Queue] Message enqueued: ID 923 to 919817205793
+INFO 2026-08-22 17:44:48,803 services 1621480 123622765635264 [Queue] Message ID 923 delivered successfully.
+INFO 2026-08-22 18:21:53,908 services 1621480 123622820905280 [Queue] Message enqueued: ID 924 to 919466317441
+INFO 2026-08-22 18:21:55,679 services 1621480 123622765635264 [Queue] Message ID 924 delivered successfully.
+INFO 2026-08-22 18:34:49,590 services 1621479 123622820905280 [Queue] Message enqueued: ID 925 to 919406218767
+INFO 2026-08-22 18:34:51,177 services 1621479 123622774027968 [Queue] Message ID 925 delivered successfully.
+INFO 2026-08-22 19:11:22,441 services 1621478 123622820905280 [Queue] Message enqueued: ID 926 to 919406218767
+INFO 2026-08-22 19:11:23,984 services 1621478 123622765635264 [Queue] Message ID 926 delivered successfully.
+INFO 2026-08-23 10:38:02,882 services 1621479 123622820905280 [Queue] Message enqueued: ID 927 to 919406218767
+INFO 2026-08-23 10:38:05,043 services 1621479 123622774027968 [Queue] Message ID 927 delivered successfully.
+INFO 2026-08-23 11:02:34,952 services 1621480 123622820905280 [Queue] Message enqueued: ID 928 to 919406218767
+INFO 2026-08-23 11:02:36,514 services 1621480 123622765635264 [Queue] Message ID 928 delivered successfully.
+INFO 2026-08-23 12:22:07,356 services 1621480 123622820905280 [Queue] Message enqueued: ID 929 to 919050205943
+INFO 2026-08-23 12:22:08,842 services 1621480 123622765635264 [Queue] Message ID 929 delivered successfully.
+INFO 2026-08-23 12:25:42,123 services 1621480 123622820905280 [Queue] Message enqueued: ID 930 to 919050205943
+INFO 2026-08-23 12:25:42,381 services 1621479 123622820905280 [Queue] Message enqueued: ID 931 to 919050205943
+INFO 2026-08-23 12:25:43,849 services 1621480 123622765635264 [Queue] Message ID 930 delivered successfully.
+INFO 2026-08-23 12:25:43,928 services 1621479 123622774027968 [Queue] Message ID 931 delivered successfully.
+INFO 2026-08-23 12:31:37,827 services 1621480 123622820905280 [Queue] Message enqueued: ID 932 to 919518688701
+INFO 2026-08-23 12:31:39,359 services 1621480 123622765635264 [Queue] Message ID 932 delivered successfully.
+INFO 2026-08-23 12:57:26,267 services 1621478 123622820905280 [Queue] Message enqueued: ID 933 to 919050039687
+INFO 2026-08-23 12:57:28,303 services 1621478 123622765635264 [Queue] Message ID 933 delivered successfully.
+INFO 2026-08-23 12:58:03,628 services 1621478 123622820905280 [Queue] Message enqueued: ID 934 to 919050039687
+INFO 2026-08-23 12:58:05,324 services 1621478 123622765635264 [Queue] Message ID 934 delivered successfully.
+INFO 2026-08-23 13:00:52,601 services 1621479 123622820905280 [Queue] Message enqueued: ID 935 to 919050039687
+INFO 2026-08-23 13:00:54,153 services 1621479 123622774027968 [Queue] Message ID 935 delivered successfully.
+INFO 2026-08-23 13:29:12,835 services 1621480 123622820905280 [Queue] Message enqueued: ID 936 to 919518688701
+INFO 2026-08-23 13:29:14,464 services 1621480 123622765635264 [Queue] Message ID 936 delivered successfully.
+INFO 2026-08-23 13:49:58,854 services 1621478 123622820905280 [Queue] Message enqueued: ID 937 to 919813980931
+INFO 2026-08-23 13:50:00,495 services 1621478 123622765635264 [Queue] Message ID 937 delivered successfully.
+INFO 2026-08-23 13:51:11,831 services 1621479 123622820905280 [Queue] Message enqueued: ID 938 to 919813980931
+INFO 2026-08-23 13:51:13,389 services 1621479 123622774027968 [Queue] Message ID 938 delivered successfully.
+INFO 2026-08-23 14:15:21,314 services 1621479 123622820905280 [Queue] Message enqueued: ID 939 to 919991991949
+INFO 2026-08-23 14:15:22,940 services 1621479 123622774027968 [Queue] Message ID 939 delivered successfully.
+INFO 2026-08-23 15:32:21,955 whatsapp_runtime 1733243 138081169057472 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-23 15:32:21,954 whatsapp_runtime 1733244 138081169057472 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-23 15:32:21,957 whatsapp_runtime 1733245 138081169057472 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-24 12:05:11,985 services 1733243 138081224335680 [Queue] Message enqueued: ID 940 to 919671054542
+INFO 2026-08-24 12:05:13,838 services 1733243 138081177450176 [Queue] Message ID 940 delivered successfully.
+INFO 2026-08-24 12:06:01,260 services 1733243 138081224335680 [Queue] Message enqueued: ID 941 to 919671054542
+INFO 2026-08-24 12:06:02,784 services 1733243 138081177450176 [Queue] Message ID 941 delivered successfully.
+INFO 2026-08-24 12:18:40,712 services 1733243 138081224335680 [Queue] Message enqueued: ID 942 to 918571008599
+INFO 2026-08-24 12:18:42,508 services 1733243 138081177450176 [Queue] Message ID 942 delivered successfully.
+INFO 2026-08-24 12:20:35,871 services 1733244 138081224335680 [Queue] Message enqueued: ID 943 to 918571008599
+INFO 2026-08-24 12:20:37,288 services 1733244 138081177450176 [Queue] Message ID 943 delivered successfully.
+INFO 2026-08-24 12:31:20,965 services 1733244 138081224335680 [Queue] Message enqueued: ID 944 to 919406218767
+INFO 2026-08-24 12:31:22,446 services 1733244 138081177450176 [Queue] Message ID 944 delivered successfully.
+INFO 2026-08-24 12:44:01,323 services 1733243 138081224335680 [Queue] Message enqueued: ID 945 to 919406218767
+INFO 2026-08-24 12:44:03,132 services 1733243 138081177450176 [Queue] Message ID 945 delivered successfully.
+INFO 2026-08-24 13:08:13,081 services 1733245 138081224335680 [Queue] Message enqueued: ID 946 to 919813980931
+INFO 2026-08-24 13:08:14,688 services 1733245 138081177450176 [Queue] Message ID 946 delivered successfully.
+INFO 2026-08-24 15:30:22,709 services 1733244 138081224335680 [Queue] Message enqueued: ID 947 to 919406218767
+INFO 2026-08-24 15:30:25,180 services 1733244 138081177450176 [Queue] Message ID 947 delivered successfully.
+INFO 2026-08-24 15:36:53,172 services 1733244 138081224335680 [Queue] Message enqueued: ID 948 to 919406218767
+INFO 2026-08-24 15:36:54,976 services 1733244 138081177450176 [Queue] Message ID 948 delivered successfully.
+INFO 2026-08-24 15:53:02,168 services 1733245 138081224335680 [Queue] Message enqueued: ID 949 to 919306312417
+INFO 2026-08-24 15:53:04,101 services 1733245 138081177450176 [Queue] Message ID 949 delivered successfully.
+INFO 2026-08-24 15:54:57,720 services 1733244 138081224335680 [Queue] Message enqueued: ID 950 to 919896326757
+INFO 2026-08-24 15:54:59,112 services 1733244 138081177450176 [Queue] Message ID 950 delivered successfully.
+INFO 2026-08-24 17:44:37,840 services 1733243 138081224335680 [Queue] Message enqueued: ID 951 to 919991991949
+INFO 2026-08-24 17:44:39,422 services 1733243 138081177450176 [Queue] Message ID 951 delivered successfully.
+INFO 2026-08-24 19:30:03,466 services 1733243 138081224335680 [Queue] Message enqueued: ID 952 to 918743081000
+INFO 2026-08-24 19:30:06,538 services 1733243 138081177450176 [Queue] Message ID 952 delivered successfully.
+INFO 2026-08-25 09:27:40,546 services 1733245 138081224335680 [Queue] Message enqueued: ID 953 to 919354864180
+INFO 2026-08-25 09:27:42,596 services 1733245 138081177450176 [Queue] Message ID 953 delivered successfully.
+INFO 2026-08-25 10:35:13,354 services 1733244 138081224335680 [Queue] Message enqueued: ID 954 to 919467136536
+INFO 2026-08-25 10:35:15,043 services 1733244 138081177450176 [Queue] Message ID 954 delivered successfully.
+INFO 2026-08-25 11:48:13,146 services 1733245 138081224335680 [Queue] Message enqueued: ID 955 to 919813700056
+INFO 2026-08-25 11:48:14,789 services 1733245 138081177450176 [Queue] Message ID 955 delivered successfully.
+INFO 2026-08-25 12:13:56,701 services 1733243 138081224335680 [Queue] Message enqueued: ID 956 to 919466319015
+WARNING 2026-08-25 12:13:56,931 services 1733243 138081177450176 [Queue] Message ID 956 delivery failed: Gateway returned error code 400: {"error":"Number not on WhatsApp"}
+INFO 2026-08-25 12:15:05,745 services 1733243 138081224335680 [Queue] Message enqueued: ID 957 to 919466319015
+WARNING 2026-08-25 12:15:05,972 services 1733243 138081177450176 [Queue] Message ID 957 delivery failed: Gateway returned error code 400: {"error":"Number not on WhatsApp"}
+INFO 2026-08-25 12:16:40,836 services 1733243 138081224335680 [Queue] Message enqueued: ID 958 to 919466319015
+WARNING 2026-08-25 12:16:41,011 services 1733243 138081177450176 [Queue] Message ID 958 delivery failed: Gateway returned error code 400: {"error":"Number not on WhatsApp"}
+INFO 2026-08-25 12:24:12,945 services 1733245 138081224335680 [Queue] Message enqueued: ID 959 to 919467709122
+INFO 2026-08-25 12:24:16,898 services 1733245 138081177450176 [Queue] Message ID 959 delivered successfully.
+INFO 2026-08-25 12:35:04,393 services 1733243 138081224335680 [Queue] Message enqueued: ID 960 to 919671054542
+INFO 2026-08-25 12:35:06,005 services 1733243 138081177450176 [Queue] Message ID 960 delivered successfully.
+INFO 2026-08-25 13:30:11,681 services 1733244 138081224335680 [Queue] Message enqueued: ID 961 to 917015841384
+INFO 2026-08-25 13:30:13,647 services 1733244 138081177450176 [Queue] Message ID 961 delivered successfully.
+INFO 2026-08-25 13:41:57,274 services 1733245 138081224335680 [Queue] Message enqueued: ID 962 to 919671054542
+INFO 2026-08-25 13:41:59,201 services 1733245 138081177450176 [Queue] Message ID 962 delivered successfully.
+INFO 2026-08-25 13:47:41,278 services 1733245 138081224335680 [Queue] Message enqueued: ID 963 to 919671054542
+INFO 2026-08-25 13:47:42,763 services 1733245 138081177450176 [Queue] Message ID 963 delivered successfully.
+INFO 2026-08-25 14:57:35,861 services 1733245 138081224335680 [Queue] Message enqueued: ID 964 to 919068411732
+INFO 2026-08-25 14:57:37,507 services 1733245 138081177450176 [Queue] Message ID 964 delivered successfully.
+INFO 2026-08-25 15:04:45,376 services 1733244 138081224335680 [Queue] Message enqueued: ID 965 to 919068411732
+INFO 2026-08-25 15:04:46,944 services 1733244 138081177450176 [Queue] Message ID 965 delivered successfully.
+INFO 2026-08-25 16:34:26,845 services 1733243 138081224335680 [Queue] Message enqueued: ID 966 to 919050606304
+INFO 2026-08-25 16:34:28,464 services 1733243 138081177450176 [Queue] Message ID 966 delivered successfully.
+INFO 2026-08-25 17:26:52,636 services 1733243 138081224335680 [Queue] Message enqueued: ID 967 to 919050606304
+INFO 2026-08-25 17:26:54,437 services 1733243 138081177450176 [Queue] Message ID 967 delivered successfully.
+INFO 2026-08-25 17:40:37,144 services 1733245 138081224335680 [Queue] Message enqueued: ID 968 to 919050606304
+INFO 2026-08-25 17:40:38,642 services 1733245 138081177450176 [Queue] Message ID 968 delivered successfully.
+INFO 2026-08-25 19:15:21,886 services 1733243 138081224335680 [Queue] Message enqueued: ID 969 to 919728509667
+INFO 2026-08-25 19:15:23,515 services 1733243 138081177450176 [Queue] Message ID 969 delivered successfully.
+INFO 2026-08-25 19:27:09,598 services 1733243 138081224335680 [Queue] Message enqueued: ID 970 to 919728509667
+INFO 2026-08-25 19:27:11,069 services 1733243 138081177450176 [Queue] Message ID 970 delivered successfully.
+INFO 2026-08-25 19:32:40,096 services 1733243 138081224335680 [Queue] Message enqueued: ID 971 to 919728509667
+INFO 2026-08-25 19:32:41,674 services 1733243 138081177450176 [Queue] Message ID 971 delivered successfully.
+INFO 2026-08-25 19:33:44,284 services 1733245 138081224335680 [Queue] Message enqueued: ID 972 to 919467136536
+INFO 2026-08-25 19:33:45,765 services 1733245 138081177450176 [Queue] Message ID 972 delivered successfully.
+INFO 2026-08-25 21:15:18,515 services 1733243 138081224335680 [Queue] Message enqueued: ID 973 to 919896326757
+INFO 2026-08-25 21:15:20,102 services 1733243 138081177450176 [Queue] Message ID 973 delivered successfully.
+INFO 2026-08-26 10:41:53,470 services 1733244 138081224335680 [Queue] Message enqueued: ID 974 to 918826987441
+INFO 2026-08-26 10:41:55,880 services 1733244 138081177450176 [Queue] Message ID 974 delivered successfully.
+INFO 2026-08-26 10:44:17,816 services 1733244 138081224335680 [Queue] Message enqueued: ID 975 to 919996291666
+INFO 2026-08-26 10:44:19,684 services 1733244 138081177450176 [Queue] Message ID 975 delivered successfully.
+INFO 2026-08-26 10:46:50,862 services 1733243 138081224335680 [Queue] Message enqueued: ID 976 to 918826987441
+INFO 2026-08-26 10:46:53,073 services 1733243 138081177450176 [Queue] Message ID 976 delivered successfully.
+INFO 2026-08-26 10:59:12,816 services 1733243 138081224335680 [Queue] Message enqueued: ID 977 to 918826987441
+INFO 2026-08-26 10:59:14,470 services 1733243 138081177450176 [Queue] Message ID 977 delivered successfully.
+INFO 2026-08-26 10:59:44,096 services 1733243 138081224335680 [Queue] Message enqueued: ID 978 to 919996291666
+INFO 2026-08-26 10:59:45,569 services 1733243 138081177450176 [Queue] Message ID 978 delivered successfully.
+INFO 2026-08-26 11:51:14,996 services 1733245 138081224335680 [Queue] Message enqueued: ID 979 to 919466319015
+WARNING 2026-08-26 11:51:15,243 services 1733245 138081177450176 [Queue] Message ID 979 delivery failed: Gateway returned error code 400: {"error":"Number not on WhatsApp"}
+INFO 2026-08-26 12:27:09,206 services 1733243 138081224335680 [Queue] Message enqueued: ID 980 to 919306605070
+INFO 2026-08-26 12:27:11,431 services 1733243 138081177450176 [Queue] Message ID 980 delivered successfully.
+INFO 2026-08-26 12:28:12,196 services 1733245 138081224335680 [Queue] Message enqueued: ID 981 to 919306605070
+INFO 2026-08-26 12:28:14,306 services 1733245 138081177450176 [Queue] Message ID 981 delivered successfully.
+INFO 2026-08-26 12:29:37,224 services 1733244 138081224335680 [Queue] Message enqueued: ID 982 to 919306605070
+INFO 2026-08-26 12:29:38,814 services 1733244 138081177450176 [Queue] Message ID 982 delivered successfully.
+INFO 2026-08-26 12:44:26,959 services 1733243 138081224335680 [Queue] Message enqueued: ID 983 to 919050066606
+INFO 2026-08-26 12:44:28,730 services 1733243 138081177450176 [Queue] Message ID 983 delivered successfully.
+INFO 2026-08-26 12:45:39,857 services 1733243 138081224335680 [Queue] Message enqueued: ID 984 to 919050066606
+INFO 2026-08-26 12:45:41,768 services 1733243 138081177450176 [Queue] Message ID 984 delivered successfully.
+INFO 2026-08-26 15:58:17,232 services 1733243 138081224335680 [Queue] Message enqueued: ID 985 to 919671687800
+INFO 2026-08-26 15:58:19,310 services 1733243 138081177450176 [Queue] Message ID 985 delivered successfully.
+INFO 2026-08-26 18:27:37,291 services 1733243 138081224335680 [Queue] Message enqueued: ID 986 to 919728509667
+INFO 2026-08-26 18:27:39,437 services 1733243 138081177450176 [Queue] Message ID 986 delivered successfully.
+INFO 2026-08-26 18:28:49,777 services 1733243 138081224335680 [Queue] Message enqueued: ID 987 to 919671687800
+INFO 2026-08-26 18:28:51,449 services 1733243 138081177450176 [Queue] Message ID 987 delivered successfully.
+INFO 2026-08-26 19:33:25,252 services 1733243 138081224335680 [Queue] Message enqueued: ID 988 to 917056656534
+INFO 2026-08-26 19:33:27,525 services 1733243 138081177450176 [Queue] Message ID 988 delivered successfully.
+INFO 2026-08-26 19:39:08,594 services 1733243 138081224335680 [Queue] Message enqueued: ID 989 to 917056656534
+INFO 2026-08-26 19:39:10,895 services 1733243 138081177450176 [Queue] Message ID 989 delivered successfully.
+INFO 2026-08-26 19:42:04,745 services 1733244 138081224335680 [Queue] Message enqueued: ID 990 to 917056656534
+INFO 2026-08-26 19:42:06,850 services 1733244 138081177450176 [Queue] Message ID 990 delivered successfully.
+INFO 2026-08-26 19:50:41,834 services 1733243 138081224335680 [Queue] Message enqueued: ID 991 to 919728509667
+INFO 2026-08-26 19:50:43,712 services 1733243 138081177450176 [Queue] Message ID 991 delivered successfully.
+INFO 2026-08-26 19:56:27,104 services 1733243 138081224335680 [Queue] Message enqueued: ID 992 to 919050864241
+INFO 2026-08-26 19:56:29,639 services 1733243 138081177450176 [Queue] Message ID 992 delivered successfully.
+INFO 2026-08-27 09:02:34,939 services 1733243 138081224335680 [Queue] Message enqueued: ID 993 to 919813980931
+INFO 2026-08-27 09:02:37,182 services 1733243 138081177450176 [Queue] Message ID 993 delivered successfully.
+INFO 2026-08-27 09:08:13,769 services 1733244 138081224335680 [Queue] Message enqueued: ID 994 to 919068227259
+INFO 2026-08-27 09:08:15,866 services 1733244 138081177450176 [Queue] Message ID 994 delivered successfully.
+INFO 2026-08-27 09:32:14,277 services 1733243 138081224335680 [Queue] Message enqueued: ID 995 to 916280436329
+INFO 2026-08-27 09:32:16,077 services 1733243 138081177450176 [Queue] Message ID 995 delivered successfully.
+INFO 2026-08-27 10:07:47,502 services 1733245 138081224335680 [Queue] Message enqueued: ID 996 to 918529712407
+INFO 2026-08-27 10:07:49,544 services 1733245 138081177450176 [Queue] Message ID 996 delivered successfully.
+INFO 2026-08-27 10:43:06,567 services 1733244 138081224335680 [Queue] Message enqueued: ID 997 to 917082239953
+INFO 2026-08-27 10:43:09,095 services 1733244 138081177450176 [Queue] Message ID 997 delivered successfully.
+INFO 2026-08-27 10:44:32,850 services 1733244 138081224335680 [Queue] Message enqueued: ID 998 to 919896365042
+INFO 2026-08-27 10:44:35,078 services 1733244 138081177450176 [Queue] Message ID 998 delivered successfully.
+INFO 2026-08-27 11:03:41,414 whatsapp_runtime 1948251 132513844205248 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-27 11:03:41,420 whatsapp_runtime 1948253 132513844205248 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-27 11:03:41,586 whatsapp_runtime 1948252 132513844205248 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-27 11:06:08,018 services 1948253 132513899430208 [Queue] Message enqueued: ID 999 to 918529712407
+INFO 2026-08-27 11:06:09,694 services 1948253 132513852597952 [Queue] Message ID 999 delivered successfully.
+INFO 2026-08-27 11:13:17,682 whatsapp_runtime 1948875 131783933241024 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-27 11:13:17,705 whatsapp_runtime 1948874 131783933241024 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-27 11:13:18,112 whatsapp_runtime 1948876 131783933241024 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-27 11:58:36,521 services 1948876 131783988511040 [Queue] Message enqueued: ID 1000 to 918708378509
+INFO 2026-08-27 11:58:44,346 services 1948876 131783941633728 [Queue] Message ID 1000 delivered successfully.
+INFO 2026-08-27 12:55:07,534 services 1948875 131783988511040 [Queue] Message enqueued: ID 1001 to 917015841384
+INFO 2026-08-27 12:55:11,593 services 1948875 131783941633728 [Queue] Message ID 1001 delivered successfully.
+INFO 2026-08-27 12:56:57,942 services 1948876 131783988511040 [Queue] Message enqueued: ID 1002 to 919416175407
+INFO 2026-08-27 12:57:02,008 services 1948876 131783941633728 [Queue] Message ID 1002 delivered successfully.
+INFO 2026-08-27 14:45:39,815 services 1948875 131783988511040 [Queue] Message enqueued: ID 1003 to 919416175407
+INFO 2026-08-27 14:45:41,573 services 1948875 131783941633728 [Queue] Message ID 1003 delivered successfully.
+INFO 2026-08-27 15:35:43,520 services 1948874 131783988511040 [Queue] Message enqueued: ID 1004 to 919466304080
+INFO 2026-08-27 15:35:45,204 services 1948874 131783933241024 [Queue] Message ID 1004 delivered successfully.
+INFO 2026-08-27 18:02:12,769 services 1948874 131783988511040 [Queue] Message enqueued: ID 1005 to 919996514624
+INFO 2026-08-27 18:02:14,625 services 1948874 131783933241024 [Queue] Message ID 1005 delivered successfully.
+INFO 2026-08-27 18:38:15,487 services 1948874 131783988511040 [Queue] Message enqueued: ID 1006 to 919812664210
+INFO 2026-08-27 18:38:17,486 services 1948874 131783933241024 [Queue] Message ID 1006 delivered successfully.
+INFO 2026-08-27 18:41:14,863 services 1948874 131783988511040 [Queue] Message enqueued: ID 1007 to 919812664210
+INFO 2026-08-27 18:41:16,857 services 1948874 131783933241024 [Queue] Message ID 1007 delivered successfully.
+INFO 2026-08-27 18:42:50,302 services 1948874 131783988511040 [Queue] Message enqueued: ID 1008 to 919812664210
+INFO 2026-08-27 18:42:52,069 services 1948874 131783933241024 [Queue] Message ID 1008 delivered successfully.
+INFO 2026-08-27 18:44:31,859 services 1948874 131783988511040 [Queue] Message enqueued: ID 1009 to 919812664210
+INFO 2026-08-27 18:44:33,854 services 1948874 131783933241024 [Queue] Message ID 1009 delivered successfully.
+INFO 2026-08-27 19:10:36,036 services 1948876 131783988511040 [Queue] Message enqueued: ID 1010 to 919050606304
+INFO 2026-08-27 19:10:37,781 services 1948876 131783941633728 [Queue] Message ID 1010 delivered successfully.
+INFO 2026-08-27 19:17:48,497 services 1948876 131783988511040 [Queue] Message enqueued: ID 1011 to 919728509667
+INFO 2026-08-27 19:17:50,273 services 1948876 131783941633728 [Queue] Message ID 1011 delivered successfully.
+INFO 2026-08-28 12:03:07,526 whatsapp_runtime 2008731 129852307576512 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-28 12:03:07,534 whatsapp_runtime 2008733 129852307576512 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-28 12:03:07,541 whatsapp_runtime 2008734 129852307576512 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-28 12:05:29,198 services 2008734 129852362899776 [Queue] Message enqueued: ID 1012 to 919896326757
+INFO 2026-08-28 12:05:30,836 services 2008734 129852315969216 [Queue] Message ID 1012 delivered successfully.
+INFO 2026-08-28 12:16:02,431 whatsapp_runtime 2009738 140024771643072 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-28 12:16:02,432 whatsapp_runtime 2009740 140024771643072 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-28 12:16:02,435 whatsapp_runtime 2009739 140024771643072 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-28 12:55:31,985 services 2009740 140024826921280 [Queue] Message enqueued: ID 1013 to 919467136536
+INFO 2026-08-28 12:55:33,997 services 2009740 140024771643072 [Queue] Message ID 1013 delivered successfully.
+INFO 2026-08-28 14:33:57,698 services 2009739 140024826921280 [Queue] Message enqueued: ID 1014 to 919594831116
+INFO 2026-08-28 14:33:59,954 services 2009739 140024771643072 [Queue] Message ID 1014 delivered successfully.
+INFO 2026-08-28 14:48:25,199 services 2009739 140024826921280 [Queue] Message enqueued: ID 1015 to 919466891026
+INFO 2026-08-28 14:48:26,919 services 2009739 140024771643072 [Queue] Message ID 1015 delivered successfully.
+INFO 2026-08-28 14:49:58,343 services 2009739 140024826921280 [Queue] Message enqueued: ID 1016 to 919466891026
+INFO 2026-08-28 14:49:59,978 services 2009739 140024771643072 [Queue] Message ID 1016 delivered successfully.
+INFO 2026-08-28 16:31:27,381 services 2009739 140024826921280 [Queue] Message enqueued: ID 1017 to 919812376552
+INFO 2026-08-28 16:31:29,243 services 2009739 140024771643072 [Queue] Message ID 1017 delivered successfully.
+INFO 2026-08-28 16:52:04,428 services 2009738 140024826921280 [Queue] Message enqueued: ID 1018 to 919466891026
+INFO 2026-08-28 16:52:06,100 services 2009738 140024780035776 [Queue] Message ID 1018 delivered successfully.
+INFO 2026-08-28 17:44:13,644 services 2009740 140024826921280 [Queue] Message enqueued: ID 1019 to 919416175407
+INFO 2026-08-28 17:44:15,434 services 2009740 140024771643072 [Queue] Message ID 1019 delivered successfully.
+INFO 2026-08-28 19:09:35,088 services 2009738 140024826921280 [Queue] Message enqueued: ID 1020 to 919728509667
+INFO 2026-08-28 19:09:36,717 services 2009738 140024780035776 [Queue] Message ID 1020 delivered successfully.
+INFO 2026-08-29 09:04:51,458 services 2009740 140024826921280 [Queue] Message enqueued: ID 1021 to 919354864180
+INFO 2026-08-29 09:04:53,903 services 2009740 140024771643072 [Queue] Message ID 1021 delivered successfully.
+INFO 2026-08-29 10:07:30,700 services 2009739 140024826921280 [Queue] Message enqueued: ID 1022 to 918529712407
+INFO 2026-08-29 10:07:32,473 services 2009739 140024771643072 [Queue] Message ID 1022 delivered successfully.
+INFO 2026-08-29 11:17:13,736 services 2009738 140024826921280 [Queue] Message enqueued: ID 1023 to 919813700056
+INFO 2026-08-29 11:17:16,036 services 2009738 140024780035776 [Queue] Message ID 1023 delivered successfully.
+INFO 2026-08-29 11:36:51,793 services 2009739 140024826921280 [Queue] Message enqueued: ID 1024 to 918814021906
+INFO 2026-08-29 11:36:53,411 services 2009739 140024771643072 [Queue] Message ID 1024 delivered successfully.
+INFO 2026-08-29 12:15:52,638 services 2009740 140024826921280 [Queue] Message enqueued: ID 1025 to 919416074441
+INFO 2026-08-29 12:15:54,274 services 2009740 140024771643072 [Queue] Message ID 1025 delivered successfully.
+INFO 2026-08-29 13:38:42,890 services 2009739 140024826921280 [Queue] Message enqueued: ID 1026 to 919996514624
+INFO 2026-08-29 13:38:44,758 services 2009739 140024771643072 [Queue] Message ID 1026 delivered successfully.
+INFO 2026-08-29 13:57:35,936 services 2009739 140024826921280 [Queue] Message enqueued: ID 1027 to 919594831116
+INFO 2026-08-29 13:57:38,180 services 2009739 140024771643072 [Queue] Message ID 1027 delivered successfully.
+INFO 2026-08-29 13:59:00,393 services 2009740 140024826921280 [Queue] Message enqueued: ID 1028 to 919594831116
+INFO 2026-08-29 13:59:02,283 services 2009740 140024771643072 [Queue] Message ID 1028 delivered successfully.
+INFO 2026-08-29 14:01:59,477 services 2009738 140024826921280 [Queue] Message enqueued: ID 1029 to 919594831116
+INFO 2026-08-29 14:02:01,142 services 2009738 140024780035776 [Queue] Message ID 1029 delivered successfully.
+INFO 2026-08-29 14:06:32,914 services 2009739 140024826921280 [Queue] Message enqueued: ID 1030 to 919594831116
+INFO 2026-08-29 14:06:34,552 services 2009739 140024771643072 [Queue] Message ID 1030 delivered successfully.
+INFO 2026-08-29 14:08:06,556 services 2009740 140024826921280 [Queue] Message enqueued: ID 1031 to 918199016257
+INFO 2026-08-29 14:08:08,355 services 2009740 140024771643072 [Queue] Message ID 1031 delivered successfully.
+INFO 2026-08-29 14:09:00,495 services 2009740 140024826921280 [Queue] Message enqueued: ID 1032 to 919996514624
+INFO 2026-08-29 14:09:02,252 services 2009740 140024771643072 [Queue] Message ID 1032 delivered successfully.
+INFO 2026-08-29 14:14:54,177 services 2009740 140024826921280 [Queue] Message enqueued: ID 1033 to 918199016257
+INFO 2026-08-29 14:14:55,900 services 2009740 140024771643072 [Queue] Message ID 1033 delivered successfully.
+INFO 2026-08-29 16:55:49,015 services 2009738 140024826921280 [Queue] Message enqueued: ID 1034 to 918814021906
+INFO 2026-08-29 16:55:50,767 services 2009738 140024780035776 [Queue] Message ID 1034 delivered successfully.
+INFO 2026-08-29 17:41:03,902 services 2009740 140024826921280 [Queue] Message enqueued: ID 1035 to 919050606304
+INFO 2026-08-29 17:41:05,904 services 2009740 140024771643072 [Queue] Message ID 1035 delivered successfully.
+INFO 2026-08-29 18:15:23,390 services 2009740 140024826921280 [Queue] Message enqueued: ID 1036 to 918529712407
+INFO 2026-08-29 18:15:25,032 services 2009740 140024771643072 [Queue] Message ID 1036 delivered successfully.
+INFO 2026-08-29 18:16:16,372 services 2009740 140024826921280 [Queue] Message enqueued: ID 1037 to 919996514624
+INFO 2026-08-29 18:16:18,513 services 2009740 140024771643072 [Queue] Message ID 1037 delivered successfully.
+INFO 2026-08-29 18:18:16,202 services 2009738 140024826921280 [Queue] Message enqueued: ID 1038 to 919996514624
+INFO 2026-08-29 18:18:18,106 services 2009738 140024780035776 [Queue] Message ID 1038 delivered successfully.
+INFO 2026-08-29 18:20:22,713 services 2009738 140024826921280 [Queue] Message enqueued: ID 1039 to 919466304196
+INFO 2026-08-29 18:20:24,393 services 2009738 140024780035776 [Queue] Message ID 1039 delivered successfully.
+INFO 2026-08-29 18:20:51,578 services 2009738 140024826921280 [Queue] Message enqueued: ID 1040 to 919996514624
+INFO 2026-08-29 18:20:53,308 services 2009738 140024780035776 [Queue] Message ID 1040 delivered successfully.
+INFO 2026-08-29 18:30:17,517 services 2009738 140024826921280 [Queue] Message enqueued: ID 1041 to 919068411732
+INFO 2026-08-29 18:30:19,091 services 2009738 140024780035776 [Queue] Message ID 1041 delivered successfully.
+INFO 2026-08-30 10:30:05,850 services 2009738 140024826921280 [Queue] Message enqueued: ID 1042 to 919050606304
+INFO 2026-08-30 10:30:08,558 services 2009738 140024780035776 [Queue] Message ID 1042 delivered successfully.
+INFO 2026-08-30 10:30:48,700 services 2009739 140024826921280 [Queue] Message enqueued: ID 1043 to 919050606304
+INFO 2026-08-30 10:30:50,473 services 2009739 140024771643072 [Queue] Message ID 1043 delivered successfully.
+INFO 2026-08-30 11:10:11,533 services 2009739 140024826921280 [Queue] Message enqueued: ID 1044 to 919729400718
+INFO 2026-08-30 11:10:13,194 services 2009739 140024771643072 [Queue] Message ID 1044 delivered successfully.
+INFO 2026-08-30 12:20:59,686 services 2009738 140024826921280 [Queue] Message enqueued: ID 1045 to 919996514624
+INFO 2026-08-30 12:21:01,552 services 2009738 140024780035776 [Queue] Message ID 1045 delivered successfully.
+INFO 2026-08-30 12:35:08,103 services 2009738 140024826921280 [Queue] Message enqueued: ID 1046 to 919466592675
+INFO 2026-08-30 12:35:09,700 services 2009738 140024780035776 [Queue] Message ID 1046 delivered successfully.
+INFO 2026-08-30 12:55:23,926 services 2009738 140024826921280 [Queue] Message enqueued: ID 1047 to 917015031568
+INFO 2026-08-30 12:55:25,595 services 2009738 140024780035776 [Queue] Message ID 1047 delivered successfully.
+INFO 2026-08-30 15:36:08,291 services 2009738 140024826921280 [Queue] Message enqueued: ID 1048 to 919466592675
+INFO 2026-08-30 15:36:10,191 services 2009738 140024780035776 [Queue] Message ID 1048 delivered successfully.
+INFO 2026-08-30 15:59:38,606 services 2009738 140024826921280 [Queue] Message enqueued: ID 1049 to 919068227259
+INFO 2026-08-30 15:59:40,451 services 2009738 140024780035776 [Queue] Message ID 1049 delivered successfully.
+INFO 2026-08-30 16:00:37,019 services 2009740 140024826921280 [Queue] Message enqueued: ID 1050 to 919728509667
+INFO 2026-08-30 16:00:38,659 services 2009740 140024771643072 [Queue] Message ID 1050 delivered successfully.
+INFO 2026-08-30 18:25:12,032 services 2009738 140024826921280 [Queue] Message enqueued: ID 1051 to 919996514624
+INFO 2026-08-30 18:25:13,780 services 2009738 140024780035776 [Queue] Message ID 1051 delivered successfully.
+INFO 2026-08-30 18:26:49,633 services 2009740 140024826921280 [Queue] Message enqueued: ID 1052 to 919991527151
+INFO 2026-08-30 18:26:51,232 services 2009740 140024771643072 [Queue] Message ID 1052 delivered successfully.
+INFO 2026-08-30 18:34:09,619 services 2009738 140024826921280 [Queue] Message enqueued: ID 1053 to 919991335497
+INFO 2026-08-30 18:34:11,320 services 2009738 140024780035776 [Queue] Message ID 1053 delivered successfully.
+INFO 2026-08-30 19:02:02,128 services 2009740 140024826921280 [Queue] Message enqueued: ID 1054 to 919812075590
+INFO 2026-08-30 19:02:04,120 services 2009740 140024771643072 [Queue] Message ID 1054 delivered successfully.
+INFO 2026-08-30 19:03:24,311 services 2009740 140024826921280 [Queue] Message enqueued: ID 1055 to 919812075590
+INFO 2026-08-30 19:03:25,801 services 2009740 140024771643072 [Queue] Message ID 1055 delivered successfully.
+INFO 2026-08-30 19:21:34,759 services 2009740 140024826921280 [Queue] Message enqueued: ID 1056 to 918708378509
+INFO 2026-08-30 19:21:36,522 services 2009740 140024771643072 [Queue] Message ID 1056 delivered successfully.
+INFO 2026-08-30 19:29:46,200 services 2009738 140024826921280 [Queue] Message enqueued: ID 1057 to 919991335497
+INFO 2026-08-30 19:29:47,808 services 2009738 140024780035776 [Queue] Message ID 1057 delivered successfully.
+INFO 2026-08-31 09:45:46,567 services 2009739 140024826921280 [Queue] Message enqueued: ID 1058 to 918685817616
+INFO 2026-08-31 09:45:49,306 services 2009739 140024771643072 [Queue] Message ID 1058 delivered successfully.
+INFO 2026-08-31 09:55:35,386 services 2009740 140024826921280 [Queue] Message enqueued: ID 1059 to 919050111860
+INFO 2026-08-31 09:55:38,409 services 2009740 140024771643072 [Queue] Message ID 1059 delivered successfully.
+INFO 2026-08-31 10:03:53,824 services 2009739 140024826921280 [Queue] Message enqueued: ID 1060 to 918685817616
+INFO 2026-08-31 10:03:55,527 services 2009739 140024771643072 [Queue] Message ID 1060 delivered successfully.
+INFO 2026-08-31 12:02:20,868 services 2009738 140024826921280 [Queue] Message enqueued: ID 1061 to 918570964439
+INFO 2026-08-31 12:02:22,980 services 2009738 140024780035776 [Queue] Message ID 1061 delivered successfully.
+INFO 2026-08-31 12:05:57,798 services 2009738 140024826921280 [Queue] Message enqueued: ID 1062 to 918570964439
+INFO 2026-08-31 12:05:59,640 services 2009738 140024780035776 [Queue] Message ID 1062 delivered successfully.
+INFO 2026-08-31 12:13:59,686 services 2009738 140024826921280 [Queue] Message enqueued: ID 1063 to 919315569919
+INFO 2026-08-31 12:14:02,321 services 2009738 140024780035776 [Queue] Message ID 1063 delivered successfully.
+INFO 2026-08-31 12:46:03,283 whatsapp_runtime 2179141 125699860989632 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-31 12:46:03,281 whatsapp_runtime 2179142 125699860989632 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-31 12:46:03,285 whatsapp_runtime 2179143 125699860989632 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-08-31 13:58:49,402 services 2179143 125699916345664 [Queue] Message enqueued: ID 1064 to 919728097780
+INFO 2026-08-31 13:58:51,961 services 2179143 125699860989632 [Queue] Message ID 1064 delivered successfully.
+INFO 2026-08-31 14:17:26,515 services 2179142 125699916345664 [Queue] Message enqueued: ID 1065 to 919996514624
+INFO 2026-08-31 14:17:28,144 services 2179142 125699869382336 [Queue] Message ID 1065 delivered successfully.
+INFO 2026-08-31 15:52:23,038 services 2179142 125699916345664 [Queue] Message enqueued: ID 1066 to 919996514624
+INFO 2026-08-31 15:52:24,751 services 2179142 125699869382336 [Queue] Message ID 1066 delivered successfully.
+INFO 2026-08-31 16:59:18,728 services 2179142 125699916345664 [Queue] Message enqueued: ID 1067 to 918708378509
+INFO 2026-08-31 16:59:20,430 services 2179142 125699869382336 [Queue] Message ID 1067 delivered successfully.
+INFO 2026-08-31 18:13:39,151 services 2179141 125699916345664 [Queue] Message enqueued: ID 1068 to 917023204385
+INFO 2026-08-31 18:13:41,217 services 2179141 125699860989632 [Queue] Message ID 1068 delivered successfully.
+INFO 2026-08-31 18:14:22,072 services 2179142 125699916345664 [Queue] Message enqueued: ID 1069 to 917023204385
+INFO 2026-08-31 18:14:23,657 services 2179142 125699869382336 [Queue] Message ID 1069 delivered successfully.
+INFO 2026-08-31 18:17:05,335 services 2179142 125699916345664 [Queue] Message enqueued: ID 1070 to 917023204385
+INFO 2026-08-31 18:17:06,891 services 2179142 125699869382336 [Queue] Message ID 1070 delivered successfully.
+INFO 2026-08-31 18:48:51,362 services 2179143 125699916345664 [Queue] Message enqueued: ID 1071 to 919671687800
+INFO 2026-08-31 18:48:53,008 services 2179143 125699860989632 [Queue] Message ID 1071 delivered successfully.
+INFO 2026-08-31 19:00:21,238 services 2179141 125699916345664 [Queue] Message enqueued: ID 1072 to 919996514624
+INFO 2026-08-31 19:00:22,896 services 2179141 125699860989632 [Queue] Message ID 1072 delivered successfully.
+INFO 2026-08-31 19:16:08,702 services 2179142 125699916345664 [Queue] Message enqueued: ID 1073 to 918708378509
+INFO 2026-08-31 19:16:10,360 services 2179142 125699869382336 [Queue] Message ID 1073 delivered successfully.
+INFO 2026-08-31 19:24:17,186 services 2179142 125699916345664 [Queue] Message enqueued: ID 1074 to 919812451975
+INFO 2026-08-31 19:24:18,869 services 2179142 125699869382336 [Queue] Message ID 1074 delivered successfully.
+INFO 2026-08-31 19:24:49,362 services 2179141 125699916345664 [Queue] Message enqueued: ID 1075 to 919812451975
+INFO 2026-08-31 19:24:51,274 services 2179141 125699860989632 [Queue] Message ID 1075 delivered successfully.
+INFO 2026-09-01 09:42:08,909 services 2179143 125699916345664 [Queue] Message enqueued: ID 1076 to 919813700056
+INFO 2026-09-01 09:42:11,106 services 2179143 125699860989632 [Queue] Message ID 1076 delivered successfully.
+INFO 2026-09-01 09:54:34,175 services 2179143 125699916345664 [Queue] Message enqueued: ID 1077 to 919467709122
+INFO 2026-09-01 09:54:36,254 services 2179143 125699860989632 [Queue] Message ID 1077 delivered successfully.
+INFO 2026-09-01 10:46:01,709 services 2179141 125699916345664 [Queue] Message enqueued: ID 1078 to 918685817616
+INFO 2026-09-01 10:46:03,601 services 2179141 125699860989632 [Queue] Message ID 1078 delivered successfully.
+INFO 2026-09-01 11:00:59,586 services 2179141 125699916345664 [Queue] Message enqueued: ID 1079 to 918685817616
+INFO 2026-09-01 11:01:01,619 services 2179141 125699860989632 [Queue] Message ID 1079 delivered successfully.
+INFO 2026-09-01 11:27:41,824 services 2179141 125699916345664 [Queue] Message enqueued: ID 1080 to 918570964439
+INFO 2026-09-01 11:27:43,503 services 2179141 125699860989632 [Queue] Message ID 1080 delivered successfully.
+INFO 2026-09-01 12:23:35,023 services 2179143 125699916345664 [Queue] Message enqueued: ID 1081 to 918570964439
+INFO 2026-09-01 12:23:37,303 services 2179143 125699860989632 [Queue] Message ID 1081 delivered successfully.
+INFO 2026-09-01 12:30:47,258 services 2179142 125699916345664 [Queue] Message enqueued: ID 1082 to 919518059011
+INFO 2026-09-01 12:30:48,929 services 2179142 125699869382336 [Queue] Message ID 1082 delivered successfully.
+INFO 2026-09-01 12:54:14,863 services 2179142 125699916345664 [Queue] Message enqueued: ID 1083 to 919467712677
+INFO 2026-09-01 12:54:16,747 services 2179142 125699869382336 [Queue] Message ID 1083 delivered successfully.
+INFO 2026-09-01 13:00:29,492 services 2179142 125699916345664 [Queue] Message enqueued: ID 1084 to 918685817616
+INFO 2026-09-01 13:00:31,195 services 2179142 125699869382336 [Queue] Message ID 1084 delivered successfully.
+INFO 2026-09-01 13:14:19,414 services 2179142 125699916345664 [Queue] Message enqueued: ID 1085 to 919991335497
+INFO 2026-09-01 13:14:21,034 services 2179142 125699869382336 [Queue] Message ID 1085 delivered successfully.
+INFO 2026-09-01 13:18:38,961 services 2179142 125699916345664 [Queue] Message enqueued: ID 1086 to 919991335497
+INFO 2026-09-01 13:18:40,463 services 2179142 125699869382336 [Queue] Message ID 1086 delivered successfully.
+INFO 2026-09-01 13:20:07,196 services 2179142 125699916345664 [Queue] Message enqueued: ID 1087 to 918685817616
+INFO 2026-09-01 13:20:09,210 services 2179142 125699869382336 [Queue] Message ID 1087 delivered successfully.
+INFO 2026-09-01 14:45:56,156 whatsapp_runtime 2240859 139506928191168 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-01 14:45:56,337 whatsapp_runtime 2240857 139506928191168 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-01 14:45:56,506 whatsapp_runtime 2240858 139506928191168 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-01 15:37:52,288 services 2240858 139506983498048 [Queue] Message enqueued: ID 1088 to 919467712677
+INFO 2026-09-01 15:37:54,013 services 2240858 139506936583872 [Queue] Message ID 1088 delivered successfully.
+INFO 2026-09-01 16:29:32,309 services 2240859 139506983498048 [Queue] Message enqueued: ID 1089 to 919728509667
+INFO 2026-09-01 16:29:34,254 services 2240859 139506928191168 [Queue] Message ID 1089 delivered successfully.
+INFO 2026-09-01 17:17:11,633 services 2240859 139506983498048 [Queue] Message enqueued: ID 1090 to 918813943999
+INFO 2026-09-01 17:17:13,283 services 2240859 139506928191168 [Queue] Message ID 1090 delivered successfully.
+INFO 2026-09-01 17:29:31,789 services 2240857 139506983498048 [Queue] Message enqueued: ID 1091 to 919728509667
+INFO 2026-09-01 17:29:33,442 services 2240857 139506928191168 [Queue] Message ID 1091 delivered successfully.
+INFO 2026-09-01 18:12:37,347 services 2240857 139506983498048 [Queue] Message enqueued: ID 1092 to 919996514624
+INFO 2026-09-01 18:12:39,101 services 2240857 139506928191168 [Queue] Message ID 1092 delivered successfully.
+INFO 2026-09-01 19:04:16,525 services 2240858 139506983498048 [Queue] Message enqueued: ID 1093 to 919728509667
+INFO 2026-09-01 19:04:18,263 services 2240858 139506936583872 [Queue] Message ID 1093 delivered successfully.
+INFO 2026-09-01 19:24:49,560 services 2240857 139506983498048 [Queue] Message enqueued: ID 1094 to 918570964439
+INFO 2026-09-01 19:24:51,199 services 2240857 139506928191168 [Queue] Message ID 1094 delivered successfully.
+INFO 2026-09-02 08:48:49,783 services 2240859 139506983498048 [Queue] Message enqueued: ID 1095 to 919729400718
+INFO 2026-09-02 08:48:51,757 services 2240859 139506928191168 [Queue] Message ID 1095 delivered successfully.
+INFO 2026-09-02 08:51:00,473 services 2240859 139506983498048 [Queue] Message enqueued: ID 1096 to 919729400718
+INFO 2026-09-02 08:51:01,963 services 2240859 139506928191168 [Queue] Message ID 1096 delivered successfully.
+INFO 2026-09-02 12:31:42,791 services 2240857 139506983498048 [Queue] Message enqueued: ID 1097 to 919416537431
+INFO 2026-09-02 12:31:44,788 services 2240857 139506928191168 [Queue] Message ID 1097 delivered successfully.
+INFO 2026-09-02 13:42:27,553 services 2240857 139506983498048 [Queue] Message enqueued: ID 1098 to 919050200732
+INFO 2026-09-02 13:42:29,827 services 2240857 139506928191168 [Queue] Message ID 1098 delivered successfully.
+INFO 2026-09-02 13:47:42,049 services 2240857 139506983498048 [Queue] Message enqueued: ID 1099 to 919050200732
+INFO 2026-09-02 13:47:43,713 services 2240857 139506928191168 [Queue] Message ID 1099 delivered successfully.
+INFO 2026-09-02 14:11:19,946 services 2240858 139506983498048 [Queue] Message enqueued: ID 1100 to 918570964439
+INFO 2026-09-02 14:11:21,721 services 2240858 139506936583872 [Queue] Message ID 1100 delivered successfully.
+INFO 2026-09-02 16:49:39,356 services 2240858 139506983498048 [Queue] Message enqueued: ID 1101 to 919728509667
+INFO 2026-09-02 16:49:41,250 services 2240858 139506936583872 [Queue] Message ID 1101 delivered successfully.
+INFO 2026-09-02 17:30:55,344 services 2240859 139506983498048 [Queue] Message enqueued: ID 1102 to 919728509667
+INFO 2026-09-02 17:30:57,243 services 2240859 139506928191168 [Queue] Message ID 1102 delivered successfully.
+INFO 2026-09-02 17:32:26,524 services 2240858 139506983498048 [Queue] Message enqueued: ID 1103 to 919416446572
+INFO 2026-09-02 17:32:28,262 services 2240858 139506936583872 [Queue] Message ID 1103 delivered successfully.
+INFO 2026-09-02 17:34:01,676 services 2240858 139506983498048 [Queue] Message enqueued: ID 1104 to 919813700056
+INFO 2026-09-02 17:34:03,507 services 2240858 139506936583872 [Queue] Message ID 1104 delivered successfully.
+INFO 2026-09-02 18:27:09,720 services 2240858 139506983498048 [Queue] Message enqueued: ID 1105 to 919466928000
+INFO 2026-09-02 18:27:11,684 services 2240858 139506936583872 [Queue] Message ID 1105 delivered successfully.
+INFO 2026-09-02 19:31:20,460 services 2240858 139506983498048 [Queue] Message enqueued: ID 1106 to 919729134439
+INFO 2026-09-02 19:31:22,312 services 2240858 139506936583872 [Queue] Message ID 1106 delivered successfully.
+INFO 2026-09-02 19:52:16,318 services 2240858 139506983498048 [Queue] Message enqueued: ID 1107 to 918685817616
+INFO 2026-09-02 19:52:18,039 services 2240858 139506936583872 [Queue] Message ID 1107 delivered successfully.
+INFO 2026-09-03 09:52:15,079 services 2240858 139506983498048 [Queue] Message enqueued: ID 1108 to 919729134439
+INFO 2026-09-03 09:52:17,278 services 2240858 139506936583872 [Queue] Message ID 1108 delivered successfully.
+INFO 2026-09-03 09:56:35,685 services 2240859 139506983498048 [Queue] Message enqueued: ID 1109 to 918221965824
+INFO 2026-09-03 09:56:38,582 services 2240859 139506928191168 [Queue] Message ID 1109 delivered successfully.
+INFO 2026-09-03 11:04:33,160 services 2240858 139506983498048 [Queue] Message enqueued: ID 1110 to 918168135975
+INFO 2026-09-03 11:04:35,139 services 2240858 139506936583872 [Queue] Message ID 1110 delivered successfully.
+INFO 2026-09-03 11:35:51,591 whatsapp_runtime 2346798 129292533356224 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-03 11:35:51,590 whatsapp_runtime 2346799 129292533356224 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-03 11:35:51,625 whatsapp_runtime 2346800 129292533356224 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-03 12:44:12,913 services 2346799 129292588597568 [Queue] Message enqueued: ID 1111 to 918168135975
+INFO 2026-09-03 12:44:15,041 services 2346799 129292533356224 [Queue] Message ID 1111 delivered successfully.
+INFO 2026-09-03 13:06:45,074 services 2346800 129292588597568 [Queue] Message enqueued: ID 1112 to 918168135975
+INFO 2026-09-03 13:06:46,793 services 2346800 129292541748928 [Queue] Message ID 1112 delivered successfully.
+INFO 2026-09-03 13:14:52,878 services 2346800 129292588597568 [Queue] Message enqueued: ID 1113 to 919671095313
+INFO 2026-09-03 13:14:54,869 services 2346800 129292541748928 [Queue] Message ID 1113 delivered successfully.
+INFO 2026-09-03 13:16:18,632 services 2346798 129292588597568 [Queue] Message enqueued: ID 1114 to 919671095313
+INFO 2026-09-03 13:16:20,791 services 2346798 129292533356224 [Queue] Message ID 1114 delivered successfully.
+INFO 2026-09-03 14:15:28,171 services 2346800 129292588597568 [Queue] Message enqueued: ID 1115 to 919050864241
+INFO 2026-09-03 14:15:29,912 services 2346800 129292541748928 [Queue] Message ID 1115 delivered successfully.
+INFO 2026-09-03 14:16:33,653 services 2346798 129292588597568 [Queue] Message enqueued: ID 1116 to 919518059011
+INFO 2026-09-03 14:16:35,273 services 2346798 129292533356224 [Queue] Message ID 1116 delivered successfully.
+INFO 2026-09-03 14:25:12,851 services 2346800 129292588597568 [Queue] Message enqueued: ID 1117 to 919671095313
+INFO 2026-09-03 14:25:14,492 services 2346800 129292541748928 [Queue] Message ID 1117 delivered successfully.
+INFO 2026-09-03 15:42:47,804 services 2346800 129292588597568 [Queue] Message enqueued: ID 1118 to 919896814831
+INFO 2026-09-03 15:42:49,914 services 2346800 129292541748928 [Queue] Message ID 1118 delivered successfully.
+INFO 2026-09-03 17:05:53,533 whatsapp_runtime 2359697 135855604762304 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-03 17:05:53,532 whatsapp_runtime 2359699 135855604762304 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-03 17:05:53,532 whatsapp_runtime 2359698 135855604762304 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-03 17:48:53,203 services 2359699 135855659954496 [Queue] Message enqueued: ID 1119 to 919813249674
+INFO 2026-09-03 17:48:55,327 services 2359699 135855604762304 [Queue] Message ID 1119 delivered successfully.
+INFO 2026-09-03 17:49:21,190 services 2359697 135855659954496 [Queue] Message enqueued: ID 1120 to 919813249674
+INFO 2026-09-03 17:49:22,815 services 2359697 135855613155008 [Queue] Message ID 1120 delivered successfully.
+INFO 2026-09-03 17:52:45,490 services 2359698 135855659954496 [Queue] Message enqueued: ID 1121 to 919813249674
+INFO 2026-09-03 17:52:47,241 services 2359698 135855613155008 [Queue] Message ID 1121 delivered successfully.
+INFO 2026-09-03 17:53:10,893 services 2359699 135855659954496 [Queue] Message enqueued: ID 1122 to 919996514624
+INFO 2026-09-03 17:53:12,867 services 2359699 135855604762304 [Queue] Message ID 1122 delivered successfully.
+INFO 2026-09-03 18:19:50,732 services 2359698 135855659954496 [Queue] Message enqueued: ID 1123 to 919354470484
+INFO 2026-09-03 18:19:52,534 services 2359698 135855613155008 [Queue] Message ID 1123 delivered successfully.
+INFO 2026-09-03 18:22:50,588 services 2359699 135855659954496 [Queue] Message enqueued: ID 1124 to 919068227259
+INFO 2026-09-03 18:22:52,197 services 2359699 135855604762304 [Queue] Message ID 1124 delivered successfully.
+INFO 2026-09-03 18:25:59,184 services 2359699 135855659954496 [Queue] Message enqueued: ID 1125 to 919068227259
+INFO 2026-09-03 18:26:01,051 services 2359699 135855604762304 [Queue] Message ID 1125 delivered successfully.
+INFO 2026-09-03 18:28:11,358 services 2359698 135855659954496 [Queue] Message enqueued: ID 1126 to 919813700056
+INFO 2026-09-03 18:28:13,525 services 2359698 135855613155008 [Queue] Message ID 1126 delivered successfully.
+INFO 2026-09-03 18:37:44,599 services 2359699 135855659954496 [Queue] Message enqueued: ID 1127 to 919813195725
+INFO 2026-09-03 18:37:46,470 services 2359699 135855604762304 [Queue] Message ID 1127 delivered successfully.
+INFO 2026-09-03 18:39:01,200 services 2359697 135855659954496 [Queue] Message enqueued: ID 1128 to 919896365042
+INFO 2026-09-03 18:39:03,062 services 2359697 135855613155008 [Queue] Message ID 1128 delivered successfully.
+INFO 2026-09-03 18:51:58,613 services 2359697 135855659954496 [Queue] Message enqueued: ID 1129 to 919813195725
+INFO 2026-09-03 18:52:00,248 services 2359697 135855613155008 [Queue] Message ID 1129 delivered successfully.
+INFO 2026-09-03 18:58:46,376 services 2359697 135855659954496 [Queue] Message enqueued: ID 1130 to 919813195725
+INFO 2026-09-03 18:58:48,064 services 2359697 135855613155008 [Queue] Message ID 1130 delivered successfully.
+INFO 2026-09-04 10:19:38,378 services 2359699 135855659954496 [Queue] Message enqueued: ID 1131 to 919416446572
+INFO 2026-09-04 10:19:40,418 services 2359699 135855604762304 [Queue] Message ID 1131 delivered successfully.
+INFO 2026-09-04 10:44:25,728 services 2359699 135855659954496 [Queue] Message enqueued: ID 1132 to 919068663037
+INFO 2026-09-04 10:44:27,834 services 2359699 135855604762304 [Queue] Message ID 1132 delivered successfully.
+INFO 2026-09-04 11:24:27,970 services 2359698 135855659954496 [Queue] Message enqueued: ID 1133 to 919671687800
+INFO 2026-09-04 11:24:29,885 services 2359698 135855613155008 [Queue] Message ID 1133 delivered successfully.
+INFO 2026-09-04 11:43:40,422 whatsapp_runtime 2403466 135274728953536 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-04 11:43:40,425 whatsapp_runtime 2403465 135274728953536 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-04 11:43:40,427 whatsapp_runtime 2403467 135274728953536 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-04 11:44:32,387 services 2403467 135274784289088 [Queue] Message enqueued: ID 1134 to 919068663037
+INFO 2026-09-04 11:44:34,055 services 2403467 135274728953536 [Queue] Message ID 1134 delivered successfully.
+INFO 2026-09-04 11:57:26,745 services 2403465 135274784289088 [Queue] Message enqueued: ID 1135 to 918930405151
+INFO 2026-09-04 11:57:28,463 services 2403465 135274737346240 [Queue] Message ID 1135 delivered successfully.
+INFO 2026-09-04 12:20:11,063 services 2403466 135274784289088 [Queue] Message enqueued: ID 1136 to 918168135975
+INFO 2026-09-04 12:20:12,848 services 2403466 135274737346240 [Queue] Message ID 1136 delivered successfully.
+INFO 2026-09-04 12:37:40,497 services 2403466 135274784289088 [Queue] Message enqueued: ID 1137 to 919406218767
+INFO 2026-09-04 12:37:42,219 services 2403466 135274737346240 [Queue] Message ID 1137 delivered successfully.
+INFO 2026-09-04 15:00:52,160 services 2403466 135274784289088 [Queue] Message enqueued: ID 1138 to 919315569919
+INFO 2026-09-04 15:00:53,975 services 2403466 135274737346240 [Queue] Message ID 1138 delivered successfully.
+INFO 2026-09-04 15:23:28,305 services 2403465 135274784289088 [Queue] Message enqueued: ID 1139 to 919406218767
+INFO 2026-09-04 15:23:29,955 services 2403465 135274737346240 [Queue] Message ID 1139 delivered successfully.
+INFO 2026-09-04 16:00:40,998 services 2403466 135274784289088 [Queue] Message enqueued: ID 1140 to 919813646200
+INFO 2026-09-04 16:00:42,558 services 2403466 135274737346240 [Queue] Message ID 1140 delivered successfully.
+INFO 2026-09-04 16:02:09,421 services 2403467 135274784289088 [Queue] Message enqueued: ID 1141 to 919813646200
+INFO 2026-09-04 16:02:11,048 services 2403467 135274728953536 [Queue] Message ID 1141 delivered successfully.
+INFO 2026-09-05 09:22:47,824 whatsapp_runtime 2455008 135541450340032 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-05 09:22:47,825 whatsapp_runtime 2455009 135541450340032 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-05 09:22:47,823 whatsapp_runtime 2455010 135541450340032 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-05 10:28:04,216 services 2455010 135541576581440 [Queue] Message enqueued: ID 1142 to 918053405232
+INFO 2026-09-05 10:28:06,706 services 2455010 135541450340032 [Queue] Message ID 1142 delivered successfully.
+INFO 2026-09-05 10:40:23,007 services 2455010 135541576581440 [Queue] Message enqueued: ID 1143 to 919466592675
+INFO 2026-09-05 10:40:24,781 services 2455010 135541450340032 [Queue] Message ID 1143 delivered successfully.
+INFO 2026-09-05 10:41:27,798 services 2455010 135541576581440 [Queue] Message enqueued: ID 1144 to 919466592675
+INFO 2026-09-05 10:41:29,640 services 2455010 135541450340032 [Queue] Message ID 1144 delivered successfully.
+INFO 2026-09-05 10:48:08,607 whatsapp_runtime 2459609 129772966848192 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-05 10:48:08,608 whatsapp_runtime 2459611 129772966848192 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-05 10:48:08,609 whatsapp_runtime 2459610 129772966848192 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-05 11:39:19,763 services 2459610 129773022347584 [Queue] Message enqueued: ID 1145 to 919896326757
+INFO 2026-09-05 11:39:21,910 services 2459610 129772966848192 [Queue] Message ID 1145 delivered successfully.
+INFO 2026-09-05 11:56:24,637 services 2459610 129773022347584 [Queue] Message enqueued: ID 1146 to 919813495194
+INFO 2026-09-05 11:56:27,189 services 2459610 129772966848192 [Queue] Message ID 1146 delivered successfully.
+INFO 2026-09-05 12:02:23,784 services 2459610 129773022347584 [Queue] Message enqueued: ID 1147 to 919050200732
+INFO 2026-09-05 12:02:25,560 services 2459610 129772966848192 [Queue] Message ID 1147 delivered successfully.
+INFO 2026-09-05 12:05:07,717 services 2459610 129773022347584 [Queue] Message enqueued: ID 1148 to 919050200732
+INFO 2026-09-05 12:05:09,412 services 2459610 129772966848192 [Queue] Message ID 1148 delivered successfully.
+INFO 2026-09-05 12:06:11,629 services 2459609 129773022347584 [Queue] Message enqueued: ID 1149 to 919813495194
+INFO 2026-09-05 12:06:13,447 services 2459609 129772966848192 [Queue] Message ID 1149 delivered successfully.
+INFO 2026-09-05 12:10:00,740 services 2459609 129773022347584 [Queue] Message enqueued: ID 1150 to 919813495194
+INFO 2026-09-05 12:10:03,195 services 2459609 129772966848192 [Queue] Message ID 1150 delivered successfully.
+INFO 2026-09-05 12:18:05,790 services 2459611 129773022347584 [Queue] Message enqueued: ID 1151 to 919802115827
+INFO 2026-09-05 12:18:08,286 services 2459611 129772966848192 [Queue] Message ID 1151 delivered successfully.
+INFO 2026-09-05 12:31:40,920 services 2459610 129773022347584 [Queue] Message enqueued: ID 1152 to 919802115827
+INFO 2026-09-05 12:31:42,730 services 2459610 129772966848192 [Queue] Message ID 1152 delivered successfully.
+INFO 2026-09-05 12:39:24,279 whatsapp_runtime 2464594 139193024681664 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-05 12:39:24,282 whatsapp_runtime 2464593 139193024681664 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-05 12:39:24,279 whatsapp_runtime 2464595 139193024681664 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-05 12:55:30,403 services 2464595 139193080062272 [Queue] Message enqueued: ID 1153 to 917015012262
+INFO 2026-09-05 12:55:32,426 services 2464595 139193024681664 [Queue] Message ID 1153 delivered successfully.
+INFO 2026-09-05 12:59:21,564 services 2464593 139193080062272 [Queue] Message enqueued: ID 1154 to 917015012262
+INFO 2026-09-05 12:59:23,280 services 2464593 139193024681664 [Queue] Message ID 1154 delivered successfully.
+INFO 2026-09-05 13:46:06,610 services 2464594 139193080062272 [Queue] Message enqueued: ID 1155 to 919466592675
+INFO 2026-09-05 13:46:08,475 services 2464594 139193024681664 [Queue] Message ID 1155 delivered successfully.
+INFO 2026-09-05 14:26:12,564 services 2464594 139193080062272 [Queue] Message enqueued: ID 1156 to 919050606304
+INFO 2026-09-05 14:26:14,598 services 2464594 139193024681664 [Queue] Message ID 1156 delivered successfully.
+INFO 2026-09-05 15:19:27,593 services 2464594 139193080062272 [Queue] Message enqueued: ID 1157 to 919466592675
+INFO 2026-09-05 15:19:29,341 services 2464594 139193024681664 [Queue] Message ID 1157 delivered successfully.
+INFO 2026-09-05 16:16:46,725 services 2464593 139193080062272 [Queue] Message enqueued: ID 1158 to 919728509667
+INFO 2026-09-05 16:16:49,369 services 2464593 139193024681664 [Queue] Message ID 1158 delivered successfully.
+INFO 2026-09-05 16:22:18,116 services 2464593 139193080062272 [Queue] Message enqueued: ID 1159 to 918168135975
+INFO 2026-09-05 16:22:19,885 services 2464593 139193024681664 [Queue] Message ID 1159 delivered successfully.
+INFO 2026-09-05 16:51:57,198 services 2464595 139193080062272 [Queue] Message enqueued: ID 1160 to 919466592675
+INFO 2026-09-05 16:51:59,144 services 2464595 139193024681664 [Queue] Message ID 1160 delivered successfully.
+INFO 2026-09-05 18:46:25,886 services 2464595 139193080062272 [Queue] Message enqueued: ID 1161 to 918506094001
+INFO 2026-09-05 18:46:27,814 services 2464595 139193024681664 [Queue] Message ID 1161 delivered successfully.
+INFO 2026-09-05 19:18:18,989 services 2464595 139193080062272 [Queue] Message enqueued: ID 1162 to 917015012262
+INFO 2026-09-05 19:18:21,212 services 2464595 139193024681664 [Queue] Message ID 1162 delivered successfully.
+INFO 2026-09-05 19:46:03,880 services 2464594 139193080062272 [Queue] Message enqueued: ID 1163 to 918930405151
+INFO 2026-09-05 19:46:06,233 services 2464594 139193024681664 [Queue] Message ID 1163 delivered successfully.
+INFO 2026-09-05 23:34:52,785 whatsapp_runtime 2490538 133810706917056 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-05 23:34:53,051 whatsapp_runtime 2490537 133810706917056 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-05 23:34:53,404 whatsapp_runtime 2490536 133810706917056 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-06 09:28:21,182 services 2490537 133810762215744 [Queue] Message enqueued: ID 1164 to 919466891026
+INFO 2026-09-06 09:28:23,761 services 2490537 133810706917056 [Queue] Message ID 1164 delivered successfully.
+INFO 2026-09-06 09:34:04,259 services 2490537 133810762215744 [Queue] Message enqueued: ID 1165 to 919466891026
+INFO 2026-09-06 09:34:05,947 services 2490537 133810706917056 [Queue] Message ID 1165 delivered successfully.
+INFO 2026-09-06 10:28:02,630 services 2490537 133810762215744 [Queue] Message enqueued: ID 1166 to 919466304080
+INFO 2026-09-06 10:28:04,366 services 2490537 133810706917056 [Queue] Message ID 1166 delivered successfully.
+INFO 2026-09-06 10:52:48,622 services 2490538 133810762215744 [Queue] Message enqueued: ID 1167 to 919729134439
+INFO 2026-09-06 10:52:50,196 services 2490538 133810715309760 [Queue] Message ID 1167 delivered successfully.
+INFO 2026-09-06 11:10:58,967 services 2490536 133810762215744 [Queue] Message enqueued: ID 1168 to 919466592675
+INFO 2026-09-06 11:11:00,499 services 2490536 133810715309760 [Queue] Message ID 1168 delivered successfully.
+INFO 2026-09-06 11:28:19,480 services 2490537 133810762215744 [Queue] Message enqueued: ID 1169 to 919812005354
+INFO 2026-09-06 11:28:21,009 services 2490537 133810706917056 [Queue] Message ID 1169 delivered successfully.
+INFO 2026-09-06 11:52:42,882 services 2490537 133810762215744 [Queue] Message enqueued: ID 1170 to 919812005354
+INFO 2026-09-06 11:52:44,392 services 2490537 133810706917056 [Queue] Message ID 1170 delivered successfully.
+INFO 2026-09-06 12:36:43,417 services 2490538 133810762215744 [Queue] Message enqueued: ID 1171 to 919812005354
+INFO 2026-09-06 12:36:45,172 services 2490538 133810715309760 [Queue] Message ID 1171 delivered successfully.
+INFO 2026-09-06 12:42:30,499 services 2490536 133810762215744 [Queue] Message enqueued: ID 1172 to 919594831116
+INFO 2026-09-06 12:42:32,385 services 2490536 133810715309760 [Queue] Message ID 1172 delivered successfully.
+INFO 2026-09-06 13:40:12,098 services 2490538 133810762215744 [Queue] Message enqueued: ID 1173 to 919466592675
+INFO 2026-09-06 13:40:13,809 services 2490538 133810715309760 [Queue] Message ID 1173 delivered successfully.
+INFO 2026-09-06 14:26:32,222 services 2490536 133810762215744 [Queue] Message enqueued: ID 1174 to 918221965824
+INFO 2026-09-06 14:26:33,766 services 2490536 133810715309760 [Queue] Message ID 1174 delivered successfully.
+INFO 2026-09-06 14:28:00,191 services 2490537 133810762215744 [Queue] Message enqueued: ID 1175 to 919466592675
+INFO 2026-09-06 14:28:01,995 services 2490537 133810706917056 [Queue] Message ID 1175 delivered successfully.
+INFO 2026-09-06 14:45:56,210 services 2490537 133810762215744 [Queue] Message enqueued: ID 1176 to 918221965824
+INFO 2026-09-06 14:45:57,766 services 2490537 133810706917056 [Queue] Message ID 1176 delivered successfully.
+INFO 2026-09-06 15:02:51,127 services 2490537 133810762215744 [Queue] Message enqueued: ID 1177 to 918221965824
+INFO 2026-09-06 15:02:52,775 services 2490537 133810706917056 [Queue] Message ID 1177 delivered successfully.
+INFO 2026-09-06 16:52:06,409 services 2490537 133810762215744 [Queue] Message enqueued: ID 1178 to 918199845352
+INFO 2026-09-06 16:52:08,152 services 2490537 133810706917056 [Queue] Message ID 1178 delivered successfully.
+INFO 2026-09-06 17:14:35,473 services 2490537 133810762215744 [Queue] Message enqueued: ID 1179 to 919466592675
+INFO 2026-09-06 17:14:37,132 services 2490537 133810706917056 [Queue] Message ID 1179 delivered successfully.
+INFO 2026-09-06 17:53:03,203 services 2490537 133810762215744 [Queue] Message enqueued: ID 1180 to 919813700056
+INFO 2026-09-06 17:53:05,056 services 2490537 133810706917056 [Queue] Message ID 1180 delivered successfully.
+INFO 2026-09-06 19:44:10,632 whatsapp_runtime 2538034 129302183843520 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-06 19:44:10,633 whatsapp_runtime 2538036 129302183843520 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-06 19:44:10,632 whatsapp_runtime 2538035 129302183843520 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-06 22:52:52,532 whatsapp_runtime 2545611 130656278058688 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-06 22:52:52,530 whatsapp_runtime 2545609 130656278058688 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-06 22:52:52,531 whatsapp_runtime 2545610 130656278058688 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-07 08:59:41,569 services 2545610 130656333590848 [Queue] Message enqueued: ID 1181 to 919466928000
+INFO 2026-09-07 08:59:43,392 services 2545610 130656286451392 [Queue] Message ID 1181 delivered successfully.
+INFO 2026-09-07 11:37:17,604 services 2545610 130656333590848 [Queue] Message enqueued: ID 1182 to 919588595944
+INFO 2026-09-07 11:37:20,320 services 2545610 130656286451392 [Queue] Message ID 1182 delivered successfully.
+INFO 2026-09-07 11:41:55,310 services 2545610 130656333590848 [Queue] Message enqueued: ID 1183 to 919588595944
+INFO 2026-09-07 11:41:57,063 services 2545610 130656286451392 [Queue] Message ID 1183 delivered successfully.
+INFO 2026-09-07 12:18:43,031 services 2545611 130656333590848 [Queue] Message enqueued: ID 1184 to 919813646200
+INFO 2026-09-07 12:18:44,805 services 2545611 130656286451392 [Queue] Message ID 1184 delivered successfully.
+INFO 2026-09-07 12:19:16,785 services 2545610 130656333590848 [Queue] Message enqueued: ID 1185 to 919813646200
+INFO 2026-09-07 12:19:18,685 services 2545610 130656286451392 [Queue] Message ID 1185 delivered successfully.
+INFO 2026-09-07 12:56:02,301 services 2545610 130656333590848 [Queue] Message enqueued: ID 1186 to 919466304080
+INFO 2026-09-07 12:56:04,841 services 2545610 130656286451392 [Queue] Message ID 1186 delivered successfully.
+INFO 2026-09-07 12:56:56,577 services 2545611 130656333590848 [Queue] Message enqueued: ID 1187 to 919466304080
+INFO 2026-09-07 12:56:58,181 services 2545611 130656286451392 [Queue] Message ID 1187 delivered successfully.
+INFO 2026-09-07 13:23:33,483 services 2545611 130656333590848 [Queue] Message enqueued: ID 1188 to 919671687800
+INFO 2026-09-07 13:23:35,132 services 2545611 130656286451392 [Queue] Message ID 1188 delivered successfully.
+INFO 2026-09-07 13:27:03,545 services 2545611 130656333590848 [Queue] Message enqueued: ID 1189 to 919671687800
+INFO 2026-09-07 13:27:04,033 services 2545609 130656333590848 [Queue] Message enqueued: ID 1190 to 919671687800
+INFO 2026-09-07 13:27:05,342 services 2545611 130656286451392 [Queue] Message ID 1189 delivered successfully.
+INFO 2026-09-07 13:27:05,602 services 2545609 130656286451392 [Queue] Message ID 1190 delivered successfully.
+INFO 2026-09-07 14:08:41,942 services 2545610 130656333590848 [Queue] Message enqueued: ID 1191 to 919518059011
+INFO 2026-09-07 14:08:43,874 services 2545610 130656286451392 [Queue] Message ID 1191 delivered successfully.
+INFO 2026-09-07 14:11:41,991 services 2545610 130656333590848 [Queue] Message enqueued: ID 1192 to 919518059011
+INFO 2026-09-07 14:11:43,605 services 2545610 130656286451392 [Queue] Message ID 1192 delivered successfully.
+INFO 2026-09-07 14:46:15,145 services 2545610 130656333590848 [Queue] Message enqueued: ID 1193 to 917056641815
+INFO 2026-09-07 14:46:17,127 services 2545610 130656286451392 [Queue] Message ID 1193 delivered successfully.
+INFO 2026-09-07 15:29:02,373 whatsapp_runtime 2584620 127790769411776 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-07 15:29:02,374 whatsapp_runtime 2584618 127790769411776 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-07 15:29:02,371 whatsapp_runtime 2584619 127790769411776 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-07 17:55:55,452 services 2584618 127790824628544 [Queue] Message enqueued: ID 1194 to 919466592675
+INFO 2026-09-07 17:55:57,227 services 2584618 127790777804480 [Queue] Message ID 1194 delivered successfully.
+INFO 2026-09-07 18:28:28,175 services 2584620 127790824628544 [Queue] Message enqueued: ID 1195 to 917497856946
+INFO 2026-09-07 18:28:29,936 services 2584620 127790777804480 [Queue] Message ID 1195 delivered successfully.
+INFO 2026-09-07 18:41:47,003 services 2584619 127790824628544 [Queue] Message enqueued: ID 1196 to 918168135975
+INFO 2026-09-07 18:41:49,091 services 2584619 127790777804480 [Queue] Message ID 1196 delivered successfully.
+INFO 2026-09-07 19:13:32,469 whatsapp_runtime 2593599 139586370008768 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-07 19:13:32,466 whatsapp_runtime 2593598 139586370008768 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-07 19:13:32,466 whatsapp_runtime 2593600 139586370008768 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-07 19:18:59,934 whatsapp_runtime 2593850 134027239265984 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-07 19:18:59,933 whatsapp_runtime 2593852 134027239265984 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-07 19:18:59,948 whatsapp_runtime 2593851 134027239265984 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-07 19:49:14,229 services 2593851 134027294499136 [Queue] Message enqueued: ID 1197 to 918930405151
+INFO 2026-09-07 19:49:16,093 services 2593851 134027239265984 [Queue] Message ID 1197 delivered successfully.
+INFO 2026-09-08 12:31:44,088 services 2593852 134027294499136 [Queue] Message enqueued: ID 1198 to 917419555310
+INFO 2026-09-08 12:31:46,065 services 2593852 134027239265984 [Queue] Message ID 1198 delivered successfully.
+INFO 2026-09-08 12:32:37,387 services 2593852 134027294499136 [Queue] Message enqueued: ID 1199 to 917419555310
+INFO 2026-09-08 12:32:39,871 services 2593852 134027239265984 [Queue] Message ID 1199 delivered successfully.
+INFO 2026-09-08 18:17:25,303 services 2593850 134027294499136 [Queue] Message enqueued: ID 1200 to 919354864180
+INFO 2026-09-08 18:17:27,538 services 2593850 134027239265984 [Queue] Message ID 1200 delivered successfully.
+INFO 2026-09-08 18:54:14,825 services 2593850 134027294499136 [Queue] Message enqueued: ID 1201 to 919306845656
+INFO 2026-09-08 18:54:16,912 services 2593850 134027239265984 [Queue] Message ID 1201 delivered successfully.
+INFO 2026-09-08 18:56:01,004 services 2593850 134027294499136 [Queue] Message enqueued: ID 1202 to 919306845656
+INFO 2026-09-08 18:56:02,914 services 2593850 134027239265984 [Queue] Message ID 1202 delivered successfully.
+INFO 2026-09-08 18:58:34,751 services 2593850 134027294499136 [Queue] Message enqueued: ID 1203 to 919466592675
+INFO 2026-09-08 18:58:36,643 services 2593850 134027239265984 [Queue] Message ID 1203 delivered successfully.
+INFO 2026-09-08 18:59:30,238 services 2593850 134027294499136 [Queue] Message enqueued: ID 1204 to 919466592675
+INFO 2026-09-08 18:59:31,780 services 2593850 134027239265984 [Queue] Message ID 1204 delivered successfully.
+INFO 2026-09-08 19:11:34,969 services 2593850 134027294499136 [Queue] Message enqueued: ID 1205 to 919466592675
+INFO 2026-09-08 19:11:36,710 services 2593850 134027239265984 [Queue] Message ID 1205 delivered successfully.
+INFO 2026-09-08 19:21:06,543 services 2593850 134027294499136 [Queue] Message enqueued: ID 1206 to 919354864180
+INFO 2026-09-08 19:21:08,486 services 2593850 134027239265984 [Queue] Message ID 1206 delivered successfully.
+INFO 2026-09-08 19:24:18,261 services 2593852 134027294499136 [Queue] Message enqueued: ID 1207 to 919729134439
+INFO 2026-09-08 19:24:20,207 services 2593852 134027239265984 [Queue] Message ID 1207 delivered successfully.
+INFO 2026-09-09 08:52:51,678 services 2593851 134027294499136 [Queue] Message enqueued: ID 1208 to 918506094001
+INFO 2026-09-09 08:52:53,808 services 2593851 134027239265984 [Queue] Message ID 1208 delivered successfully.
+INFO 2026-09-09 10:32:40,730 services 2593851 134027294499136 [Queue] Message enqueued: ID 1209 to 919813495194
+INFO 2026-09-09 10:32:42,650 services 2593851 134027239265984 [Queue] Message ID 1209 delivered successfully.
+INFO 2026-09-09 11:00:23,556 whatsapp_runtime 2686431 126630327953088 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-09 11:00:23,560 whatsapp_runtime 2686429 126630327953088 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-09 11:00:23,559 whatsapp_runtime 2686430 126630327953088 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-09 11:14:01,619 services 2686429 126630383399232 [Queue] Message enqueued: ID 1210 to 919467136536
+INFO 2026-09-09 11:14:03,709 services 2686429 126630327953088 [Queue] Message ID 1210 delivered successfully.
+INFO 2026-09-09 12:16:38,875 services 2686431 126630383399232 [Queue] Message enqueued: ID 1211 to 917015031568
+INFO 2026-09-09 12:16:40,571 services 2686431 126630336345792 [Queue] Message ID 1211 delivered successfully.
+INFO 2026-09-09 12:45:35,342 services 2686429 126630383399232 [Queue] Message enqueued: ID 1212 to 919466928000
+INFO 2026-09-09 12:45:37,159 services 2686429 126630327953088 [Queue] Message ID 1212 delivered successfully.
+INFO 2026-09-09 16:30:36,584 services 2686429 126630383399232 [Queue] Message enqueued: ID 1213 to 919813700056
+INFO 2026-09-09 16:30:38,641 services 2686429 126630327953088 [Queue] Message ID 1213 delivered successfully.
+INFO 2026-09-09 17:22:50,201 services 2686429 126630383399232 [Queue] Message enqueued: ID 1214 to 917419555310
+INFO 2026-09-09 17:22:51,974 services 2686429 126630327953088 [Queue] Message ID 1214 delivered successfully.
+INFO 2026-09-09 18:07:32,968 services 2686430 126630383399232 [Queue] Message enqueued: ID 1215 to 919466592675
+INFO 2026-09-09 18:07:34,884 services 2686430 126630327953088 [Queue] Message ID 1215 delivered successfully.
+INFO 2026-09-09 18:07:59,186 services 2686429 126630383399232 [Queue] Message enqueued: ID 1216 to 919813495194
+INFO 2026-09-09 18:08:01,200 services 2686429 126630327953088 [Queue] Message ID 1216 delivered successfully.
+INFO 2026-09-09 18:15:30,399 services 2686429 126630383399232 [Queue] Message enqueued: ID 1217 to 919813495194
+INFO 2026-09-09 18:15:32,200 services 2686429 126630327953088 [Queue] Message ID 1217 delivered successfully.
+INFO 2026-09-10 09:38:51,700 whatsapp_runtime 2739316 129271336834752 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-10 09:38:51,702 whatsapp_runtime 2739315 129271336834752 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-10 09:38:51,740 whatsapp_runtime 2739317 129271336834752 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-10 10:13:42,872 services 2739317 129271392547136 [Queue] Message enqueued: ID 1218 to 917876658058
+INFO 2026-09-10 10:13:45,258 services 2739317 129271336834752 [Queue] Message ID 1218 delivered successfully.
+INFO 2026-09-10 10:16:05,951 services 2739317 129271392547136 [Queue] Message enqueued: ID 1219 to 917876658058
+INFO 2026-09-10 10:16:07,543 services 2739317 129271336834752 [Queue] Message ID 1219 delivered successfully.
+INFO 2026-09-10 10:24:34,174 services 2739316 129271392547136 [Queue] Message enqueued: ID 1220 to 918221965824
+INFO 2026-09-10 10:24:35,829 services 2739316 129271336834752 [Queue] Message ID 1220 delivered successfully.
+INFO 2026-09-10 10:54:33,129 services 2739317 129271392547136 [Queue] Message enqueued: ID 1221 to 918506094001
+INFO 2026-09-10 10:54:35,064 services 2739317 129271336834752 [Queue] Message ID 1221 delivered successfully.
+INFO 2026-09-10 12:15:16,436 services 2739315 129271392547136 [Queue] Message enqueued: ID 1222 to 918506094001
+INFO 2026-09-10 12:15:18,343 services 2739315 129271336834752 [Queue] Message ID 1222 delivered successfully.
+INFO 2026-09-10 12:48:52,576 services 2739315 129271392547136 [Queue] Message enqueued: ID 1223 to 918506094001
+INFO 2026-09-10 12:48:54,499 services 2739315 129271336834752 [Queue] Message ID 1223 delivered successfully.
+INFO 2026-09-10 12:50:56,941 services 2739316 129271392547136 [Queue] Message enqueued: ID 1224 to 917876658058
+INFO 2026-09-10 12:50:58,653 services 2739316 129271336834752 [Queue] Message ID 1224 delivered successfully.
+INFO 2026-09-10 16:26:47,047 services 2739315 129271392547136 [Queue] Message enqueued: ID 1225 to 917419555310
+INFO 2026-09-10 16:26:48,998 services 2739315 129271336834752 [Queue] Message ID 1225 delivered successfully.
+INFO 2026-09-10 16:30:46,014 services 2739316 129271392547136 [Queue] Message enqueued: ID 1226 to 918506094001
+INFO 2026-09-10 16:30:48,142 services 2739316 129271336834752 [Queue] Message ID 1226 delivered successfully.
+INFO 2026-09-10 17:28:45,066 services 2739317 129271392547136 [Queue] Message enqueued: ID 1227 to 918708378509
+INFO 2026-09-10 17:28:46,859 services 2739317 129271336834752 [Queue] Message ID 1227 delivered successfully.
+INFO 2026-09-10 17:32:54,858 services 2739316 129271392547136 [Queue] Message enqueued: ID 1228 to 919215001517
+INFO 2026-09-10 17:32:57,425 services 2739316 129271336834752 [Queue] Message ID 1228 delivered successfully.
+INFO 2026-09-10 17:34:57,486 services 2739316 129271392547136 [Queue] Message enqueued: ID 1229 to 918506094001
+INFO 2026-09-10 17:34:59,211 services 2739316 129271336834752 [Queue] Message ID 1229 delivered successfully.
+INFO 2026-09-10 17:51:22,241 services 2739315 129271392547136 [Queue] Message enqueued: ID 1230 to 918506094001
+INFO 2026-09-10 17:51:23,974 services 2739315 129271336834752 [Queue] Message ID 1230 delivered successfully.
+INFO 2026-09-10 18:56:19,323 services 2739316 129271392547136 [Queue] Message enqueued: ID 1231 to 916280436329
+INFO 2026-09-10 18:56:21,295 services 2739316 129271336834752 [Queue] Message ID 1231 delivered successfully.
+INFO 2026-09-11 09:21:50,683 services 2739315 129271392547136 [Queue] Message enqueued: ID 1232 to 919215001517
+INFO 2026-09-11 09:21:52,726 services 2739315 129271336834752 [Queue] Message ID 1232 delivered successfully.
+INFO 2026-09-11 11:52:47,669 services 2739317 129271392547136 [Queue] Message enqueued: ID 1233 to 918168741217
+INFO 2026-09-11 11:52:49,713 services 2739317 129271336834752 [Queue] Message ID 1233 delivered successfully.
+INFO 2026-09-11 11:56:54,228 services 2739315 129271392547136 [Queue] Message enqueued: ID 1234 to 918168188380
+INFO 2026-09-11 11:56:56,341 services 2739315 129271336834752 [Queue] Message ID 1234 delivered successfully.
+INFO 2026-09-11 12:03:56,457 services 2739316 129271392547136 [Queue] Message enqueued: ID 1235 to 918168188380
+INFO 2026-09-11 12:03:58,891 services 2739316 129271336834752 [Queue] Message ID 1235 delivered successfully.
+INFO 2026-09-11 13:44:19,691 whatsapp_runtime 2805250 124035495495360 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-11 13:44:19,700 whatsapp_runtime 2805249 124035495495360 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-11 13:44:19,713 whatsapp_runtime 2805251 124035495495360 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-11 15:50:56,373 services 2805250 124035550736704 [Queue] Message enqueued: ID 1236 to 918930405151
+INFO 2026-09-11 15:50:58,221 services 2805250 124035495495360 [Queue] Message ID 1236 delivered successfully.
+INFO 2026-09-11 15:56:06,007 services 2805250 124035550736704 [Queue] Message enqueued: ID 1237 to 918221965824
+INFO 2026-09-11 15:56:07,848 services 2805250 124035495495360 [Queue] Message ID 1237 delivered successfully.
+INFO 2026-09-11 15:57:26,501 services 2805250 124035550736704 [Queue] Message enqueued: ID 1238 to 918221965824
+INFO 2026-09-11 15:57:28,110 services 2805250 124035495495360 [Queue] Message ID 1238 delivered successfully.
+INFO 2026-09-11 16:00:40,104 services 2805251 124035550736704 [Queue] Message enqueued: ID 1239 to 919540817927
+INFO 2026-09-11 16:00:42,171 services 2805251 124035495495360 [Queue] Message ID 1239 delivered successfully.
+INFO 2026-09-11 16:19:38,915 services 2805251 124035550736704 [Queue] Message enqueued: ID 1240 to 919671212841
+INFO 2026-09-11 16:19:40,636 services 2805251 124035495495360 [Queue] Message ID 1240 delivered successfully.
+INFO 2026-09-11 16:40:04,788 whatsapp_runtime 2812402 130923754198720 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-11 16:40:04,788 whatsapp_runtime 2812401 130923754198720 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-11 16:40:04,787 whatsapp_runtime 2812403 130923754198720 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-11 17:45:58,435 services 2812401 130923809616192 [Queue] Message enqueued: ID 1241 to 919466629587
+INFO 2026-09-11 17:46:00,232 services 2812401 130923754198720 [Queue] Message ID 1241 delivered successfully.
+INFO 2026-09-11 18:15:06,310 services 2812403 130923809616192 [Queue] Message enqueued: ID 1242 to 917015031568
+INFO 2026-09-11 18:15:08,126 services 2812403 130923754198720 [Queue] Message ID 1242 delivered successfully.
+INFO 2026-09-11 18:36:50,166 services 2812403 130923809616192 [Queue] Message enqueued: ID 1243 to 919416734618
+INFO 2026-09-11 18:36:52,102 services 2812403 130923754198720 [Queue] Message ID 1243 delivered successfully.
+INFO 2026-09-11 18:57:21,355 services 2812403 130923809616192 [Queue] Message enqueued: ID 1244 to 919034173353
+INFO 2026-09-11 18:57:23,139 services 2812403 130923754198720 [Queue] Message ID 1244 delivered successfully.
+INFO 2026-09-11 19:06:16,201 services 2812401 130923809616192 [Queue] Message enqueued: ID 1245 to 919053331409
+INFO 2026-09-11 19:06:17,859 services 2812401 130923754198720 [Queue] Message ID 1245 delivered successfully.
+INFO 2026-09-11 19:29:06,474 services 2812401 130923809616192 [Queue] Message enqueued: ID 1246 to 919728509667
+INFO 2026-09-11 19:29:08,082 services 2812401 130923754198720 [Queue] Message ID 1246 delivered successfully.
+INFO 2026-09-11 19:56:27,648 services 2812403 130923809616192 [Queue] Message enqueued: ID 1247 to 919728509667
+INFO 2026-09-11 19:56:29,294 services 2812403 130923754198720 [Queue] Message ID 1247 delivered successfully.
+INFO 2026-09-12 09:33:52,180 services 2812402 130923809616192 [Queue] Message enqueued: ID 1248 to 917082239953
+INFO 2026-09-12 09:33:54,532 services 2812402 130923754198720 [Queue] Message ID 1248 delivered successfully.
+INFO 2026-09-12 09:37:13,896 services 2812403 130923809616192 [Queue] Message enqueued: ID 1249 to 917082239953
+INFO 2026-09-12 09:37:16,087 services 2812403 130923754198720 [Queue] Message ID 1249 delivered successfully.
+INFO 2026-09-12 09:41:48,945 services 2812403 130923809616192 [Queue] Message enqueued: ID 1250 to 917082239953
+INFO 2026-09-12 09:41:50,743 services 2812403 130923754198720 [Queue] Message ID 1250 delivered successfully.
+INFO 2026-09-12 10:00:45,118 services 2812402 130923809616192 [Queue] Message enqueued: ID 1251 to 919466304080
+INFO 2026-09-12 10:00:47,318 services 2812402 130923754198720 [Queue] Message ID 1251 delivered successfully.
+INFO 2026-09-12 10:21:30,454 services 2812401 130923809616192 [Queue] Message enqueued: ID 1252 to 919467709122
+INFO 2026-09-12 10:21:32,299 services 2812401 130923754198720 [Queue] Message ID 1252 delivered successfully.
+INFO 2026-09-12 12:34:52,189 services 2812403 130923809616192 [Queue] Message enqueued: ID 1253 to 919466629587
+INFO 2026-09-12 12:34:54,489 services 2812403 130923754198720 [Queue] Message ID 1253 delivered successfully.
+INFO 2026-09-12 12:41:57,510 services 2812401 130923809616192 [Queue] Message enqueued: ID 1254 to 919466304080
+INFO 2026-09-12 12:41:59,486 services 2812401 130923754198720 [Queue] Message ID 1254 delivered successfully.
+INFO 2026-09-12 12:50:14,220 services 2812402 130923809616192 [Queue] Message enqueued: ID 1255 to 919254797617
+INFO 2026-09-12 12:50:15,926 services 2812402 130923754198720 [Queue] Message ID 1255 delivered successfully.
+INFO 2026-09-12 12:51:21,705 services 2812401 130923809616192 [Queue] Message enqueued: ID 1256 to 919254797617
+INFO 2026-09-12 12:51:23,594 services 2812401 130923754198720 [Queue] Message ID 1256 delivered successfully.
+INFO 2026-09-12 12:51:39,729 services 2812402 130923809616192 [Queue] Message enqueued: ID 1257 to 919254797617
+INFO 2026-09-12 12:51:41,446 services 2812402 130923754198720 [Queue] Message ID 1257 delivered successfully.
+INFO 2026-09-12 14:34:20,275 services 2812403 130923809616192 [Queue] Message enqueued: ID 1258 to 918950181158
+INFO 2026-09-12 14:34:22,200 services 2812403 130923754198720 [Queue] Message ID 1258 delivered successfully.
+INFO 2026-09-12 14:34:50,024 services 2812402 130923809616192 [Queue] Message enqueued: ID 1259 to 918950181158
+INFO 2026-09-12 14:34:52,041 services 2812402 130923754198720 [Queue] Message ID 1259 delivered successfully.
+INFO 2026-09-12 17:16:30,446 services 2812402 130923809616192 [Queue] Message enqueued: ID 1260 to 919996514624
+INFO 2026-09-12 17:16:32,913 services 2812402 130923754198720 [Queue] Message ID 1260 delivered successfully.
+INFO 2026-09-12 17:17:26,193 services 2812402 130923809616192 [Queue] Message enqueued: ID 1261 to 919996514624
+INFO 2026-09-12 17:17:28,597 services 2812402 130923754198720 [Queue] Message ID 1261 delivered successfully.
+INFO 2026-09-12 17:56:33,496 services 2812402 130923809616192 [Queue] Message enqueued: ID 1262 to 918645931000
+INFO 2026-09-12 17:56:36,480 services 2812402 130923754198720 [Queue] Message ID 1262 delivered successfully.
+INFO 2026-09-12 19:39:02,717 services 2812403 130923809616192 [Queue] Message enqueued: ID 1263 to 919416506878
+INFO 2026-09-12 19:39:07,523 services 2812403 130923754198720 [Queue] Message ID 1263 delivered successfully.
+INFO 2026-09-13 08:59:51,039 services 2812401 130923809616192 [Queue] Message enqueued: ID 1264 to 918708378509
+INFO 2026-09-13 09:00:05,161 services 2812401 130923754198720 [Queue] Message ID 1264 delivered successfully.
+INFO 2026-09-13 09:05:13,740 whatsapp_runtime 2907132 127541957670592 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-13 09:05:13,739 whatsapp_runtime 2907133 127541957670592 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-13 09:05:13,740 whatsapp_runtime 2907134 127541957670592 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-13 09:27:53,472 services 2907132 127542012965184 [Queue] Message enqueued: ID 1265 to 919466629587
+INFO 2026-09-13 09:27:55,310 services 2907132 127541966063296 [Queue] Message ID 1265 delivered successfully.
+INFO 2026-09-13 09:41:29,072 services 2907133 127542012965184 [Queue] Message enqueued: ID 1266 to 919671095313
+INFO 2026-09-13 09:41:30,544 services 2907133 127541966063296 [Queue] Message ID 1266 delivered successfully.
+INFO 2026-09-13 11:16:25,883 services 2907133 127542012965184 [Queue] Message enqueued: ID 1267 to 919813700056
+INFO 2026-09-13 11:16:28,034 services 2907133 127541966063296 [Queue] Message ID 1267 delivered successfully.
+INFO 2026-09-13 11:17:01,470 services 2907132 127542012965184 [Queue] Message enqueued: ID 1268 to 919813700056
+INFO 2026-09-13 11:17:03,219 services 2907132 127541966063296 [Queue] Message ID 1268 delivered successfully.
+INFO 2026-09-13 11:47:41,102 services 2907134 127542012965184 [Queue] Message enqueued: ID 1269 to 919813700056
+INFO 2026-09-13 11:47:43,166 services 2907134 127541966063296 [Queue] Message ID 1269 delivered successfully.
+INFO 2026-09-13 13:48:27,780 services 2907132 127542012965184 [Queue] Message enqueued: ID 1270 to 919466629587
+INFO 2026-09-13 13:48:29,602 services 2907132 127541966063296 [Queue] Message ID 1270 delivered successfully.
+INFO 2026-09-13 14:07:07,527 services 2907134 127542012965184 [Queue] Message enqueued: ID 1271 to 919812376552
+INFO 2026-09-13 14:07:09,412 services 2907134 127541966063296 [Queue] Message ID 1271 delivered successfully.
+INFO 2026-09-13 14:31:33,255 services 2907133 127542012965184 [Queue] Message enqueued: ID 1272 to 919466629587
+INFO 2026-09-13 14:31:34,908 services 2907133 127541966063296 [Queue] Message ID 1272 delivered successfully.
+INFO 2026-09-13 14:32:12,670 services 2907132 127542012965184 [Queue] Message enqueued: ID 1273 to 919466629587
+INFO 2026-09-13 14:32:14,558 services 2907132 127541966063296 [Queue] Message ID 1273 delivered successfully.
+INFO 2026-09-13 14:37:59,788 services 2907132 127542012965184 [Queue] Message enqueued: ID 1274 to 919466629587
+INFO 2026-09-13 14:38:01,444 services 2907132 127541966063296 [Queue] Message ID 1274 delivered successfully.
+INFO 2026-09-13 17:31:48,099 whatsapp_runtime 2926807 134298117547712 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-13 17:31:48,103 whatsapp_runtime 2926806 134298117547712 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-13 17:31:48,149 whatsapp_runtime 2926808 134298117547712 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-13 17:40:51,645 services 2926808 134298172870976 [Queue] Message enqueued: ID 1275 to 918506094001
+INFO 2026-09-13 17:40:53,344 services 2926808 134298125940416 [Queue] Message ID 1275 delivered successfully.
+INFO 2026-09-13 17:41:49,074 services 2926807 134298172870976 [Queue] Message enqueued: ID 1276 to 918506094001
+INFO 2026-09-13 17:41:50,676 services 2926807 134298125940416 [Queue] Message ID 1276 delivered successfully.
+INFO 2026-09-13 17:45:26,242 services 2926808 134298172870976 [Queue] Message enqueued: ID 1277 to 918506094001
+INFO 2026-09-13 17:45:27,775 services 2926808 134298125940416 [Queue] Message ID 1277 delivered successfully.
+INFO 2026-09-13 17:46:49,159 services 2926806 134298172870976 [Queue] Message enqueued: ID 1278 to 918506094001
+INFO 2026-09-13 17:46:50,687 services 2926806 134298117547712 [Queue] Message ID 1278 delivered successfully.
+INFO 2026-09-13 17:47:19,740 services 2926806 134298172870976 [Queue] Message enqueued: ID 1279 to 918506094001
+INFO 2026-09-13 17:47:21,393 services 2926806 134298117547712 [Queue] Message ID 1279 delivered successfully.
+INFO 2026-09-14 07:48:45,519 services 2926806 134298172870976 [Queue] Message enqueued: ID 1280 to 918168491972
+INFO 2026-09-14 07:48:47,441 services 2926806 134298117547712 [Queue] Message ID 1280 delivered successfully.
+INFO 2026-09-14 07:58:22,074 services 2926807 134298172870976 [Queue] Message enqueued: ID 1281 to 918168491972
+INFO 2026-09-14 07:58:23,853 services 2926807 134298125940416 [Queue] Message ID 1281 delivered successfully.
+INFO 2026-09-14 09:21:29,627 services 2926808 134298172870976 [Queue] Message enqueued: ID 1282 to 919416182817
+INFO 2026-09-14 09:21:31,388 services 2926808 134298125940416 [Queue] Message ID 1282 delivered successfully.
+INFO 2026-09-14 09:27:29,380 services 2926807 134298172870976 [Queue] Message enqueued: ID 1283 to 918168135975
+INFO 2026-09-14 09:27:31,101 services 2926807 134298125940416 [Queue] Message ID 1283 delivered successfully.
+INFO 2026-09-14 11:20:51,470 services 2926807 134298172870976 [Queue] Message enqueued: ID 1284 to 919813495194
+INFO 2026-09-14 11:20:53,466 services 2926807 134298125940416 [Queue] Message ID 1284 delivered successfully.
+INFO 2026-09-14 11:21:27,353 services 2926807 134298172870976 [Queue] Message enqueued: ID 1285 to 919813495194
+INFO 2026-09-14 11:21:29,422 services 2926807 134298125940416 [Queue] Message ID 1285 delivered successfully.
+INFO 2026-09-14 11:31:49,456 services 2926807 134298172870976 [Queue] Message enqueued: ID 1286 to 919813495194
+INFO 2026-09-14 11:31:51,222 services 2926807 134298125940416 [Queue] Message ID 1286 delivered successfully.
+INFO 2026-09-14 12:57:33,160 services 2926807 134298172870976 [Queue] Message enqueued: ID 1287 to 919466891026
+INFO 2026-09-14 12:57:34,910 services 2926807 134298125940416 [Queue] Message ID 1287 delivered successfully.
+INFO 2026-09-14 13:45:22,451 services 2926807 134298172870976 [Queue] Message enqueued: ID 1288 to 919518059011
+INFO 2026-09-14 13:45:24,246 services 2926807 134298125940416 [Queue] Message ID 1288 delivered successfully.
+INFO 2026-09-14 14:22:02,960 services 2926806 134298172870976 [Queue] Message enqueued: ID 1289 to 919416182817
+INFO 2026-09-14 14:22:05,093 services 2926806 134298117547712 [Queue] Message ID 1289 delivered successfully.
+INFO 2026-09-14 14:23:34,798 whatsapp_runtime 2975867 137020251477696 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-14 14:23:34,802 whatsapp_runtime 2975866 137020251477696 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-14 14:23:34,801 whatsapp_runtime 2975865 137020251477696 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-14 15:29:47,206 services 2975866 137020306747712 [Queue] Message enqueued: ID 1290 to 919466797552
+INFO 2026-09-14 15:29:49,136 services 2975866 137020259870400 [Queue] Message ID 1290 delivered successfully.
+INFO 2026-09-14 15:31:53,934 services 2975867 137020306747712 [Queue] Message enqueued: ID 1291 to 919466797552
+INFO 2026-09-14 15:31:55,509 services 2975867 137020259870400 [Queue] Message ID 1291 delivered successfully.
+INFO 2026-09-14 16:22:34,889 services 2975865 137020306747712 [Queue] Message enqueued: ID 1292 to 919992182597
+INFO 2026-09-14 16:22:37,307 services 2975865 137020251477696 [Queue] Message ID 1292 delivered successfully.
+INFO 2026-09-14 16:23:33,291 services 2975866 137020306747712 [Queue] Message enqueued: ID 1293 to 919466450912
+INFO 2026-09-14 16:23:35,141 services 2975866 137020259870400 [Queue] Message ID 1293 delivered successfully.
+INFO 2026-09-14 16:53:39,720 services 2975865 137020306747712 [Queue] Message enqueued: ID 1294 to 918569845244
+INFO 2026-09-14 16:53:41,902 services 2975865 137020251477696 [Queue] Message ID 1294 delivered successfully.
+INFO 2026-09-14 18:28:02,349 services 2975866 137020306747712 [Queue] Message enqueued: ID 1295 to 919812199992
+INFO 2026-09-14 18:28:04,417 services 2975866 137020259870400 [Queue] Message ID 1295 delivered successfully.
+INFO 2026-09-14 18:30:00,345 services 2975865 137020306747712 [Queue] Message enqueued: ID 1296 to 919812199992
+INFO 2026-09-14 18:30:03,301 services 2975865 137020251477696 [Queue] Message ID 1296 delivered successfully.
+INFO 2026-09-15 10:15:06,956 services 2975867 137020306747712 [Queue] Message enqueued: ID 1297 to 918168135975
+INFO 2026-09-15 10:15:09,839 services 2975867 137020259870400 [Queue] Message ID 1297 delivered successfully.
+INFO 2026-09-15 10:15:34,655 services 2975865 137020306747712 [Queue] Message enqueued: ID 1298 to 918168135975
+INFO 2026-09-15 10:15:36,447 services 2975865 137020251477696 [Queue] Message ID 1298 delivered successfully.
+INFO 2026-09-15 10:20:47,341 services 2975865 137020306747712 [Queue] Message enqueued: ID 1299 to 919813700056
+INFO 2026-09-15 10:20:48,940 services 2975865 137020251477696 [Queue] Message ID 1299 delivered successfully.
+INFO 2026-09-15 13:59:07,841 services 2975866 137020306747712 [Queue] Message enqueued: ID 1300 to 919812199992
+INFO 2026-09-15 13:59:11,198 services 2975866 137020259870400 [Queue] Message ID 1300 delivered successfully.
+INFO 2026-09-15 14:01:58,403 services 2975867 137020306747712 [Queue] Message enqueued: ID 1301 to 919812199992
+INFO 2026-09-15 14:02:03,825 services 2975867 137020259870400 [Queue] Message ID 1301 delivered successfully.
+INFO 2026-09-15 14:06:02,046 services 2975866 137020306747712 [Queue] Message enqueued: ID 1302 to 919812199992
+INFO 2026-09-15 14:06:03,714 services 2975866 137020259870400 [Queue] Message ID 1302 delivered successfully.
+INFO 2026-09-15 15:54:45,102 services 2975866 137020306747712 [Queue] Message enqueued: ID 1303 to 918199845352
+INFO 2026-09-15 15:54:47,164 services 2975866 137020259870400 [Queue] Message ID 1303 delivered successfully.
+INFO 2026-09-15 16:08:33,208 services 2975865 137020306747712 [Queue] Message enqueued: ID 1304 to 919416175407
+INFO 2026-09-15 16:08:35,097 services 2975865 137020251477696 [Queue] Message ID 1304 delivered successfully.
+INFO 2026-09-15 17:23:06,599 services 2975866 137020306747712 [Queue] Message enqueued: ID 1305 to 918708378509
+INFO 2026-09-15 17:23:08,901 services 2975866 137020259870400 [Queue] Message ID 1305 delivered successfully.
+INFO 2026-09-15 18:38:04,774 services 2975866 137020306747712 [Queue] Message enqueued: ID 1306 to 919812382412
+INFO 2026-09-15 18:38:07,320 services 2975866 137020259870400 [Queue] Message ID 1306 delivered successfully.
+INFO 2026-09-15 18:54:45,624 services 2975866 137020306747712 [Queue] Message enqueued: ID 1307 to 919416175407
+INFO 2026-09-15 18:54:47,238 services 2975866 137020259870400 [Queue] Message ID 1307 delivered successfully.
+INFO 2026-09-15 19:14:15,987 services 2975865 137020306747712 [Queue] Message enqueued: ID 1308 to 919518688701
+INFO 2026-09-15 19:14:17,608 services 2975865 137020251477696 [Queue] Message ID 1308 delivered successfully.
+INFO 2026-09-15 19:14:51,364 services 2975866 137020306747712 [Queue] Message enqueued: ID 1309 to 919728509667
+INFO 2026-09-15 19:14:53,134 services 2975866 137020259870400 [Queue] Message ID 1309 delivered successfully.
+INFO 2026-09-15 19:33:22,660 services 2975866 137020306747712 [Queue] Message enqueued: ID 1310 to 919518688701
+INFO 2026-09-15 19:33:24,175 services 2975866 137020259870400 [Queue] Message ID 1310 delivered successfully.
+INFO 2026-09-16 09:50:32,950 services 2975867 137020306747712 [Queue] Message enqueued: ID 1311 to 919416175407
+INFO 2026-09-16 09:50:37,782 services 2975867 137020259870400 [Queue] Message ID 1311 delivered successfully.
+INFO 2026-09-16 11:15:09,115 whatsapp_runtime 3082867 125184180524736 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-16 11:15:09,122 whatsapp_runtime 3082865 125184180524736 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-16 11:15:09,132 whatsapp_runtime 3082866 125184180524736 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-16 11:58:27,952 services 3082866 125184235970880 [Queue] Message enqueued: ID 1312 to 918199845352
+INFO 2026-09-16 11:58:30,462 services 3082866 125184180524736 [Queue] Message ID 1312 delivered successfully.
+INFO 2026-09-16 12:18:11,029 services 3082867 125184235970880 [Queue] Message enqueued: ID 1313 to 918199845352
+INFO 2026-09-16 12:18:13,007 services 3082867 125184188917440 [Queue] Message ID 1313 delivered successfully.
+INFO 2026-09-16 12:52:15,684 services 3082866 125184235970880 [Queue] Message enqueued: ID 1314 to 918221965824
+INFO 2026-09-16 12:52:17,760 services 3082866 125184180524736 [Queue] Message ID 1314 delivered successfully.
+INFO 2026-09-16 14:45:53,634 services 3082865 125184235970880 [Queue] Message enqueued: ID 1315 to 919306969687
+INFO 2026-09-16 14:45:55,912 services 3082865 125184188917440 [Queue] Message ID 1315 delivered successfully.
+INFO 2026-09-16 15:09:45,299 services 3082867 125184235970880 [Queue] Message enqueued: ID 1316 to 919812240174
+INFO 2026-09-16 15:09:47,256 services 3082867 125184188917440 [Queue] Message ID 1316 delivered successfully.
+INFO 2026-09-16 15:47:28,332 services 3082865 125184235970880 [Queue] Message enqueued: ID 1317 to 919306969687
+INFO 2026-09-16 15:47:30,358 services 3082865 125184188917440 [Queue] Message ID 1317 delivered successfully.
+INFO 2026-09-16 15:51:42,939 services 3082865 125184235970880 [Queue] Message enqueued: ID 1318 to 919306969687
+INFO 2026-09-16 15:51:44,536 services 3082865 125184188917440 [Queue] Message ID 1318 delivered successfully.
+INFO 2026-09-16 16:09:32,952 whatsapp_runtime 3094415 134136827217600 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-16 16:09:32,958 whatsapp_runtime 3094416 134136827217600 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-16 16:09:32,967 whatsapp_runtime 3094418 134136827217600 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-16 16:54:47,420 services 3094415 134136882573632 [Queue] Message enqueued: ID 1319 to 919306969687
+INFO 2026-09-16 16:54:49,321 services 3094415 134136827217600 [Queue] Message ID 1319 delivered successfully.
+INFO 2026-09-16 16:56:45,584 services 3094418 134136882573632 [Queue] Message enqueued: ID 1320 to 919812240174
+INFO 2026-09-16 16:56:47,069 services 3094418 134136827217600 [Queue] Message ID 1320 delivered successfully.
+INFO 2026-09-16 17:14:51,695 services 3094415 134136882573632 [Queue] Message enqueued: ID 1321 to 919896326757
+INFO 2026-09-16 17:14:53,329 services 3094415 134136827217600 [Queue] Message ID 1321 delivered successfully.
+INFO 2026-09-16 18:21:08,566 services 3094415 134136882573632 [Queue] Message enqueued: ID 1322 to 918708378509
+INFO 2026-09-16 18:21:10,467 services 3094415 134136827217600 [Queue] Message ID 1322 delivered successfully.
+INFO 2026-09-16 19:02:11,246 services 3094418 134136882573632 [Queue] Message enqueued: ID 1323 to 918199845352
+INFO 2026-09-16 19:02:13,386 services 3094418 134136827217600 [Queue] Message ID 1323 delivered successfully.
+INFO 2026-09-16 19:12:15,154 services 3094415 134136882573632 [Queue] Message enqueued: ID 1324 to 919416175407
+INFO 2026-09-16 19:12:17,424 services 3094415 134136827217600 [Queue] Message ID 1324 delivered successfully.
+INFO 2026-09-17 08:55:55,741 services 3094416 134136882573632 [Queue] Message enqueued: ID 1325 to 919813495194
+INFO 2026-09-17 08:56:01,206 services 3094416 134136835610304 [Queue] Message ID 1325 delivered successfully.
+INFO 2026-09-17 10:22:38,629 services 3094415 134136882573632 [Queue] Message enqueued: ID 1326 to 919467709122
+INFO 2026-09-17 10:22:40,688 services 3094415 134136827217600 [Queue] Message ID 1326 delivered successfully.
+INFO 2026-09-17 10:47:55,412 services 3094416 134136882573632 [Queue] Message enqueued: ID 1327 to 918168135975
+INFO 2026-09-17 10:47:58,045 services 3094416 134136835610304 [Queue] Message ID 1327 delivered successfully.
+INFO 2026-09-17 11:13:14,408 whatsapp_runtime 3139476 138866962986688 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-17 11:13:14,405 whatsapp_runtime 3139478 138866962986688 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-17 11:13:14,409 whatsapp_runtime 3139477 138866962986688 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-17 11:17:49,364 services 3139478 138867088425280 [Queue] Message enqueued: ID 1328 to 918685817616
+INFO 2026-09-17 11:17:51,136 services 3139478 138866962986688 [Queue] Message ID 1328 delivered successfully.
+INFO 2026-09-17 11:58:29,405 services 3139476 138867088425280 [Queue] Message enqueued: ID 1329 to 918685817616
+INFO 2026-09-17 11:58:30,913 services 3139476 138867041281728 [Queue] Message ID 1329 delivered successfully.
+INFO 2026-09-17 12:24:50,153 services 3139476 138867088425280 [Queue] Message enqueued: ID 1330 to 919050205943
+INFO 2026-09-17 12:24:51,776 services 3139476 138867041281728 [Queue] Message ID 1330 delivered successfully.
+INFO 2026-09-17 12:25:43,029 services 3139478 138867088425280 [Queue] Message enqueued: ID 1331 to 919416074441
+INFO 2026-09-17 12:25:45,022 services 3139478 138866962986688 [Queue] Message ID 1331 delivered successfully.
+INFO 2026-09-17 14:10:55,279 services 3139477 138867088425280 [Queue] Message enqueued: ID 1332 to 919416734618
+INFO 2026-09-17 14:10:56,979 services 3139477 138867041281728 [Queue] Message ID 1332 delivered successfully.
+INFO 2026-09-17 14:47:44,379 services 3139478 138867088425280 [Queue] Message enqueued: ID 1333 to 919050205943
+INFO 2026-09-17 14:47:47,485 services 3139478 138866962986688 [Queue] Message ID 1333 delivered successfully.
+INFO 2026-09-17 16:04:03,573 whatsapp_runtime 3152487 131772659926720 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-17 16:04:03,575 whatsapp_runtime 3152488 131772659926720 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-17 16:04:03,572 whatsapp_runtime 3152489 131772659926720 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-18 10:21:50,706 services 3152489 131772715233600 [Queue] Message enqueued: ID 1334 to 919050205943
+WARNING 2026-09-18 10:21:52,885 services 3152489 131772659926720 [Queue] Message ID 1334 delivery failed: Gateway returned error code 500: {"error":"Data passed to getter must include an id property (it's how we memoize) but got undefined\ns (https://static.whatsapp.net/rsrc.php/v4/ys/r/cmqMr-wgNWt.js:84:180)"}
+INFO 2026-09-18 10:24:54,620 services 3152487 131772715233600 [Queue] Message enqueued: ID 1335 to 919518059011
+WARNING 2026-09-18 10:24:56,187 services 3152487 131772659926720 [Queue] Message ID 1335 delivery failed: Gateway returned error code 500: {"error":"Data passed to getter must include an id property (it's how we memoize) but got undefined\ns (https://static.whatsapp.net/rsrc.php/v4/ys/r/cmqMr-wgNWt.js:84:180)"}
+INFO 2026-09-18 11:14:08,607 services 3152487 131772715233600 [Queue] Message enqueued: ID 1336 to 919050205943
+WARNING 2026-09-18 11:14:10,375 services 3152487 131772659926720 [Queue] Message ID 1336 delivery failed: Gateway returned error code 500: {"error":"Data passed to getter must include an id property (it's how we memoize) but got undefined\ns (https://static.whatsapp.net/rsrc.php/v4/ys/r/cmqMr-wgNWt.js:84:180)"}
+INFO 2026-09-18 11:26:47,295 services 3152488 131772715233600 [Queue] Message enqueued: ID 1337 to 918708378509
+WARNING 2026-09-18 11:26:48,949 services 3152488 131772668319424 [Queue] Message ID 1337 delivery failed: Gateway returned error code 500: {"error":"Data passed to getter must include an id property (it's how we memoize) but got undefined\ns (https://static.whatsapp.net/rsrc.php/v4/ys/r/cmqMr-wgNWt.js:84:180)"}
+INFO 2026-09-18 11:47:34,308 services 3152488 131772715233600 [Queue] Message enqueued: ID 1338 to 918708378509
+WARNING 2026-09-18 11:47:35,700 services 3152488 131772668319424 [Queue] Message ID 1338 delivery failed: Gateway returned error code 500: {"error":"Data passed to getter must include an id property (it's how we memoize) but got undefined\ns (https://static.whatsapp.net/rsrc.php/v4/ys/r/cmqMr-wgNWt.js:84:180)"}
+INFO 2026-09-18 11:50:05,275 services 3152488 131772715233600 [Queue] Message enqueued: ID 1339 to 918708378509
+WARNING 2026-09-18 11:50:10,018 services 3152488 131772668319424 [Queue] Message ID 1339 delivery failed: Gateway returned error code 500: {"error":"Data passed to getter must include an id property (it's how we memoize) but got undefined\ns (https://static.whatsapp.net/rsrc.php/v4/yL/r/6-eerGMZKhM.js:84:180)"}
+INFO 2026-09-18 11:51:49,774 services 3152487 131772715233600 [Queue] Message enqueued: ID 1340 to 918708378509
+WARNING 2026-09-18 11:52:03,809 services 3152487 131772659926720 [Queue] Message ID 1340 delivery failed: Gateway returned error code 500: {"error":"Data passed to getter must include an id property (it's how we memoize) but got undefined\ns (https://static.whatsapp.net/rsrc.php/v4/yL/r/6-eerGMZKhM.js:84:180)"}
+INFO 2026-09-18 12:35:46,237 whatsapp_runtime 3202236 138492937447104 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-18 12:35:46,241 whatsapp_runtime 3202237 138492937447104 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-18 12:35:46,248 whatsapp_runtime 3202235 138492937447104 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-18 12:36:58,030 services 3202235 138492992766272 [Queue] Message enqueued: ID 1341 to 917027547926
+INFO 2026-09-18 12:36:58,152 services 3202236 138492992766272 [Queue] Message enqueued: ID 1342 to 917027547926
+INFO 2026-09-18 12:36:58,333 services 3202237 138492992766272 [Queue] Message enqueued: ID 1343 to 917027547926
+WARNING 2026-09-18 12:37:13,113 services 3202235 138492937447104 [Queue] Message ID 1341 delivery failed: Gateway timeout (15 seconds reached)
+WARNING 2026-09-18 12:37:13,226 services 3202236 138492937447104 [Queue] Message ID 1342 delivery failed: Gateway timeout (15 seconds reached)
+WARNING 2026-09-18 12:37:13,405 services 3202237 138492937447104 [Queue] Message ID 1343 delivery failed: Gateway timeout (15 seconds reached)
+INFO 2026-09-18 12:41:25,073 whatsapp_runtime 3202807 132320857630400 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-18 12:41:25,071 whatsapp_runtime 3202806 132320857630400 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-18 12:41:25,087 whatsapp_runtime 3202808 132320857630400 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-18 12:46:11,126 whatsapp_runtime 3203334 133353886975680 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-18 12:46:11,125 whatsapp_runtime 3203335 133353886975680 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-18 12:46:11,126 whatsapp_runtime 3203333 133353886975680 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-18 12:46:36,074 services 3203333 133353942503744 [Queue] Message enqueued: ID 1344 to 918295110043
+WARNING 2026-09-18 12:46:41,224 services 3203333 133353886975680 [Queue] Message ID 1344 delivery failed: Gateway returned error code 500: {"error":"Data passed to getter must include an id property (it's how we memoize) but got undefined\ns (https://static.whatsapp.net/rsrc.php/v4/yL/r/6-eerGMZKhM.js:84:180)"}
+INFO 2026-09-18 12:49:12,860 services 3203334 133353942503744 [Queue] Message enqueued: ID 1345 to 918295110043
+WARNING 2026-09-18 12:49:16,848 services 3203334 133353886975680 [Queue] Message ID 1345 delivery failed: Gateway returned error code 500: {"error":"Data passed to getter must include an id property (it's how we memoize) but got undefined\ns (https://static.whatsapp.net/rsrc.php/v4/yL/r/6-eerGMZKhM.js:84:180)"}

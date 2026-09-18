@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>WhatsApp Bulk Sender</title>
+<link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" type="image/svg+xml"/>
+<script src="/whatsapp/socket.io/socket.io.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Segoe UI',sans-serif;background:#0f1117;color:#e0e0e0;min-height:100vh;}
+.layout{display:flex;min-height:100vh;}
+
+/* Sidebar */
+.sidebar{width:230px;background:#1a1d27;padding:20px 14px;display:flex;flex-direction:column;gap:6px;border-right:1px solid #2a2d3e;flex-shrink:0;}
+.logo{display:flex;align-items:center;gap:10px;padding:8px 6px 20px;border-bottom:1px solid #2a2d3e;margin-bottom:6px;}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,#25d366,#128c7e);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.logo-text{font-size:14px;font-weight:700;color:#fff;}
+.logo-sub{font-size:11px;color:#555;}
+.nav-item{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:8px;cursor:pointer;color:#777;font-size:13px;transition:.18s;border:1px solid transparent;}
+.nav-item:hover{background:#22263a;color:#ddd;}
+.nav-item.active{background:#1e3a2a;color:#25d366;border-color:#25d36630;}
+.nav-item .ico{font-size:16px;width:20px;text-align:center;}
+.status-bar{margin-top:auto;padding:9px 11px;border-radius:8px;background:#12161f;border:1px solid #2a2d3e;font-size:12px;display:flex;align-items:center;gap:7px;}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.dot.green{background:#25d366;box-shadow:0 0 6px #25d366;}
+.dot.yellow{background:#f59e0b;animation:blink 1s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+/* Main */
+.main{flex:1;padding:26px 30px;overflow-y:auto;max-height:100vh;}
+.page{display:none;animation:fadeIn .2s ease;}
+.page.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+h1{font-size:20px;font-weight:700;color:#fff;margin-bottom:4px;}
+.sub{color:#4a4f6a;font-size:13px;margin-bottom:24px;}
+
+/* Cards */
+.card{background:#1a1d27;border:1px solid #2a2d3e;border-radius:12px;padding:20px;margin-bottom:18px;}
+.card-title{font-size:11px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.9px;margin-bottom:14px;}
+
+/* Form */
+label{display:block;font-size:12px;color:#666;margin-bottom:5px;}
+input,textarea,select{width:100%;background:#12161f;border:1px solid #2a2d3e;border-radius:7px;color:#e0e0e0;padding:9px 12px;font-size:13px;outline:none;transition:.18s;font-family:inherit;}
+input:focus,textarea:focus{border-color:#25d366;box-shadow:0 0 0 2px #25d36618;}
+textarea{resize:vertical;min-height:70px;}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.row2.x3{grid-template-columns:1fr 1fr 1fr;}
+.row1{margin-bottom:14px;}
+
+/* Buttons */
+.btn{padding:9px 18px;border-radius:7px;border:none;cursor:pointer;font-size:13px;font-weight:600;transition:.18s;display:inline-flex;align-items:center;gap:6px;}
+.btn-green{background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;}
+.btn-green:hover{opacity:.88;transform:translateY(-1px);}
+.btn-green:disabled{opacity:.35;cursor:not-allowed;transform:none;}
+.btn-ghost{background:transparent;color:#777;border:1px solid #2a2d3e;}
+.btn-ghost:hover{background:#22263a;color:#ccc;}
+.btn-red{background:#2d1a1a;color:#f87171;border:1px solid #f8717120;}
+.btn-red:hover{background:#3a2020;}
+.btn-blue{background:#1a2540;color:#60a5fa;border:1px solid #60a5fa20;}
+.btn-blue:hover{background:#1e2d50;}
+
+/* QR */
+.qr-center{display:flex;flex-direction:column;align-items:center;gap:14px;padding:16px 0;}
+.qr-center img{width:200px;height:200px;border-radius:12px;border:3px solid #25d366;}
+.qr-steps{text-align:center;color:#555;font-size:12px;line-height:1.9;}
+.qr-steps b{color:#25d366;}
+.connected-box{display:flex;align-items:center;gap:12px;background:#0d2318;border:1px solid #25d36630;border-radius:10px;padding:16px 20px;color:#25d366;font-weight:600;}
+.connected-box .bigico{font-size:30px;}
+
+/* Excel table */
+.excel-table-wrap{overflow-x:auto;margin-bottom:12px;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{background:#12161f;color:#555;font-weight:600;padding:8px 12px;text-align:left;border-bottom:1px solid #2a2d3e;font-size:11px;text-transform:uppercase;letter-spacing:.6px;}
+td{padding:8px 12px;border-bottom:1px solid #1e2130;color:#ccc;vertical-align:middle;}
+tr:hover td{background:#1e2130;}
+.td-img{display:flex;align-items:center;gap:8px;}
+.td-img img{width:36px;height:36px;object-fit:cover;border-radius:6px;border:1px solid #2a2d3e;flex-shrink:0;}
+.td-img span{color:#555;font-size:11px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;}
+.badge-green{background:#0d2318;color:#25d366;}
+.badge-blue{background:#0d1a30;color:#60a5fa;}
+.badge-red{background:#2d1a1a;color:#f87171;}
+
+/* Upload zone */
+.drop-zone{border:2px dashed #2a2d3e;border-radius:10px;padding:28px;text-align:center;cursor:pointer;transition:.2s;position:relative;background:#12161f;}
+.drop-zone:hover{border-color:#25d366;background:#25d36606;}
+.drop-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+.drop-icon{font-size:32px;margin-bottom:6px;}
+.drop-text{font-size:13px;color:#555;}
+.drop-text b{color:#25d366;}
+.img-preview{width:100%;max-height:180px;object-fit:cover;border-radius:8px;margin-top:10px;display:none;}
+
+/* Progress */
+.progress-wrap{background:#0a0c12;border-radius:7px;height:7px;overflow:hidden;margin:8px 0;}
+.progress-fill{height:100%;background:linear-gradient(90deg,#25d366,#128c7e);border-radius:7px;transition:width .3s;}
+.log-box{background:#0a0c12;border-radius:8px;padding:12px;max-height:240px;overflow-y:auto;font-size:12px;font-family:monospace;border:1px solid #1e2130;}
+.log-line{padding:3px 0;border-bottom:1px solid #1a1d27;}
+.log-line.ok{color:#25d366;}
+.log-line.err{color:#f87171;}
+.log-line.info{color:#60a5fa;}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px;}
+.stat{background:#1a1d27;border:1px solid #2a2d3e;border-radius:10px;padding:16px;text-align:center;}
+.stat-n{font-size:26px;font-weight:800;margin-bottom:2px;}
+.stat-l{font-size:11px;color:#444;text-transform:uppercase;letter-spacing:.6px;}
+.c-green{color:#25d366;} .c-red{color:#f87171;} .c-blue{color:#60a5fa;}
+
+/* Contact items */
+.clist{display:flex;flex-direction:column;gap:7px;max-height:300px;overflow-y:auto;margin-bottom:12px;}
+.citem{display:flex;align-items:center;gap:10px;padding:9px 12px;background:#12161f;border-radius:8px;border:1px solid #1e2130;}
+.cavatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;}
+.cinfo{flex:1;min-width:0;}
+.cname{font-size:13px;font-weight:600;color:#ddd;}
+.cphone{font-size:11px;color:#444;}
+.cimg-tag{font-size:11px;color:#60a5fa;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px;}
+.cdel{background:none;border:none;cursor:pointer;color:#444;font-size:15px;padding:3px 6px;border-radius:4px;}
+.cdel:hover{color:#f87171;background:#2d1a1a;}
+.empty{text-align:center;color:#333;padding:28px;font-size:13px;}
+
+/* Send big btn */
+.send-center{display:flex;justify-content:center;margin:4px 0 18px;}
+.send-big{padding:13px 44px;font-size:15px;border-radius:11px;background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;border:none;cursor:pointer;font-weight:700;transition:.2s;display:flex;align-items:center;gap:9px;}
+.send-big:hover{transform:translateY(-2px);box-shadow:0 8px 24px #25d36640;}
+.send-big:disabled{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none;}
+
+::-webkit-scrollbar{width:4px;height:4px;} ::-webkit-scrollbar-track{background:#1a1d27;} ::-webkit-scrollbar-thumb{background:#2a2d3e;border-radius:2px;}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- ═══ SIDEBAR ═══ -->
+<aside class="sidebar">
+  <div class="logo">
+    <div class="logo-icon">💬</div>
+    <div><div class="logo-text">WA Sender</div><div class="logo-sub">Bulk Messaging</div></div>
+  </div>
+
+  <div class="nav-item active" onclick="nav('connect',this)"><span class="ico">📱</span>Connect</div>
+  <div class="nav-item" onclick="nav('excel',this)"><span class="ico">📊</span>Excel Import</div>
+  <div class="nav-item" onclick="nav('compose',this)"><span class="ico">✉️</span>Compose & Send</div>
+  <div class="nav-item" onclick="nav('contacts',this)"><span class="ico">👥</span>Contacts</div>
+  <div class="nav-item" onclick="nav('report',this)"><span class="ico">📋</span>Report</div>
+
+  <div class="status-bar">
+    <div class="dot yellow" id="sDot"></div>
+    <span id="sTxt" style="color:#666;font-size:12px;">Connecting...</span>
+  </div>
+</aside>
+
+<!-- ═══ MAIN ═══ -->
+<main class="main">
+
+<!-- ─── Connect ─── -->
+<div class="page active" id="page-connect">
+  <h1>Connect WhatsApp</h1>
+  <p class="sub">Scan QR to link your WhatsApp account</p>
+  <div class="card">
+    <div class="card-title">QR Code</div>
+    <div class="qr-center" id="qrWrap"><div style="color:#333;font-size:13px;">⏳ Generating QR...</div></div>
+  </div>
+</div>
+
+<!-- ─── Excel Import ─── -->
+<div class="page" id="page-excel">
+  <h1>Excel Import</h1>
+  <p class="sub">Upload Excel sheet — each row = one contact with their own image URL</p>
+
+  <!-- Template download -->
+  <div class="card">
+    <div class="card-title">📥 Download Template First</div>
+    <p style="font-size:13px;color:#555;margin-bottom:14px;">Excel format: <b style="color:#25d366">Name | Phone | Image URL | Caption</b></p>
+    <div style="overflow-x:auto;margin-bottom:14px;">
+      <table>
+        <tr><th>Name</th><th>Phone</th><th>Image URL</th><th>Caption</th></tr>
+        <tr><td>Alice</td><td>919876543210</td><td>https://example.com/image1.jpg</td><td>Special offer!</td></tr>
+        <tr><td>Bob</td><td>918765432109</td><td>https://example.com/image2.jpg</td><td>Deal for you</td></tr>
+        <tr><td>Charlie</td><td>917654321098</td><td><i style="color:#444">(leave blank = no image)</i></td><td>Hello!</td></tr>
+      </table>
+    </div>
+    <a href="/whatsapp/api/template" download><button class="btn btn-blue">⬇ Download Excel Template</button></a>
+  </div>
+
+  <!-- Upload Excel -->
+  <div class="card">
+    <div class="card-title">📤 Upload Your Excel File</div>
+    <div class="drop-zone" id="xlDrop">
+      <input type="file" id="xlInput" accept=".xlsx,.xls,.csv" onchange="parseExcel(this)"/>
+      <div class="drop-icon">📊</div>
+      <div class="drop-text">Click to upload Excel / CSV<br/><b>.xlsx .xls .csv</b></div>
+    </div>
+  </div>
+
+  <!-- Preview table -->
+  <div class="card" id="previewCard" style="display:none">
+    <div class="card-title">👁 Preview — <span id="previewCount">0</span> contacts loaded</div>
+    <div class="excel-table-wrap">
+      <table id="previewTable">
+        <thead><tr><th>#</th><th>Name</th><th>Phone</th><th>Image</th><th>Caption</th></tr></thead>
+        <tbody id="previewBody"></tbody>
+      </table>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:14px;">
+      <button class="btn btn-green" onclick="importToContacts()">✅ Import to Contacts</button>
+      <button class="btn btn-ghost" onclick="clearPreview()">✕ Clear</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Compose & Send ─── -->
+<div class="page" id="page-compose">
+  <h1>Compose & Send</h1>
+  <p class="sub">Set a global image/caption — or use per-contact data from Excel</p>
+
+  <div class="card">
+    <div class="card-title">📸 Global Image (optional — overridden by per-contact image)</div>
+    <div class="drop-zone" id="imgDrop">
+      <input type="file" id="imgInput" accept="image/*" onchange="uploadImage(this)"/>
+      <div class="drop-icon" id="dropIcon">🖼️</div>
+      <div class="drop-text" id="dropText">Click to upload image</div>
+    </div>
+    <img id="imgPreview" class="img-preview"/>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💬 Global Caption (optional — overridden by per-contact caption)</div>
+    <div class="row1"><label>Caption</label><textarea id="globalCaption" placeholder="e.g. My offers are ready 🎉"></textarea></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">👥 Recipients (<span id="recipCount">0</span>)</div>
+    <div class="clist" id="recipList"></div>
+    <p style="font-size:12px;color:#333;">Manage contacts in <b style="color:#25d366">Contacts</b> tab or import via <b style="color:#60a5fa">Excel Import</b>.</p>
+  </div>
+
+  <div class="send-center">
+    <button class="send-big" id="sendBtn" onclick="doSend()" disabled>🚀 Send to All</button>
+  </div>
+
+  <div class="card" id="progCard" style="display:none">
+    <div class="card-title">📤 Live Progress</div>
+    <div id="progTxt" style="font-size:12px;color:#555;margin-bottom:6px;"></div>
+    <div class="progress-wrap"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
+    <div class="log-box" id="logBox"></div>
+  </div>
+</div>
+
+<!-- ─── Contacts ─── -->
+<div class="page" id="page-contacts">
+  <h1>Contacts</h1>
+  <p class="sub">Add and manage your recipient list</p>
+
+  <div class="card">
+    <div class="card-title">➕ Add Manually</div>
+    <div class="row2 x3">
+      <div><label>Name</label><input id="aName" placeholder="e.g. Rahul"/></div>
+      <div><label>Phone (with country code)</label><input id="aPhone" placeholder="919034147926"/></div>
+      <div><label>Image URL (optional)</label><input id="aImg" placeholder="https://..."/></div>
+    </div>
+    <div class="row1"><label>Caption (optional)</label><input id="aCaption" placeholder="Your personalised message"/></div>
+    <button class="btn btn-green" onclick="addContact()">➕ Add</button>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 Contact List (<span id="cCount">0</span>)</div>
+    <div class="clist" id="cList"></div>
+    <div style="display:flex;gap:10px;margin-top:10px;">
+      <button class="btn btn-green" onclick="saveContacts()">💾 Save</button>
+      <button class="btn btn-red" onclick="clearAll()">🗑 Clear All</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Report ─── -->
+<div class="page" id="page-report">
+  <h1>Campaign Report</h1>
+  <p class="sub">Results from the last send</p>
+  <div class="stats">
+    <div class="stat"><div class="stat-n c-blue" id="rTotal">—</div><div class="stat-l">Total</div></div>
+    <div class="stat"><div class="stat-n c-green" id="rSent">—</div><div class="stat-l">Sent ✔</div></div>
+    <div class="stat"><div class="stat-n c-red" id="rFail">—</div><div class="stat-l">Failed ✘</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Details</div>
+    <div class="clist" id="rList"><div class="empty">No report yet.</div></div>
+  </div>
+  <button class="btn btn-ghost" onclick="loadReport()" style="margin-top:4px;">🔄 Refresh</button>
+</div>
+
+</main>
+</div>
+
+<script>
+const socket = io({ path: '/whatsapp/socket.io' });
+let contacts = [];
+let globalImagePath = null;
+let waReady = false;
+let previewContacts = [];
+
+// ── Socket ────────────────────────────────────────────────────────────────────
+socket.on('qr', url => {
+  document.getElementById('qrWrap').innerHTML = `
+    <img src="${url}"/>
+    <div class="qr-steps">Open WhatsApp → <b>⋮ More Options</b><br/>→ <b>Linked Devices</b> → <b>Link a Device</b><br/>→ Scan QR</div>`;
+});
+socket.on('ready', r => {
+  waReady = r;
+  document.getElementById('sendBtn').disabled = !r;
+  if (r) document.getElementById('qrWrap').innerHTML = `
+    <div class="connected-box"><span class="bigico">✅</span>
+    <div><div style="font-size:15px;">WhatsApp Connected!</div>
+    <div style="font-size:12px;color:#25d36699;margin-top:2px;">Ready to send campaigns</div></div></div>`;
+});
+socket.on('status', ({connected, message}) => {
+  document.getElementById('sDot').className = 'dot ' + (connected ? 'green' : 'yellow');
+  document.getElementById('sTxt').textContent = message;
+});
+socket.on('send_start', ({total}) => {
+  document.getElementById('progCard').style.display = 'block';
+  document.getElementById('logBox').innerHTML = '';
+  document.getElementById('progFill').style.width = '0%';
+  document.getElementById('progTxt').textContent = `Sending to ${total} contacts...`;
+});
+socket.on('send_progress', ({current, total, name, phone}) => {
+  const p = Math.round(current/total*100);
+  document.getElementById('progFill').style.width = p + '%';
+  document.getElementById('progTxt').textContent = `${current}/${total} — ${name} (${phone})`;
+});
+socket.on('send_item', ({success, name, phone, reason}) => {
+  addLog((success ? '✔ ' : '✘ ') + name + ' (' + phone + ')' + (reason ? ' — ' + reason : ''), success ? 'ok' : 'err');
+});
+socket.on('send_item_log', ({msg}) => addLog(msg, 'info'));
+socket.on('send_done', report => {
+  document.getElementById('progTxt').textContent = `✅ Done! Sent: ${report.sent.length} | Failed: ${report.failed.length}`;
+  document.getElementById('progFill').style.width = '100%';
+  document.getElementById('sendBtn').disabled = false;
+  showReport(report);
+});
+
+// ── Navigation ────────────────────────────────────────────────────────────────
+function nav(name, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  el.classList.add('active');
+  if (name === 'compose') renderRecip();
+  if (name === 'report')  loadReport();
+  if (name === 'contacts') renderContacts();
+}
+
+// ── Image upload ──────────────────────────────────────────────────────────────
+async function uploadImage(input) {
+  const file = input.files[0]; if (!file) return;
+  const fd = new FormData(); fd.append('image', file);
+  const res  = await fetch('/whatsapp/api/upload', {method:'POST', body: fd});
+  const data = await res.json();
+  globalImagePath = data.path;
+  const prev = document.getElementById('imgPreview');
+  prev.src = data.path + '?t=' + Date.now(); prev.style.display = 'block';
+  document.getElementById('dropIcon').textContent = '✅';
+  document.getElementById('dropText').textContent = file.name;
+}
+
+// ── Excel parse ───────────────────────────────────────────────────────────────
+async function parseExcel(input) {
+  const file = input.files[0]; if (!file) return;
+  document.getElementById('xlDrop').querySelector('.drop-text').textContent = '⏳ Parsing...';
+  const fd = new FormData(); fd.append('excel', file);
+  const res  = await fetch('/whatsapp/api/parse-excel', {method:'POST', body: fd});
+  const data = await res.json();
+  if (data.error) { alert('Error: ' + data.error); return; }
+  previewContacts = data.contacts;
+  document.getElementById('xlDrop').querySelector('.drop-text').innerHTML = `✅ <b>${file.name}</b> — ${data.contacts.length} rows found`;
+  renderPreview();
+}
+
+function renderPreview() {
+  const tbody = document.getElementById('previewBody');
+  document.getElementById('previewCount').textContent = previewContacts.length;
+  document.getElementById('previewCard').style.display = 'block';
+  tbody.innerHTML = previewContacts.map((c, i) => `
+    <tr>
+      <td style="color:#444">${i+1}</td>
+      <td><b style="color:#ddd">${c.name}</b></td>
+      <td style="color:#aaa">${c.phone}</td>
+      <td>
+        <div class="td-img">
+          ${c.imageUrl ? `<img src="${c.imageUrl}" onerror="this.style.display='none'"/>` : ''}
+          <span>${c.imageUrl ? c.imageUrl : '<i style="color:#333">No image</i>'}</span>
+        </div>
+      </td>
+      <td style="color:#aaa">${c.caption || '—'}</td>
+    </tr>`).join('');
+}
+
+function importToContacts() {
+  if (!previewContacts.length) return;
+  contacts = [...contacts, ...previewContacts];
+  saveContacts();
+  renderContacts();
+  alert(`✅ ${previewContacts.length} contacts imported!`);
+  nav('contacts', document.querySelectorAll('.nav-item')[3]);
+}
+
+function clearPreview() {
+  previewContacts = [];
+  document.getElementById('previewCard').style.display = 'none';
+  document.getElementById('xlDrop').querySelector('.drop-text').innerHTML = 'Click to upload Excel / CSV<br/><b>.xlsx .xls .csv</b>';
+}
+
+// ── Contacts ──────────────────────────────────────────────────────────────────
+async function loadContacts() {
+  const res = await fetch('/whatsapp/api/contacts');
+  contacts  = await res.json();
+  renderContacts();
+}
+
+function renderContacts() {
+  const list = document.getElementById('cList');
+  document.getElementById('cCount').textContent = contacts.length;
+  if (!contacts.length) { list.innerHTML = '<div class="empty">No contacts yet.</div>'; return; }
+  list.innerHTML = contacts.map((c, i) => `
+    <div class="citem">
+      <div class="cavatar">${c.name[0].toUpperCase()}</div>
+      <div class="cinfo">
+        <div class="cname">${c.name}</div>
+        <div class="cphone">+${c.phone}</div>
+        ${c.imageUrl ? `<div class="cimg-tag">🖼 ${c.imageUrl}</div>` : ''}
+        ${c.caption  ? `<div style="font-size:11px;color:#555">💬 ${c.caption}</div>` : ''}
+      </div>
+      <button class="cdel" onclick="removeContact(${i})">✕</button>
+    </div>`).join('');
+}
+
+function renderRecip() {
+  const list = document.getElementById('recipList');
+  document.getElementById('recipCount').textContent = contacts.length;
+  if (!contacts.length) { list.innerHTML = '<div class="empty">No contacts. Add from Contacts or Excel Import tab.</div>'; return; }
+  list.innerHTML = contacts.map(c => `
+    <div class="citem">
+      <div class="cavatar">${c.name[0].toUpperCase()}</div>
+      <div class="cinfo">
+        <div class="cname">${c.name}</div>
+        <div class="cphone">+${c.phone}${c.caption ? ' — ' + c.caption : ''}</div>
+        ${c.imageUrl ? `<div class="cimg-tag">🖼 Per-contact image set</div>` : ''}
+      </div>
+      ${c.imageUrl ? '<span class="badge badge-blue">Custom Image</span>' : '<span class="badge badge-green">Global</span>'}
+    </div>`).join('');
+}
+
+function addContact() {
+  const name  = document.getElementById('aName').value.trim();
+  const phone = document.getElementById('aPhone').value.trim().replace(/\D/g,'');
+  const img   = document.getElementById('aImg').value.trim();
+  const cap   = document.getElementById('aCaption').value.trim();
+  if (!name || !phone) return alert('Name and phone are required');
+  contacts.push({ name, phone, imageUrl: img, caption: cap, group: 'customers' });
+  renderContacts();
+  ['aName','aPhone','aImg','aCaption'].forEach(id => document.getElementById(id).value='');
+}
+
+function removeContact(i) { contacts.splice(i,1); renderContacts(); }
+function clearAll() { if(confirm('Clear all contacts?')) { contacts=[]; renderContacts(); } }
+
+async function saveContacts() {
+  await fetch('/whatsapp/api/contacts', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(contacts) });
+  alert('✅ Saved!');
+}
+
+// ── Send ──────────────────────────────────────────────────────────────────────
+async function doSend() {
+  if (!contacts.length) return alert('No contacts to send to');
+  const caption = document.getElementById('globalCaption').value.trim();
+  document.getElementById('sendBtn').disabled = true;
+  document.getElementById('progCard').style.display = 'block';
+  await fetch('/whatsapp/api/send', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ contacts, caption, imagePath: globalImagePath }),
+  });
+}
+
+function addLog(txt, type) {
+  const box = document.getElementById('logBox');
+  const el  = document.createElement('div');
+  el.className = 'log-line ' + type;
+  el.textContent = txt;
+  box.appendChild(el);
+  box.scrollTop = box.scrollHeight;
+}
+
+// ── Report ────────────────────────────────────────────────────────────────────
+async function loadReport() {
+  const res = await fetch('/whatsapp/api/report');
+  const d   = await res.json();
+  if (d) showReport(d);
+}
+
+function showReport(d) {
+  const all = (d.sent?.length||0) + (d.failed?.length||0);
+  document.getElementById('rTotal').textContent = all;
+  document.getElementById('rSent').textContent  = d.sent?.length  || 0;
+  document.getElementById('rFail').textContent  = d.failed?.length || 0;
+  const rows = [
+    ...(d.sent||[]).map(c=>`<div class="citem"><div class="cavatar" style="background:linear-gradient(135deg,#25d366,#128c7e)">${c.name[0]}</div><div class="cinfo"><div class="cname">${c.name}</div><div class="cphone">+${c.phone}</div></div><span style="color:#25d366;font-size:18px">✔</span></div>`),
+    ...(d.failed||[]).map(c=>`<div class="citem"><div class="cavatar" style="background:linear-gradient(135deg,#f87171,#dc2626)">${c.name[0]}</div><div class="cinfo"><div class="cname">${c.name}</div><div class="cphone">+${c.phone} — ${c.reason||''}</div></div><span style="color:#f87171;font-size:18px">✘</span></div>`),
+  ];
+  document.getElementById('rList').innerHTML = rows.join('') || '<div class="empty">No data</div>';
+}
+
+loadContacts();
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+/* YouTube-style top progress bar + shimmer skeleton */
+
+.yt-loader {
+  position: relative;
+  width: 100%;
+  height: 3px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.yt-loader__bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  will-change: left, width;
+}
+
+.yt-loader__bar--primary {
+  background: #ff0000;
+  z-index: 2;
+  animation: yt-loader-primary 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.yt-loader__bar--secondary {
+  background: #ff4444;
+  opacity: 0.55;
+  z-index: 1;
+  animation: yt-loader-secondary 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+.yt-loader--brand .yt-loader__bar--primary {
+  background: #14b8a6;
+}
+
+.yt-loader--brand .yt-loader__bar--secondary {
+  background: #5eead4;
+}
+
+@keyframes yt-loader-primary {
+  0% {
+    left: -35%;
+    width: 35%;
+  }
+  60% {
+    left: 100%;
+    width: 70%;
+  }
+  100% {
+    left: 100%;
+    width: 70%;
+  }
+}
+
+@keyframes yt-loader-secondary {
+  0% {
+    left: -200%;
+    width: 100%;
+  }
+  60% {
+    left: 107%;
+    width: 10%;
+  }
+  100% {
+    left: 107%;
+    width: 10%;
+  }
+}
+
+.yt-shimmer-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.yt-shimmer-line {
+  position: relative;
+  overflow: hidden;
+  background: #eceff1;
+  border-radius: 6px;
+}
+
+.yt-shimmer-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.55) 45%,
+    rgba(255, 255, 255, 0.85) 50%,
+    rgba(255, 255, 255, 0.55) 55%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: yt-shimmer-sweep 1.4s ease-in-out infinite;
+}
+
+.yt-shimmer-card .yt-shimmer-line:nth-child(2)::after {
+  animation-delay: 0.05s;
+}
+
+.yt-shimmer-card .yt-shimmer-line:nth-child(3)::after {
+  animation-delay: 0.1s;
+}
+
+.yt-shimmer-card .yt-shimmer-line:nth-child(4)::after {
+  animation-delay: 0.15s;
+}
+
+.yt-shimmer-card .yt-shimmer-line:nth-child(5)::after {
+  animation-delay: 0.2s;
+}
+
+@keyframes yt-shimmer-sweep {
+  100% {
+    transform: translateX(100%);
+  }
+}

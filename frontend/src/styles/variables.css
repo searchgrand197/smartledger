@@ -1,0 +1,114 @@
+:root,
+[data-theme="light"] {
+  --color-primary: #0d9488;
+  --color-primary-dark: #0f766e;
+  --color-primary-light: #14b8a6;
+  --color-secondary: #0284c7;
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+
+  --color-bg: #f2f8f7;
+  --color-bg-paper: #ffffff;
+  --color-bg-sidebar: #0f2420;
+  --color-bg-login: #071410;
+  --color-table-header: #ecfdf5;
+
+  --color-text: #0f2420;
+  --color-text-secondary: #5f7168;
+  --color-text-inverse: #ecfdf5;
+  --color-border: #cce8e4;
+
+  --gradient-header: linear-gradient(135deg, #0f766e 0%, #0d9488 45%, #0891b2 100%);
+  --gradient-button: linear-gradient(135deg, #0d9488 0%, #059669 55%, #0891b2 100%);
+  --gradient-sidebar-accent: linear-gradient(180deg, rgba(13, 148, 136, 0.15) 0%, transparent 100%);
+  --color-sidebar-active: linear-gradient(135deg, #4ade80 0%, #86efac 50%, #bbf7d0 100%);
+  --color-sidebar-active-text: #14532d;
+
+  --login-page-bg:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(13, 148, 136, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 90%, rgba(8, 145, 178, 0.22) 0%, transparent 50%),
+    linear-gradient(160deg, #071410 0%, #0f2420 45%, #134e4a 100%);
+  --login-brand-bg: linear-gradient(165deg, #071410 0%, #0f3d38 42%, #115e59 100%);
+  --login-brand-glow: radial-gradient(circle, rgba(20, 184, 166, 0.28) 0%, transparent 70%);
+  --login-badge-bg: linear-gradient(90deg, #d97706, #b45309);
+
+  --color-field-bg: #ffffff;
+  --color-field-border: #94a3b8;
+  --color-field-border-hover: #64748b;
+  --color-field-focus: var(--color-primary);
+  --color-field-label: #64748b;
+  --color-field-label-active: var(--color-primary-dark);
+  --color-row-hover: rgba(13, 148, 136, 0.05);
+  --color-chip-bg: #ecfdf5;
+  --color-footer-bg: linear-gradient(180deg, #ffffff 0%, #f0fdfa 100%);
+  --color-payment-summary-bg: #f0fdfa;
+  --color-payment-summary-warn-bg: #fff7ed;
+  --color-payment-summary-warn-border: #fdba74;
+  --color-ledger-header-bg: linear-gradient(135deg, #ecfdf5 0%, #ffffff 55%);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 1px 3px rgba(15, 36, 32, 0.08);
+  --shadow-md: 0 4px 14px rgba(15, 36, 32, 0.1);
+  --shadow-lg: 0 16px 40px rgba(7, 20, 16, 0.18);
+
+  --sidebar-width: 240px;
+  --header-height: 64px;
+
+  --font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+[data-theme="dark"] {
+  --color-primary: #2dd4bf;
+  --color-primary-dark: #14b8a6;
+  --color-primary-light: #5eead4;
+  --color-secondary: #38bdf8;
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+
+  --color-bg: #0a1210;
+  --color-bg-paper: #152420;
+  --color-bg-sidebar: #071410;
+  --color-bg-login: #050d0b;
+  --color-table-header: #1a2e28;
+
+  --color-text: #ecfdf5;
+  --color-text-secondary: #94a3b8;
+  --color-text-inverse: #ecfdf5;
+  --color-border: #2a4038;
+
+  --gradient-header: linear-gradient(135deg, #115e59 0%, #0d9488 45%, #0891b2 100%);
+  --gradient-button: linear-gradient(135deg, #0f766e 0%, #0d9488 55%, #0284c7 100%);
+
+  --color-sidebar-active: linear-gradient(135deg, #6ee7b7 0%, #86efac 50%, #bbf7d0 100%);
+  --color-sidebar-active-text: #052e16;
+
+  --login-page-bg:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(45, 212, 191, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 90%, rgba(8, 145, 178, 0.1) 0%, transparent 50%),
+    linear-gradient(160deg, #030807 0%, #071410 45%, #0f2420 100%);
+  --login-brand-bg: linear-gradient(165deg, #030807 0%, #0f3d38 42%, #134e4a 100%);
+  --login-brand-glow: radial-gradient(circle, rgba(45, 212, 191, 0.15) 0%, transparent 70%);
+
+  --color-field-bg: #152420;
+  --color-field-border: #3d5a50;
+  --color-field-border-hover: #5f7168;
+  --color-field-focus: var(--color-primary);
+  --color-field-label: #94a3b8;
+  --color-field-label-active: var(--color-primary-light);
+  --color-row-hover: rgba(45, 212, 191, 0.06);
+  --color-chip-bg: rgba(13, 148, 136, 0.15);
+  --color-footer-bg: linear-gradient(180deg, #152420 0%, #0f2420 100%);
+  --color-payment-summary-bg: #1a2e28;
+  --color-payment-summary-warn-bg: rgba(217, 119, 6, 0.12);
+  --color-payment-summary-warn-border: #92400e;
+  --color-ledger-header-bg: linear-gradient(135deg, #1a2e28 0%, #152420 55%);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
