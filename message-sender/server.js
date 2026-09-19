@@ -85,8 +85,8 @@ apiRouter.post('/send-pdf', async (req, res) => {
   }
 });
 
-const HOST = process.env.WHATSAPP_INTERNAL_HOST || '127.0.0.1';
-const PORT = Number(process.env.WHATSAPP_INTERNAL_PORT || 8787);
+const HOST = process.env.WHATSAPP_INTERNAL_HOST || process.env.HOST || '127.0.0.1';
+const PORT = Number(process.env.WHATSAPP_INTERNAL_PORT || process.env.PORT || 8787);
 const SPAWN_LOCK = path.join(__dirname, '.gateway-spawn.lock');
 
 function releaseSpawnLock() {

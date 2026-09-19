@@ -341,13 +341,21 @@ class WhatsAppStatusView(APIView):
         if not base_url:
             return Response({"connected": False, "message": "WhatsApp internal URL not configured"}, status=400)
 
+        from messaging import whatsapp_runtime
+
         try:
-            res = requests.get(f"{base_url}/api/status", timeout=5)
+            whatsapp_runtime.ensure_whatsapp_sender_running()
+            res = requests.get(f"{base_url}/api/status", timeout=8)
             return Response(res.json(), status=res.status_code)
         except Exception:
+            detail = whatsapp_runtime.last_start_error or (
+                "WhatsApp sender is not running on this server. "
+                "Install Node.js 20+, then from the app folder run: "
+                "cd message-sender && npm install && node server.js"
+            )
             return Response({
                 "connected": False,
-                "message": "WhatsApp sender is not running. Restart the backend — it starts automatically with Django.",
+                "message": detail,
             }, status=502)
 
 
