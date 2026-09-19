@@ -385,6 +385,32 @@ class WhatsAppRestartView(APIView):
             return Response({"error": f"Failed to restart WhatsApp sender: {str(e)}"}, status=502)
 
 
+class BillSendWhatsAppView(APIView):
+    """Explicitly (re)send an existing bill's PDF to the customer via WhatsApp."""
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, pk):
+        from core.tenant import require_organization
+        org = require_organization(request)
+        try:
+            bill = Bill.objects.select_related("customer").get(pk=pk, organization=org)
+        except Bill.DoesNotExist:
+            return Response({"error": "Bill not found"}, status=404)
+
+        if not bill.customer or not bill.customer.phone:
+            return Response({
+                "status": "skipped",
+                "reason": "Customer has no phone number. Add a phone number to the customer first.",
+            }, status=400)
+
+        try:
+            from core.whatsapp import send_bill_pdf_to_whatsapp
+            wa_result = send_bill_pdf_to_whatsapp(bill, request)
+            return Response(wa_result, status=200)
+        except Exception as e:
+            return Response({"status": "error", "detail": str(e)}, status=500)
+
+
 class BillUpdateView(APIView):
     permission_classes = [IsAuthenticated]
 

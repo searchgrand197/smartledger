@@ -78,6 +78,7 @@ export const billingApi = {
   pdf: (id: number) =>
     api.get(`/billing/${id}/pdf/`, { responseType: "blob", headers: { Accept: "application/pdf" } }),
   printData: (id: number) => api.get(`/billing/${id}/print-data/`),
+  sendWhatsApp: (id: number) => api.post(`/billing/${id}/send-whatsapp/`),
   whatsappStatus: () => api.get("/billing/whatsapp/status/"),
   whatsappDisconnect: () => api.post("/billing/whatsapp/disconnect/"),
   whatsappRestart: () => api.post("/billing/whatsapp/restart/"),

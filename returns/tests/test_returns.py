@@ -233,7 +233,7 @@ class SalesReturnTests(TestCase):
         from core.whatsapp import send_bill_pdf_to_whatsapp
         import os
         from django.conf import settings
-        from unittest.mock import patch, MagicMock
+        from unittest.mock import patch
 
         # Clear any existing environment variables to force simulation mode
         old_token = os.environ.pop("WHATSAPP_API_TOKEN", None)
@@ -245,29 +245,28 @@ class SalesReturnTests(TestCase):
             self.customer.save()
 
             # Mock requests.post to simulate successful local gateway delivery
-            with patch("requests.post") as mock_post:
-                mock_response = MagicMock()
-                mock_response.status_code = 200
-                mock_post.return_value = mock_response
-
-                # Execute sending PDF to WhatsApp
+            with patch("messaging.services.send_message_async"):
                 res = send_bill_pdf_to_whatsapp(self.bill)
 
-                # Assertions
                 self.assertEqual(res["status"], "success")
                 self.assertEqual(res["phone"], "919876543210")
                 self.assertEqual(res["bill_number"], self.bill.bill_number)
                 self.assertEqual(res["sent_via"], "local-gateway")
                 self.assertNotIn("\\", res["pdf_url"])
 
-            # Check that the file was generated and saved locally
-            expected_filename = f"{self.bill.bill_number.replace('/', '_')}.pdf"
-            file_path = os.path.join(settings.MEDIA_ROOT, "whatsapp_invoices", expected_filename)
-            self.assertTrue(os.path.exists(file_path))
+            from messaging.models import MessageQueue
+            queued = MessageQueue.all_objects.filter(bill=self.bill).order_by("-id").first()
+            self.assertIsNotNone(queued)
+            self.assertTrue(queued.file_path)
+            self.assertTrue(os.path.exists(queued.file_path))
+            self.assertNotIn("whatsapp_invoices", queued.file_path)
 
-            # Clean up the test file
-            if os.path.exists(file_path):
-                os.remove(file_path)
+            expected_filename = f"{self.bill.bill_number.replace('/', '_')}.pdf"
+            archive = os.path.join(settings.MEDIA_ROOT, "whatsapp_invoices", expected_filename)
+            self.assertFalse(os.path.exists(archive))
+
+            from messaging.services import discard_queued_pdf
+            discard_queued_pdf(queued.file_path)
 
         finally:
             # Restore environment variables
