@@ -14,6 +14,8 @@ import {
   IconButton,
   useMediaQuery,
   useTheme,
+  Alert,
+  Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
@@ -109,6 +111,8 @@ export default function WholesaleLayout() {
   const navigate = useNavigate();
   const location = useLocation();
   const logout = useAuthStore((s) => s.logout);
+  const supportAccess = useAuthStore((s) => s.supportAccess);
+  const returnToPlatform = useAuthStore((s) => s.returnToPlatform);
   const clearMode = useModeStore((s) => s.clearMode);
   const organizationId = useAuthStore((s) => s.organizationId);
   const organizationName = useAuthStore((s) => s.organizationName);
@@ -320,6 +324,33 @@ export default function WholesaleLayout() {
           className={isBilling ? "billing-page-container" : "page-container"}
           sx={isBilling ? { flex: 1, minHeight: 0, display: "flex", flexDirection: "column", overflow: "hidden" } : undefined}
         >
+          {supportAccess && (
+            <Alert
+              severity="warning"
+              sx={{ mb: 1.5, flexShrink: 0 }}
+              action={
+                <Button
+                  color="inherit"
+                  size="small"
+                  onClick={async () => {
+                    try {
+                      await returnToPlatform();
+                      clearMode();
+                      navigate("/platform/shops", { replace: true });
+                    } catch {
+                      logout();
+                      clearMode();
+                      navigate("/", { replace: true });
+                    }
+                  }}
+                >
+                  Back to Platform
+                </Button>
+              }
+            >
+              Support mode — viewing {organizationName || "this shop"}
+            </Alert>
+          )}
           <Outlet />
         </Box>
       </Box>

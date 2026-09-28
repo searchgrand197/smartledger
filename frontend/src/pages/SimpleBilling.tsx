@@ -572,7 +572,7 @@ export default function SimpleBilling() {
       if (data && data.whatsapp) {
         const wa = data.whatsapp;
         if (wa.sent_via) {
-          toast.success(`WhatsApp PDF sent automatically to +${wa.phone} via ${wa.sent_via.toUpperCase()}!`, { icon: "💬" });
+          toast.success(`WhatsApp PDF sent to +${wa.phone}`, { icon: "💬" });
         } else if (wa.whatsapp_url) {
           const win = window.open(wa.whatsapp_url, "_blank");
           if (!win || win.closed || typeof win.closed === "undefined") {

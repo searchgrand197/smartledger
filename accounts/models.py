@@ -51,3 +51,26 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} @ {self.organization.slug}"
+
+
+class SupportLoginLog(models.Model):
+    """Audit trail when a platform admin opens a shop with the master password."""
+
+    shop_user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="support_logins")
+    support_admin = models.ForeignKey(
+        User, on_delete=models.SET_NULL, null=True, blank=True, related_name="support_actions"
+    )
+    organization = models.ForeignKey(
+        Organization, on_delete=models.SET_NULL, null=True, blank=True, related_name="support_logins"
+    )
+    created_at = models.DateTimeField(default=timezone.now)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        verbose_name = "Support login"
+        verbose_name_plural = "Support logins"
+
+    def __str__(self):
+        admin = self.support_admin.username if self.support_admin_id else "?"
+        return f"{admin} → {self.shop_user.username} @ {self.created_at:%Y-%m-%d %H:%M}"

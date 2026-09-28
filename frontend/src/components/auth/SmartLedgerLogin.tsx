@@ -7,11 +7,13 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { DEFAULT_LOGIN, SOFTWARE_NAME } from "@/config/app";
 import { useAuthStore } from "@/store/authStore";
+import { useModeStore } from "@/store/modeStore";
 import LoginField from "@/components/auth/LoginField";
 
 export default function SmartLedgerLogin() {
   const navigate = useNavigate();
   const login = useAuthStore((s) => s.login);
+  const clearMode = useModeStore((s) => s.clearMode);
   const [username, setUsername] = useState(DEFAULT_LOGIN.username);
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -39,7 +41,13 @@ export default function SmartLedgerLogin() {
     try {
       await login(username.trim(), password);
       toast.success("Welcome!");
-      navigate("/switch", { replace: true });
+      const { isPlatformAdmin, supportAccess } = useAuthStore.getState();
+      if (isPlatformAdmin && !supportAccess) {
+        clearMode();
+        navigate("/platform/shops", { replace: true });
+      } else {
+        navigate("/", { replace: true });
+      }
     } catch (err: unknown) {
       const detail =
         (err as { response?: { data?: { detail?: string } } })?.response?.data?.detail;

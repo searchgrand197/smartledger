@@ -9,6 +9,7 @@ from messaging.whatsapp_proxy import WhatsAppProxyView
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/auth/", include("accounts.urls")),
+    path("api/platform/", include("accounts.platform_urls")),
     path("api/customers/", include("customers.urls")),
     path("api/suppliers/", include("suppliers.urls")),
     path("api/products/", include("products.urls")),

@@ -67,25 +67,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-USE_SQLITE = config("USE_SQLITE", default=False, cast=bool)
-
-if USE_SQLITE:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
-else:
-    DATABASES = {
-        "default": dj_database_url.config(
-            default=config(
-                "DATABASE_URL",
-                default="postgres://wholesale:wholesale_secret@localhost:5432/wholesale_ledger",
-            ),
-            conn_max_age=600,
-        )
-    }
+DATABASES = {
+    "default": dj_database_url.config(
+        default=config(
+            "DATABASE_URL",
+            default="postgres://wholesale:wholesale_secret@localhost:5432/wholesale_ledger",
+        ),
+        conn_max_age=600,
+    )
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},

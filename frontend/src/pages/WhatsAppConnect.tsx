@@ -22,6 +22,7 @@ interface ConnectionStatus {
   message: string;
   initializing?: boolean;
   error?: string | null;
+  phone?: string | null;
 }
 
 export default function WhatsAppConnect() {
@@ -96,7 +97,7 @@ export default function WhatsAppConnect() {
     <PageShell>
       <PageHeader
         title="WhatsApp Integration"
-        subtitle="Manage your local WhatsApp Web connection to automate invoice delivery"
+        subtitle="Link this shop's own WhatsApp number. Other organizations connect separately."
       />
 
       <Stack spacing={3} maxWidth={640} sx={{ width: "100%", mt: 2 }}>
@@ -162,8 +163,8 @@ export default function WhatsAppConnect() {
 
                 <Typography variant="body1" align="center" color="text.secondary" sx={{ maxWidth: 460 }}>
                   {status.connected
-                    ? "Your WhatsApp account is linked successfully. The system will automatically attach the bill PDF and send messages to the customers."
-                    : "Scan the QR code below to connect your WhatsApp account. Your session will be saved locally so you don't need to link it again."}
+                    ? `This shop's WhatsApp${status.phone ? ` (+${status.phone})` : ""} is linked. Invoice PDFs will be sent from this number.`
+                    : "Scan the QR code with this shop's phone. The session is saved only for this organization."}
                 </Typography>
 
                 {status.connected ? (
@@ -197,7 +198,7 @@ export default function WhatsAppConnect() {
                     </Box>
 
                     <Typography variant="h6" fontWeight={700} color="text.primary">
-                      Ready to send messages!
+                      {status.phone ? `Ready — +${status.phone}` : "Ready to send messages!"}
                     </Typography>
 
                     <Button
@@ -258,7 +259,7 @@ export default function WhatsAppConnect() {
                         <CircularProgress color="success" size={32} />
                         <Typography variant="body2" color="text.secondary" textAlign="center">
                           {status.initializing
-                            ? "Starting WhatsApp browser…"
+                            ? "Connecting to WhatsApp…"
                             : status.error
                               ? "Restart the sender to generate a new QR code."
                               : "Generating new QR code…"}

@@ -10,12 +10,14 @@ from customers.portal import make_portal_token
 from core.tenant import get_organization_for_request, get_user_organization
 
 from .models import UserProfile
+from .serializers import SupportAwareTokenObtainPairSerializer
 
 User = get_user_model()
 
 
 class LoginView(TokenObtainPairView):
     permission_classes = [AllowAny]
+    serializer_class = SupportAwareTokenObtainPairSerializer
 
 
 class MeView(APIView):
@@ -33,6 +35,17 @@ class MeView(APIView):
             from business.models import BusinessSettings
 
             setup_completed = BusinessSettings.load(org).setup_completed
+
+        support_access = False
+        support_by = None
+        token = getattr(request, "auth", None)
+        if token is not None:
+            try:
+                support_access = bool(token.get("support_access", False))
+                support_by = token.get("support_by")
+            except Exception:
+                support_access = False
+
         return Response(
             {
                 "id": user.id,
@@ -40,6 +53,10 @@ class MeView(APIView):
                 "email": user.email,
                 "is_owner": profile.role == UserProfile.ROLE_OWNER if profile else user.is_superuser,
                 "role": profile.role if profile else "owner",
+                "is_platform_admin": bool(user.is_superuser),
+                "is_superuser": bool(user.is_superuser),
+                "support_access": support_access,
+                "support_by": support_by,
                 "organization_id": org.id if org else None,
                 "organization_name": org.name if org else None,
                 "organization_slug": org.slug if org else None,

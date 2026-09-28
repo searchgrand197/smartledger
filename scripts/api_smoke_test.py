@@ -1,6 +1,6 @@
 """
 Smoke-test frontend API paths. Run: python scripts/api_smoke_test.py
-Requires: backend venv, USE_SQLITE=true, owner user exists.
+Requires: backend venv, PostgreSQL via DATABASE_URL, owner user exists.
 """
 import json
 import os
@@ -8,7 +8,6 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
-os.environ.setdefault("USE_SQLITE", "true")
 os.environ["ALLOWED_HOSTS"] = "localhost,127.0.0.1,testserver"
 
 import django

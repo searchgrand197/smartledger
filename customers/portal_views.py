@@ -1191,7 +1191,15 @@ class CustomerPortalWhatsAppStatusView(CustomerPortalMixin, APIView):
             )
 
         try:
-            res = requests.get(f"{base_url}/api/status", timeout=5)
+            from messaging import whatsapp_runtime
+
+            whatsapp_runtime.ensure_whatsapp_sender_running()
+            org_id = customer.organization_id
+            res = requests.get(
+                f"{base_url}/api/status",
+                params={"organizationId": org_id} if org_id else None,
+                timeout=8,
+            )
             data = res.json() if res.content else {"connected": False}
             if not isinstance(data, dict):
                 data = {"connected": False}

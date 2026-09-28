@@ -6,6 +6,7 @@ import { useSettingsStore } from "@/store/settingsStore";
 import { useCustomerPortalStore } from "@/store/customerPortalStore";
 import WholesaleLayout from "@/components/layout/WholesaleLayout";
 import CustomerPortalLayout from "@/components/layout/CustomerPortalLayout";
+import PlatformLayout from "@/components/layout/PlatformLayout";
 import Home from "@/pages/Home";
 import PortalSwitch from "@/pages/PortalSwitch";
 import Sale from "@/pages/Sale";
@@ -22,6 +23,7 @@ import SimpleReturn from "@/pages/SimpleReturn";
 import PartyReturn from "@/pages/PartyReturn";
 import WholesaleReturnHistory from "@/pages/WholesaleReturnHistory";
 import BillingHistory from "@/pages/BillingHistory";
+import PlatformShops from "@/pages/platform/PlatformShops";
 
 import CustomerInventory from "@/pages/customer/CustomerInventory";
 import CustomerParties from "@/pages/customer/CustomerParties";
@@ -33,6 +35,8 @@ import PaymentPrintPage from "@/pages/PaymentPrintPage";
 function WholesalePrivateRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const authReady = useAuthStore((s) => s.authReady);
+  const isPlatformAdmin = useAuthStore((s) => s.isPlatformAdmin);
+  const supportAccess = useAuthStore((s) => s.supportAccess);
   if (!authReady) {
     return (
       <Box display="flex" height="100vh" alignItems="center" justifyContent="center">
@@ -40,7 +44,35 @@ function WholesalePrivateRoute({ children }: { children: React.ReactNode }) {
       </Box>
     );
   }
-  return isAuthenticated ? <>{children}</> : <Navigate to="/" replace />;
+  if (!isAuthenticated) return <Navigate to="/" replace />;
+  // Platform admins use /platform unless they are in support mode for a shop
+  if (isPlatformAdmin && !supportAccess) {
+    return <Navigate to="/platform/shops" replace />;
+  }
+  return <>{children}</>;
+}
+
+function PlatformPrivateRoute({ children }: { children: React.ReactNode }) {
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+  const authReady = useAuthStore((s) => s.authReady);
+  const isPlatformAdmin = useAuthStore((s) => s.isPlatformAdmin);
+  const supportAccess = useAuthStore((s) => s.supportAccess);
+  if (!authReady) {
+    return (
+      <Box display="flex" height="100vh" alignItems="center" justifyContent="center">
+        <CircularProgress />
+      </Box>
+    );
+  }
+  if (!isAuthenticated) return <Navigate to="/" replace />;
+  // Support sessions belong in the shop UI, not the operator console
+  if (supportAccess) {
+    return <Navigate to="/wholesale/sale" replace />;
+  }
+  if (!isPlatformAdmin) {
+    return <Navigate to="/switch" replace />;
+  }
+  return <>{children}</>;
 }
 
 function RedirectLegacyCustomer() {
@@ -74,7 +106,11 @@ export default function App() {
 
   useEffect(() => {
     if (isAuthenticated && organizationId != null) {
-      loadSettings(organizationId);
+      const isPlatformAdmin = useAuthStore.getState().isPlatformAdmin;
+      const supportAccess = useAuthStore.getState().supportAccess;
+      if (!isPlatformAdmin || supportAccess) {
+        loadSettings(organizationId);
+      }
     }
   }, [isAuthenticated, organizationId, loadSettings]);
 
@@ -117,6 +153,18 @@ export default function App() {
             </WholesalePrivateRoute>
           }
         />
+
+        <Route
+          path="/platform"
+          element={
+            <PlatformPrivateRoute>
+              <PlatformLayout />
+            </PlatformPrivateRoute>
+          }
+        >
+          <Route index element={<Navigate to="shops" replace />} />
+          <Route path="shops" element={<PlatformShops />} />
+        </Route>
 
         <Route
           path="/wholesale"
@@ -192,6 +240,7 @@ export default function App() {
         <Route path="/simple-billing/*" element={<Navigate to="/customer" replace />} />
         <Route path="/login" element={<Navigate to="/" replace />} />
         <Route path="/billing" element={<Navigate to="/wholesale/sale" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
   );

@@ -337,17 +337,30 @@ class WhatsAppStatusView(APIView):
     def get(self, request):
         import requests
         from django.conf import settings
+        from core.tenant import get_organization_for_request
+
+        org = get_organization_for_request(request)
         base_url = getattr(settings, "WHATSAPP_INTERNAL_BASE_URL", "").rstrip("/")
         if not base_url:
             return Response({"connected": False, "message": "WhatsApp internal URL not configured"}, status=400)
 
+        from messaging import whatsapp_runtime
+
         try:
-            res = requests.get(f"{base_url}/api/status", timeout=5)
+            whatsapp_runtime.ensure_whatsapp_sender_running()
+            res = requests.get(
+                f"{base_url}/api/status",
+                params={"organizationId": org.id},
+                timeout=8,
+            )
             return Response(res.json(), status=res.status_code)
         except Exception:
+            detail = whatsapp_runtime.last_start_error or (
+                "WhatsApp sender is not running. Restart the backend — it starts automatically with Django."
+            )
             return Response({
                 "connected": False,
-                "message": "WhatsApp sender is not running. Restart the backend — it starts automatically with Django.",
+                "message": detail,
             }, status=502)
 
 
@@ -357,12 +370,22 @@ class WhatsAppDisconnectView(APIView):
     def post(self, request):
         import requests
         from django.conf import settings
+        from core.tenant import get_organization_for_request
+
+        org = get_organization_for_request(request)
         base_url = getattr(settings, "WHATSAPP_INTERNAL_BASE_URL", "").rstrip("/")
         if not base_url:
             return Response({"error": "WhatsApp internal URL not configured"}, status=400)
 
+        from messaging import whatsapp_runtime
+
         try:
-            res = requests.post(f"{base_url}/api/disconnect", timeout=30)
+            whatsapp_runtime.ensure_whatsapp_sender_running()
+            res = requests.post(
+                f"{base_url}/api/disconnect",
+                json={"organizationId": org.id},
+                timeout=30,
+            )
             return Response(res.json(), status=res.status_code)
         except Exception as e:
             return Response({"error": f"Failed to disconnect: {str(e)}"}, status=502)
@@ -374,12 +397,22 @@ class WhatsAppRestartView(APIView):
     def post(self, request):
         import requests
         from django.conf import settings
+        from core.tenant import get_organization_for_request
+
+        org = get_organization_for_request(request)
         base_url = getattr(settings, "WHATSAPP_INTERNAL_BASE_URL", "").rstrip("/")
         if not base_url:
             return Response({"error": "WhatsApp internal URL not configured"}, status=400)
 
+        from messaging import whatsapp_runtime
+
         try:
-            res = requests.post(f"{base_url}/api/restart", timeout=60)
+            whatsapp_runtime.ensure_whatsapp_sender_running()
+            res = requests.post(
+                f"{base_url}/api/restart",
+                json={"organizationId": org.id},
+                timeout=60,
+            )
             return Response(res.json(), status=res.status_code)
         except Exception as e:
             return Response({"error": f"Failed to restart WhatsApp sender: {str(e)}"}, status=502)

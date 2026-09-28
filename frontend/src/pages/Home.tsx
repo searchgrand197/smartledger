@@ -7,6 +7,8 @@ import { useModeStore } from "@/store/modeStore";
 export default function Home() {
   const authReady = useAuthStore((s) => s.authReady);
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+  const isPlatformAdmin = useAuthStore((s) => s.isPlatformAdmin);
+  const supportAccess = useAuthStore((s) => s.supportAccess);
   const mode = useModeStore((s) => s.mode);
 
   if (!authReady) {
@@ -19,6 +21,11 @@ export default function Home() {
 
   if (!isAuthenticated) {
     return <SmartLedgerLogin />;
+  }
+
+  // Platform operators land on admin console (unless supporting a shop)
+  if (isPlatformAdmin && !supportAccess) {
+    return <Navigate to="/platform/shops" replace />;
   }
 
   if (mode === "wholesale") {

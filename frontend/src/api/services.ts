@@ -132,3 +132,45 @@ export const businessApi = {
   updateSettings: (data: FormData | object) => api.patch("/business/settings/", data),
   dismissSetup: () => api.post("/business/settings/dismiss-setup/"),
 };
+
+export type PlatformShop = {
+  id: number;
+  name: string;
+  slug: string;
+  is_active: boolean;
+  created_at: string | null;
+  member_count: number;
+  owner: {
+    id: number;
+    username: string;
+    email: string;
+    is_active: boolean;
+    last_login: string | null;
+  } | null;
+};
+
+export const platformApi = {
+  listShops: () => api.get<PlatformShop[]>("/platform/shops/"),
+  createShop: (data: {
+    shop_name: string;
+    username: string;
+    password: string;
+    email?: string;
+    slug?: string;
+  }) => api.post<PlatformShop>("/platform/shops/", data),
+  updateShop: (id: number, data: { is_active?: boolean; name?: string }) =>
+    api.patch<PlatformShop>(`/platform/shops/${id}/`, data),
+  resetPassword: (id: number, password: string) =>
+    api.post<{ detail: string; username: string }>(`/platform/shops/${id}/reset-password/`, {
+      password,
+    }),
+  supportLogin: (id: number) =>
+    api.post<{
+      access: string;
+      refresh: string;
+      support_access: boolean;
+      username: string;
+      organization_id: number;
+      organization_name: string;
+    }>(`/platform/shops/${id}/support-login/`),
+};

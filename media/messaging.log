@@ -1350,3 +1350,26 @@ INFO 2026-09-18 12:46:36,074 services 3203333 133353942503744 [Queue] Message en
 WARNING 2026-09-18 12:46:41,224 services 3203333 133353886975680 [Queue] Message ID 1344 delivery failed: Gateway returned error code 500: {"error":"Data passed to getter must include an id property (it's how we memoize) but got undefined\ns (https://static.whatsapp.net/rsrc.php/v4/yL/r/6-eerGMZKhM.js:84:180)"}
 INFO 2026-09-18 12:49:12,860 services 3203334 133353942503744 [Queue] Message enqueued: ID 1345 to 918295110043
 WARNING 2026-09-18 12:49:16,848 services 3203334 133353886975680 [Queue] Message ID 1345 delivery failed: Gateway returned error code 500: {"error":"Data passed to getter must include an id property (it's how we memoize) but got undefined\ns (https://static.whatsapp.net/rsrc.php/v4/yL/r/6-eerGMZKhM.js:84:180)"}
+INFO 2026-09-22 13:34:01,825 whatsapp_runtime 20828 13272 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-22 13:34:02,507 whatsapp_runtime 19940 8632 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-22 16:41:12,903 whatsapp_runtime 14256 10816 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-22 16:43:17,429 whatsapp_runtime 18424 7608 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-22 16:43:18,053 whatsapp_runtime 15304 15340 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-24 18:09:26,256 whatsapp_runtime 20964 16832 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-24 18:09:27,084 whatsapp_runtime 14748 8652 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-09-24 18:12:38,067 services 14748 7756 [Queue] Message enqueued: ID 1 to 918295110043
+WARNING 2026-09-24 18:12:42,734 services 14748 9408 [Queue] Message ID 1 delivery failed: Gateway returned error code 500: {"error":"Data passed to getter must include an id property (it's how we memoize) but got undefined"}
+INFO 2026-09-24 18:30:08,969 whatsapp_runtime 17264 8608 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-09-24 18:39:49,254 services 17264 16376 [Queue] Message enqueued: ID 2 to 918295110043
+WARNING 2026-09-24 18:39:51,786 services 17264 16376 [Queue] Message ID 2 delivery failed: Gateway returned error code 500: {"error":"Data passed to getter must include an id property (it's how we memoize) but got undefined"}
+INFO 2026-09-24 18:42:15,847 services 17264 14832 [Queue] Message enqueued: ID 3 to 918295110043
+WARNING 2026-09-24 18:42:21,031 services 17264 14832 [Queue] Message ID 3 delivery failed: Gateway returned error code 500: {"error":"Data passed to getter must include an id property (it's how we memoize) but got undefined"}
+INFO 2026-09-24 18:51:16,189 services 17264 13092 [Queue] Message enqueued: ID 4 to 918295110043
+WARNING 2026-09-24 18:51:17,741 services 17264 13092 [Queue] Message ID 4 delivery failed: Gateway returned error code 500: {"error":"Data passed to getter must include an id property (it's how we memoize) but got undefined"}
+INFO 2026-09-24 18:58:45,841 whatsapp_runtime 18300 15920 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-09-24 18:59:00,055 whatsapp_runtime 5760 8484 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-09-24 19:17:02,069 services 5760 8136 [Queue] Message enqueued: ID 5 to 918295110043
+INFO 2026-09-24 19:17:04,680 services 5760 8136 [Queue] Message ID 5 delivered successfully.
+INFO 2026-09-24 19:27:22,955 services 5760 3496 [Queue] Message enqueued: ID 6 to 918814067670
+INFO 2026-09-24 19:27:33,456 services 5760 3496 [Queue] Message ID 6 delivered successfully.
+INFO 2026-09-28 18:02:22,856 whatsapp_runtime 16676 26684 Starting WhatsApp sender on 127.0.0.1:8787

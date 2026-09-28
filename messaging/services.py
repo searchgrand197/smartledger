@@ -10,9 +10,10 @@ from .models import MessageQueue
 logger = logging.getLogger("messaging")
 
 def enqueue_message(recipient, caption, file_path=None, message_type="whatsapp", 
-                    organization=None, customer=None, bill=None):
+                    organization=None, customer=None, bill=None, wait=False):
     """
-    Creates a new message queue item in 'pending' status and schedules an async send.
+    Creates a new message queue item in 'pending' status and sends it.
+    When wait=True, blocks until the gateway accepts or rejects the message.
     """
     message = MessageQueue.all_objects.create(
         organization=organization,
@@ -26,7 +27,11 @@ def enqueue_message(recipient, caption, file_path=None, message_type="whatsapp",
     )
     
     logger.info(f"[Queue] Message enqueued: ID {message.id} to {recipient}")
-    send_message_async(message.id)
+    if wait:
+        process_single_message_from_queue(message.id)
+        message.refresh_from_db()
+    else:
+        send_message_async(message.id)
     return message
 
 
@@ -105,7 +110,8 @@ def deliver_message_to_gateway(message):
         payload = {
             "phone": message.recipient,
             "pdfPath": message.file_path,
-            "caption": message.caption or ""
+            "caption": message.caption or "",
+            "organizationId": message.organization_id,
         }
         url = local_gateway_url
     else:
@@ -113,6 +119,7 @@ def deliver_message_to_gateway(message):
         base_url = local_gateway_url.split("/api/")[0] if "/api/" in local_gateway_url else "/".join(local_gateway_url.split("/")[:3])
         url = f"{base_url}/api/send"
         payload = {
+            "organizationId": message.organization_id,
             "contacts": [{
                 "name": "Customer",
                 "phone": message.recipient,
@@ -121,8 +128,11 @@ def deliver_message_to_gateway(message):
             "caption": message.caption or ""
         }
 
+    if not message.organization_id:
+        return False, "Message is missing organizationId — cannot route WhatsApp session"
+
     try:
-        response = requests.post(url, json=payload, timeout=15)
+        response = requests.post(url, json=payload, timeout=90)
         
         if response.status_code == 200:
             return True, None
@@ -130,7 +140,7 @@ def deliver_message_to_gateway(message):
             return False, f"Gateway returned error code {response.status_code}: {response.text}"
             
     except requests.exceptions.Timeout:
-        return False, "Gateway timeout (15 seconds reached)"
+        return False, "Gateway timeout (90 seconds reached)"
     except requests.exceptions.ConnectionError:
         return False, "Gateway connection failed — Service may be offline"
     except Exception as e:

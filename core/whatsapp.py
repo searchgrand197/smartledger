@@ -37,15 +37,24 @@ def _send_pdf_document(phone_normalized: str, media_path: str, file_url: str, fi
             message_type="whatsapp",
             organization=organization,
             customer=customer,
-            bill=bill
+            bill=bill,
+            wait=True,
         )
+        if message.status == "sent":
+            return {
+                "status": "success",
+                "sent_via": "local-gateway",
+                "phone": phone_normalized,
+                "pdf_url": file_url,
+                "detail": "Document sent on WhatsApp.",
+                "message_id": message.id,
+            }
         return {
-            "status": "success",
-            "sent_via": "local-gateway",
+            "status": "error",
             "phone": phone_normalized,
             "pdf_url": file_url,
-            "detail": "Document queued for background delivery.",
-            "message_id": message.id
+            "detail": message.error_message or "WhatsApp delivery failed.",
+            "message_id": message.id,
         }
     except Exception as e:
         err_msg = f"Queueing error: {str(e)}"
