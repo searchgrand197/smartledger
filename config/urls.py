@@ -4,7 +4,6 @@ from django.contrib import admin
 from django.urls import include, path, re_path
 
 from core.views import serve_spa
-from messaging.whatsapp_proxy import WhatsAppProxyView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,7 +26,5 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
-    re_path(r"^whatsapp/(?P<path>.*)$", WhatsAppProxyView.as_view(), name="whatsapp_proxy"),
-    re_path(r"^whatsapp/?$", WhatsAppProxyView.as_view(), name="whatsapp_proxy_root"),
     re_path(r"^(?P<path>.*)$", serve_spa),
 ]

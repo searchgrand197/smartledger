@@ -1,8 +1,9 @@
 """Render complex-script text (e.g. Hindi) for ReportLab PDFs.
 
 ReportLab does not shape Devanagari. Some WhatsApp PDF viewers also show
-missing-glyph boxes (■■■) for Indic TrueType text. Pillow uses the OS text
-shaper, so Hindi is rasterized as images that display on every client.
+missing-glyph boxes (■■■) for Indic TrueType text. Hindi is therefore
+rasterized as an opaque JPEG using HarfBuzz + FreeType (with a Pillow
+fallback) so it displays correctly on every client.
 """
 
 from __future__ import annotations
@@ -81,6 +82,8 @@ def _hindi_font_path() -> str | None:
         os.path.join(os.path.dirname(__file__), "fonts", "NotoSansDevanagari-Regular.ttf"),
         "C:/Windows/Fonts/Nirmala.ttf",
         "C:/Windows/Fonts/nirmala.ttf",
+        "C:/Windows/Fonts/Nirmala.ttc",
+        "C:/Windows/Fonts/nirmala.ttc",
         "C:/Windows/Fonts/mangal.ttf",
         "C:/Windows/Fonts/Mangal.ttf",
         "/usr/share/fonts/truetype/noto/NotoSansDevanagari-Regular.ttf",
@@ -92,7 +95,14 @@ def _hindi_font_path() -> str | None:
     return None
 
 
-def _wrap_text(draw, text: str, font, max_width_px: int) -> list[str]:
+def _font_load_kwargs(font_path: str) -> dict:
+    """Pillow needs an explicit face index for TrueType Collections (.ttc)."""
+    if font_path.lower().endswith(".ttc"):
+        return {"index": 0}
+    return {}
+
+
+def _wrap_text_width(text: str, measure, max_width_px: int) -> list[str]:
     words = text.split()
     if not words:
         return [text]
@@ -100,18 +110,158 @@ def _wrap_text(draw, text: str, font, max_width_px: int) -> list[str]:
     current = words[0]
     for word in words[1:]:
         trial = f"{current} {word}"
-        try:
-            width = draw.textlength(trial, font=font)
-        except Exception:
-            bbox = draw.textbbox((0, 0), trial, font=font)
-            width = bbox[2] - bbox[0]
-        if width <= max_width_px:
+        if measure(trial) <= max_width_px:
             current = trial
         else:
             lines.append(current)
             current = word
     lines.append(current)
     return lines
+
+
+def _render_line_harfbuzz(text: str, font_path: str, size_px: int):
+    """Shape + rasterize one line with HarfBuzz/FreeType. Returns RGB image or None."""
+    try:
+        import uharfbuzz as hb
+        from freetype import Face, FT_LOAD_RENDER
+    except ImportError:
+        return None
+
+    try:
+        face = Face(font_path)
+        face.set_char_size(size_px * 64)
+        with open(font_path, "rb") as fh:
+            blob = fh.read()
+        hb_face = hb.Face(blob)
+        hb_font = hb.Font(hb_face)
+        # Prefer ppem-based scale (stable across FreeType builds)
+        try:
+            hb_font.scale = (int(face.size.x_ppem) * 64, int(face.size.y_ppem) * 64)
+        except Exception:
+            hb_font.scale = (size_px * 64, size_px * 64)
+
+        buf = hb.Buffer()
+        buf.add_str(text)
+        buf.guess_segment_properties()
+        hb.shape(hb_font, buf)
+        infos = buf.glyph_infos
+        positions = buf.glyph_positions
+        if not infos:
+            return None
+
+        from PIL import Image
+
+        width = max(1, int(sum(p.x_advance for p in positions) / 64) + 6)
+        height = max(size_px * 2, int(size_px * 1.8) + 4)
+        img = Image.new("L", (width, height), 255)
+        pixels = img.load()
+
+        pen_x = 2 * 64
+        pen_y = int(size_px * 1.25) * 64
+        for info, pos in zip(infos, positions):
+            face.load_glyph(info.codepoint, FT_LOAD_RENDER)
+            bitmap = face.glyph.bitmap
+            w, h = bitmap.width, bitmap.rows
+            if w and h and bitmap.buffer:
+                glyph_img = Image.frombytes("L", (w, h), bytes(bitmap.buffer))
+                x = (pen_x + pos.x_offset) // 64 + face.glyph.bitmap_left
+                y = (pen_y - pos.y_offset) // 64 - face.glyph.bitmap_top
+                for gy in range(h):
+                    for gx in range(w):
+                        px, py = x + gx, y + gy
+                        if 0 <= px < width and 0 <= py < height:
+                            cov = glyph_img.getpixel((gx, gy))
+                            cur = pixels[px, py]
+                            pixels[px, py] = max(0, cur - cov)
+            pen_x += pos.x_advance
+            pen_y += pos.y_advance
+
+        # Trim excess whitespace but keep a 1px pad
+        bbox = img.getbbox()
+        if bbox:
+            left, top, right, bottom = bbox
+            img = img.crop(
+                (
+                    max(0, left - 1),
+                    max(0, top - 1),
+                    min(width, right + 1),
+                    min(height, bottom + 1),
+                )
+            )
+        return Image.merge("RGB", (img, img, img))
+    except Exception:
+        return None
+
+
+def _measure_line_harfbuzz(text: str, font_path: str, size_px: int) -> int | None:
+    try:
+        import uharfbuzz as hb
+        from freetype import Face
+    except ImportError:
+        return None
+    try:
+        face = Face(font_path)
+        face.set_char_size(size_px * 64)
+        with open(font_path, "rb") as fh:
+            blob = fh.read()
+        hb_face = hb.Face(blob)
+        hb_font = hb.Font(hb_face)
+        try:
+            hb_font.scale = (int(face.size.x_ppem) * 64, int(face.size.y_ppem) * 64)
+        except Exception:
+            hb_font.scale = (size_px * 64, size_px * 64)
+        buf = hb.Buffer()
+        buf.add_str(text)
+        buf.guess_segment_properties()
+        hb.shape(hb_font, buf)
+        return max(1, int(sum(p.x_advance for p in buf.glyph_positions) / 64))
+    except Exception:
+        return None
+
+
+def _render_line_pillow(text: str, font_path: str, size_px: int):
+    """Fallback rasterize without complex shaping (may misplace matras)."""
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+    except ImportError:
+        return None
+    try:
+        font = ImageFont.truetype(font_path, size_px, **_font_load_kwargs(font_path))
+    except OSError:
+        return None
+    probe = Image.new("RGB", (8, 8), "white")
+    draw = ImageDraw.Draw(probe)
+    bbox = draw.textbbox((0, 0), text, font=font)
+    w = max(1, bbox[2] - bbox[0] + 4)
+    h = max(1, bbox[3] - bbox[1] + 4)
+    img = Image.new("RGB", (w, h), "white")
+    painter = ImageDraw.Draw(img)
+    painter.text((2 - bbox[0], 2 - bbox[1]), text, font=font, fill=(0, 0, 0))
+    return img
+
+
+def _render_line(text: str, font_path: str, size_px: int):
+    img = _render_line_harfbuzz(text, font_path, size_px)
+    if img is not None:
+        return img
+    return _render_line_pillow(text, font_path, size_px)
+
+
+def _measure_line(text: str, font_path: str, size_px: int) -> int:
+    w = _measure_line_harfbuzz(text, font_path, size_px)
+    if w is not None:
+        return w
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+        font = ImageFont.truetype(font_path, size_px, **_font_load_kwargs(font_path))
+        draw = ImageDraw.Draw(Image.new("RGB", (8, 8), "white"))
+        try:
+            return int(draw.textlength(text, font=font))
+        except Exception:
+            bbox = draw.textbbox((0, 0), text, font=font)
+            return max(1, bbox[2] - bbox[0])
+    except Exception:
+        return max(1, len(text) * size_px // 2)
 
 
 class ShapedTextBlock(Flowable):
@@ -140,10 +290,6 @@ class ShapedTextBlock(Flowable):
     def _build(self) -> None:
         if not self.lines:
             return
-        try:
-            from PIL import Image, ImageDraw, ImageFont
-        except ImportError:
-            return
 
         font_path = _hindi_font_path()
         if not font_path:
@@ -156,43 +302,43 @@ class ShapedTextBlock(Flowable):
         title_px = max(18, int(round(self.title_size_pt * scale)))
         gap_px = max(4, int(round(self.line_gap_pt * scale)))
 
-        try:
-            body_font = ImageFont.truetype(font_path, body_px)
-            title_font = ImageFont.truetype(font_path, title_px)
-        except OSError:
-            return
-
-        probe = Image.new("RGB", (8, 8), "white")
-        draw = ImageDraw.Draw(probe)
-
-        # First non-numbered Indic line is treated as title (e.g. नोट :-)
-        rendered_rows: list[tuple[str, object]] = []
+        rendered_rows: list[tuple[str, int]] = []
         for i, line in enumerate(self.lines):
             is_title = i == 0 and not _NUMBERED_RE.match(line) and contains_indic(line)
-            font = title_font if is_title else body_font
-            for part in _wrap_text(draw, line, font, max_w_px):
-                rendered_rows.append((part, font))
+            size_px = title_px if is_title else body_px
+            for part in _wrap_text_width(
+                line,
+                lambda t, sp=size_px: _measure_line(t, font_path, sp),
+                max_w_px,
+            ):
+                rendered_rows.append((part, size_px))
 
-        heights: list[int] = []
-        widths: list[int] = []
-        for text, font in rendered_rows:
-            bbox = draw.textbbox((0, 0), text, font=font)
-            widths.append(max(1, bbox[2] - bbox[0]))
-            heights.append(max(1, bbox[3] - bbox[1]))
+        row_images = []
+        for text, size_px in rendered_rows:
+            row_img = _render_line(text, font_path, size_px)
+            if row_img is None:
+                return
+            row_images.append(row_img)
+
+        from PIL import Image
 
         pad_x = 2
         pad_y = 2
-        total_h = pad_y * 2 + sum(heights) + gap_px * max(0, len(rendered_rows) - 1)
-        total_w = min(max_w_px + pad_x * 2, max(widths) + pad_x * 2)
+        total_w = min(
+            max_w_px + pad_x * 2,
+            max(im.width for im in row_images) + pad_x * 2,
+        )
+        total_h = (
+            pad_y * 2
+            + sum(im.height for im in row_images)
+            + gap_px * max(0, len(row_images) - 1)
+        )
 
         img = Image.new("RGB", (total_w, total_h), "white")
-        painter = ImageDraw.Draw(img)
         y = pad_y
-        for i, (text, font) in enumerate(rendered_rows):
-            bbox = painter.textbbox((0, 0), text, font=font)
-            # black text on white — opaque JPEG (no transparency mask issues on WhatsApp)
-            painter.text((pad_x - bbox[0], y - bbox[1]), text, font=font, fill=(0, 0, 0))
-            y += heights[i] + gap_px
+        for i, row_img in enumerate(row_images):
+            img.paste(row_img, (pad_x, y))
+            y += row_img.height + gap_px
 
         buf = BytesIO()
         # JPEG is more reliable in mobile WhatsApp PDF viewers than PNG+mask

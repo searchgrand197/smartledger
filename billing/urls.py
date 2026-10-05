@@ -14,6 +14,7 @@ from .views import (
     WhatsAppDisconnectView,
     WhatsAppRestartView,
     BillUpdateView,
+    BillSendWhatsAppView,
 )
 
 urlpatterns = [
@@ -27,6 +28,7 @@ urlpatterns = [
     path("<int:pk>/cancel/", BillCancelView.as_view(), name="bill_cancel"),
     path("<int:pk>/pdf/", BillInvoicePDFView.as_view(), name="bill_pdf"),
     path("<int:pk>/print-data/", BillInvoicePrintDataView.as_view(), name="bill_print_data"),
+    path("<int:pk>/send-whatsapp/", BillSendWhatsAppView.as_view(), name="bill_send_whatsapp"),
     path("whatsapp/status/", WhatsAppStatusView.as_view(), name="whatsapp_status"),
     path("whatsapp/disconnect/", WhatsAppDisconnectView.as_view(), name="whatsapp_disconnect"),
     path("whatsapp/restart/", WhatsAppRestartView.as_view(), name="whatsapp_restart"),

@@ -1,8 +1,5 @@
-import os
 import logging
-import requests
 from decimal import Decimal
-from django.conf import settings
 from django.utils import timezone
 from django.db import models
 
@@ -24,10 +21,8 @@ def _print_date_for_caption(dt) -> str:
     return local.strftime("%d-%m-%y")
 
 
-def _send_pdf_document(phone_normalized: str, media_path: str, file_url: str, filename: str, caption: str, request=None, customer=None, bill=None, organization=None) -> dict:
-    """
-    Internal helper to deliver a PDF document to WhatsApp via the database Message Queue.
-    """
+def _send_pdf_document(phone_normalized: str, media_path: str, filename: str, caption: str, request=None, customer=None, bill=None, organization=None) -> dict:
+    """Queue a generated PDF for WhatsApp delivery. The temp file is removed after send."""
     try:
         from messaging.services import enqueue_message
         message = enqueue_message(
@@ -43,27 +38,26 @@ def _send_pdf_document(phone_normalized: str, media_path: str, file_url: str, fi
             "status": "success",
             "sent_via": "local-gateway",
             "phone": phone_normalized,
-            "pdf_url": file_url,
+            "pdf_url": filename,
             "detail": "Document queued for background delivery.",
             "message_id": message.id
         }
     except Exception as e:
         err_msg = f"Queueing error: {str(e)}"
         logger.error(err_msg)
+        from messaging.services import discard_queued_pdf
+        discard_queued_pdf(media_path)
         return {
             "status": "error",
             "phone": phone_normalized,
-            "pdf_url": file_url,
+            "pdf_url": filename,
             "detail": err_msg,
         }
 
 
 
 def send_bill_pdf_to_whatsapp(bill: Bill, request=None) -> dict:
-    """
-    Generates the bill PDF, saves it locally under media/whatsapp_invoices/,
-    and delivers it via Local Gateway, UltraMsg, or Meta API, falling back to a deep link.
-    """
+    """Generate the bill PDF, queue it for WhatsApp, then drop the temp file after delivery."""
     customer = bill.customer
     if not customer or not customer.phone:
         return {
@@ -87,6 +81,7 @@ def send_bill_pdf_to_whatsapp(bill: Bill, request=None) -> dict:
             "bill_number": bill.bill_number,
         }
 
+    media_path = None
     try:
         # 1. Resolve balance details for party bill invoice
         balance_info = None
@@ -114,21 +109,13 @@ def send_bill_pdf_to_whatsapp(bill: Bill, request=None) -> dict:
                 "total_balance": get_customer_balance(bill.customer),
             }
 
+        from messaging.services import write_queued_pdf
+
         # 2. Build PDF Document
         biz_settings = BusinessSettings.load(bill.organization)
         pdf_io = build_invoice_pdf(bill, biz_settings, balance_info=balance_info)
-        pdf_bytes = pdf_io.getvalue()
-
-        # 3. Store PDF locally under media/whatsapp_invoices/
         invoice_filename = f"{bill.bill_number.replace('/', '_')}.pdf"
-        relative_path = os.path.join("whatsapp_invoices", invoice_filename).replace(os.sep, "/")
-        media_path = os.path.join(settings.MEDIA_ROOT, relative_path)
-
-        os.makedirs(os.path.dirname(media_path), exist_ok=True)
-        with open(media_path, "wb") as f:
-            f.write(pdf_bytes)
-
-        file_url = f"/{settings.MEDIA_URL.lstrip('/')}{relative_path}"
+        media_path = write_queued_pdf(invoice_filename, pdf_io.getvalue())
 
         # Determine balances
         closing_balance = Decimal("0")
@@ -164,7 +151,6 @@ def send_bill_pdf_to_whatsapp(bill: Bill, request=None) -> dict:
         res = _send_pdf_document(
             phone_normalized=phone_normalized,
             media_path=media_path,
-            file_url=file_url,
             filename=invoice_filename,
             caption=caption,
             request=request,
@@ -176,6 +162,8 @@ def send_bill_pdf_to_whatsapp(bill: Bill, request=None) -> dict:
         return res
 
     except Exception as e:
+        from messaging.services import discard_queued_pdf
+        discard_queued_pdf(media_path)
         logger.exception("Error during WhatsApp billing delivery process")
         return {
             "status": "error",
@@ -186,10 +174,7 @@ def send_bill_pdf_to_whatsapp(bill: Bill, request=None) -> dict:
 
 
 def send_ledger_pdf_to_whatsapp(customer, request=None) -> dict:
-    """
-    Generates the ledger PDF for a customer, saves it locally under media/whatsapp_ledgers/,
-    and delivers it via Local Gateway, UltraMsg, or Meta API, falling back to a deep link.
-    """
+    """Generate the ledger PDF, queue it for WhatsApp, then drop the temp file after delivery."""
     if not customer or not customer.phone:
         return {
             "status": "skipped",
@@ -210,21 +195,13 @@ def send_ledger_pdf_to_whatsapp(customer, request=None) -> dict:
             "reason": "Invalid phone number format (no digits)",
         }
 
+    media_path = None
     try:
-        # 1. Build Ledger PDF
+        from messaging.services import write_queued_pdf
+
         pdf_io = render_ledger_pdf(customer, "Bill Ledger")
-        pdf_bytes = pdf_io.getvalue()
-
-        # 2. Store PDF locally under media/whatsapp_ledgers/
         ledger_filename = f"ledger_{customer.code}.pdf"
-        relative_path = os.path.join("whatsapp_ledgers", ledger_filename).replace(os.sep, "/")
-        media_path = os.path.join(settings.MEDIA_ROOT, relative_path)
-
-        os.makedirs(os.path.dirname(media_path), exist_ok=True)
-        with open(media_path, "wb") as f:
-            f.write(pdf_bytes)
-
-        file_url = f"/{settings.MEDIA_URL.lstrip('/')}{relative_path}"
+        media_path = write_queued_pdf(ledger_filename, pdf_io.getvalue())
 
         # 3. Load Business Settings and Customer Balance
         biz_settings = BusinessSettings.load(customer.organization)
@@ -238,7 +215,6 @@ def send_ledger_pdf_to_whatsapp(customer, request=None) -> dict:
         res = _send_pdf_document(
             phone_normalized=phone_normalized,
             media_path=media_path,
-            file_url=file_url,
             filename=ledger_filename,
             caption=caption,
             request=request,
@@ -248,6 +224,8 @@ def send_ledger_pdf_to_whatsapp(customer, request=None) -> dict:
         return res
 
     except Exception as e:
+        from messaging.services import discard_queued_pdf
+        discard_queued_pdf(media_path)
         logger.exception("Error during WhatsApp ledger delivery process")
         return {
             "status": "error",
@@ -277,21 +255,14 @@ def send_return_pdf_to_whatsapp(sales_return, request=None) -> dict:
             "return_number": sales_return.return_number,
         }
 
+    media_path = None
     try:
+        from messaging.services import write_queued_pdf
         from core.return_pdf import build_return_pdf
 
         pdf_io = build_return_pdf(sales_return)
-        pdf_bytes = pdf_io.getvalue()
-
         return_filename = f"{sales_return.return_number.replace('/', '_')}.pdf"
-        relative_path = os.path.join("whatsapp_returns", return_filename).replace(os.sep, "/")
-        media_path = os.path.join(settings.MEDIA_ROOT, relative_path)
-
-        os.makedirs(os.path.dirname(media_path), exist_ok=True)
-        with open(media_path, "wb") as f:
-            f.write(pdf_bytes)
-
-        file_url = f"/{settings.MEDIA_URL.lstrip('/')}{relative_path}"
+        media_path = write_queued_pdf(return_filename, pdf_io.getvalue())
         biz_settings = BusinessSettings.load(sales_return.organization)
         from returns.print_data import build_return_print_data
 
@@ -316,7 +287,6 @@ def send_return_pdf_to_whatsapp(sales_return, request=None) -> dict:
         res = _send_pdf_document(
             phone_normalized=phone_normalized,
             media_path=media_path,
-            file_url=file_url,
             filename=return_filename,
             caption=caption,
             request=request,
@@ -327,6 +297,8 @@ def send_return_pdf_to_whatsapp(sales_return, request=None) -> dict:
         return res
 
     except Exception as e:
+        from messaging.services import discard_queued_pdf
+        discard_queued_pdf(media_path)
         logger.exception("Error during WhatsApp return delivery process")
         return {
             "status": "error",

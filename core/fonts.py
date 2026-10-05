@@ -6,22 +6,39 @@ from reportlab.lib.fonts import addMapping
 FONT_REGULAR = "Helvetica"
 FONT_BOLD = "Helvetica-Bold"
 
+# Devanagari-only faces (e.g. Noto Sans Devanagari) must NOT be used as the
+# document body font — they lack Latin glyphs and blank out English labels.
+_DEVANAGARI_ONLY = {
+    "notosansdevanagari",
+}
+
 
 def setup_fonts():
-    """Register a Unicode TTF so Latin + Devanagari can embed in PDFs."""
+    """Register a Unicode TTF with Latin coverage for general PDF text.
+
+    Hindi/Devanagari in invoice footers is rasterized separately in
+    ``core.unicode_text`` (WhatsApp-safe). Do not register Devanagari-only
+    fonts here.
+    """
     global FONT_REGULAR, FONT_BOLD
     bundled = os.path.join(os.path.dirname(__file__), "fonts")
     paths = [
         (
-            os.path.join(bundled, "NotoSansDevanagari-Regular.ttf"),
-            os.path.join(bundled, "NotoSansDevanagari-Bold.ttf"),
-            "NotoSansDevanagari",
+            os.path.join(bundled, "NotoSans-Regular.ttf"),
+            os.path.join(bundled, "NotoSans-Bold.ttf"),
+            "NotoSans",
         ),
-        ("C:/Windows/Fonts/Nirmala.ttf", "C:/Windows/Fonts/NirmalaB.ttf", "Nirmala"),
-        ("C:/Windows/Fonts/nirmala.ttf", "C:/Windows/Fonts/nirmalab.ttf", "Nirmala"),
-        ("C:/Windows/Fonts/mangal.ttf", "C:/Windows/Fonts/mangal.ttf", "Mangal"),
+        (
+            os.path.join(bundled, "DejaVuSans.ttf"),
+            os.path.join(bundled, "DejaVuSans-Bold.ttf"),
+            "DejaVuSans",
+        ),
+        ("C:/Windows/Fonts/arial.ttf", "C:/Windows/Fonts/arialbd.ttf", "ArialUnicode"),
+        ("C:/Windows/Fonts/segoeui.ttf", "C:/Windows/Fonts/segoeuib.ttf", "SegoeUI"),
     ]
     for reg, bold, family in paths:
+        if family.lower() in _DEVANAGARI_ONLY:
+            continue
         if not os.path.exists(reg):
             continue
         bold_path = bold if os.path.exists(bold) else reg

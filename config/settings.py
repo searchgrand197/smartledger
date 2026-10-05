@@ -141,7 +141,7 @@ OWNER_USERNAME = config("OWNER_USERNAME", default="owner")
 OWNER_PASSWORD = config("OWNER_PASSWORD", default="Wholesale@2026")
 OWNER_EMAIL = config("OWNER_EMAIL", default="owner@wholesale.local")
 
-# WhatsApp Settings — internal Node service (not exposed publicly; proxied via Django /whatsapp/)
+# WhatsApp Settings — internal Node service used only for ledger PDF delivery
 WHATSAPP_INTERNAL_HOST = config("WHATSAPP_INTERNAL_HOST", default="127.0.0.1")
 WHATSAPP_INTERNAL_PORT = config("WHATSAPP_INTERNAL_PORT", default=8787, cast=int)
 WHATSAPP_INTERNAL_BASE_URL = config("WHATSAPP_INTERNAL_BASE_URL", default="").strip()

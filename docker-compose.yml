@@ -37,7 +37,9 @@ services:
       OWNER_USERNAME: owner
       OWNER_PASSWORD: Wholesale@2026
       OWNER_EMAIL: owner@wholesale.local
-      WHATSAPP_LOCAL_GATEWAY_URL: http://whatsapp-sender:3000/whatsapp/api/send-pdf
+      WHATSAPP_AUTO_START: "false"
+      WHATSAPP_INTERNAL_BASE_URL: http://whatsapp-sender:3000
+      WHATSAPP_LOCAL_GATEWAY_URL: http://whatsapp-sender:3000/api/send-pdf
     depends_on:
       db:
         condition: service_healthy
@@ -60,6 +62,8 @@ services:
       - ./message-sender:/app
       - /app/node_modules
     environment:
+      - WHATSAPP_INTERNAL_HOST=0.0.0.0
+      - WHATSAPP_INTERNAL_PORT=3000
       - PORT=3000
     restart: always
 

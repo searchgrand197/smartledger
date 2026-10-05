@@ -1,6 +1,7 @@
 node_modules/
 .env
 *.log
-dist/
-build/
-.DS_Store
+.baileys_auth/
+.wwebjs_auth/
+.wwebjs_cache/
+.gateway-spawn.lock

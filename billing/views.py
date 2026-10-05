@@ -341,13 +341,21 @@ class WhatsAppStatusView(APIView):
         if not base_url:
             return Response({"connected": False, "message": "WhatsApp internal URL not configured"}, status=400)
 
+        from messaging import whatsapp_runtime
+
         try:
-            res = requests.get(f"{base_url}/api/status", timeout=5)
+            whatsapp_runtime.ensure_whatsapp_sender_running()
+            res = requests.get(f"{base_url}/api/status", timeout=8)
             return Response(res.json(), status=res.status_code)
         except Exception:
+            detail = whatsapp_runtime.last_start_error or (
+                "WhatsApp sender is not running on this server. "
+                "Install Node.js 20+, then from the app folder run: "
+                "cd message-sender && npm install && node server.js"
+            )
             return Response({
                 "connected": False,
-                "message": "WhatsApp sender is not running. Restart the backend — it starts automatically with Django.",
+                "message": detail,
             }, status=502)
 
 
@@ -383,6 +391,32 @@ class WhatsAppRestartView(APIView):
             return Response(res.json(), status=res.status_code)
         except Exception as e:
             return Response({"error": f"Failed to restart WhatsApp sender: {str(e)}"}, status=502)
+
+
+class BillSendWhatsAppView(APIView):
+    """Explicitly (re)send an existing bill's PDF to the customer via WhatsApp."""
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, pk):
+        from core.tenant import require_organization
+        org = require_organization(request)
+        try:
+            bill = Bill.objects.select_related("customer").get(pk=pk, organization=org)
+        except Bill.DoesNotExist:
+            return Response({"error": "Bill not found"}, status=404)
+
+        if not bill.customer or not bill.customer.phone:
+            return Response({
+                "status": "skipped",
+                "reason": "Customer has no phone number. Add a phone number to the customer first.",
+            }, status=400)
+
+        try:
+            from core.whatsapp import send_bill_pdf_to_whatsapp
+            wa_result = send_bill_pdf_to_whatsapp(bill, request)
+            return Response(wa_result, status=200)
+        except Exception as e:
+            return Response({"status": "error", "detail": str(e)}, status=500)
 
 
 class BillUpdateView(APIView):
