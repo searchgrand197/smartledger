@@ -39,8 +39,15 @@ import BillingDateTimeFields, {
 } from "@/components/billing/BillingDateTimeFields";
 import BillingPaymentDialog from "@/components/billing/BillingPaymentDialog";
 import { toBillPayloadItem, formatApiError } from "@/utils/billPayload";
+import { billItemToEditFields } from "@/utils/billLine";
 import { useWhatsAppSendGuard } from "@/components/billing/WhatsAppDisconnectedDialog";
 import { formatCurrency } from "@/utils/format";
+import {
+  QUICK_ADD_PRODUCT_ID,
+  quickAddMenuLabel,
+  shouldIgnoreProductSearchChange,
+  unwrapQuickAddName,
+} from "@/utils/quickAddProduct";
 import { sumLineAmounts, billTotal, roundMoney, lineAmountWithDisc } from "@/utils/money";
 import type { BillLine, BillLineField } from "@/types";
 import { decimalNumberFieldProps, integerNumberFieldProps } from "@/utils/numberField";
@@ -426,26 +433,15 @@ export default function SimpleBilling() {
                 const prod = matchingProducts.find((p) => p.id === item.product);
                 if (!prod) throw new Error("Product not found in portal");
 
-                let qty = Number(item.quantity) || 0;
-                let loose = 0;
-                if (prod.pieces_per_pack && prod.pieces_per_pack > 1) {
-                  qty = Math.floor(item.quantity / prod.pieces_per_pack);
-                  loose = item.quantity % prod.pieces_per_pack;
-                }
-
+                const packed = billItemToEditFields(item, prod);
                 return {
                   product: prod.id,
                   product_name: prod.name,
                   product_code: prod.code,
-                  quantity: qty,
-                  rate: Number(item.rate),
+                  ...packed,
                   purchase_rate: Number(prod.wholesale_rate ?? item.purchase_rate),
                   mrp: Number(prod.retail_rate ?? prod.your_rate),
                   pack: prod.unit || "Pc",
-                  pieces_per_pack: prod.pieces_per_pack && prod.pieces_per_pack > 0 ? prod.pieces_per_pack : 1,
-                  allow_length_sale: Boolean(prod.allow_length_sale),
-                  length_per_piece_m: Number(prod.length_per_piece_m || 0),
-                  loose_qty: loose,
                   disc_percent: 0,
                   your_rate: prod.your_rate,
                   retail_rate: prod.retail_rate,
@@ -818,13 +814,14 @@ export default function SimpleBilling() {
                 stockText: "",
                 isLowStock: Boolean(p.is_low_stock),
               }));
-              if (productSearch && productSearch.trim()) {
-                const query = productSearch.trim().toLowerCase();
+              const typedName = unwrapQuickAddName(productSearch);
+              if (typedName) {
+                const query = typedName.toLowerCase();
                 const exactMatch = products.some((p) => p.name.toLowerCase() === query);
                 if (!exactMatch) {
                   base.push({
-                    id: -9999,
-                    name: `+ Add "${productSearch.trim()}" as new product`,
+                    id: QUICK_ADD_PRODUCT_ID,
+                    name: typedName,
                     code: "QUICK_ADD",
                     priceText: "",
                     stockText: "",
@@ -837,15 +834,16 @@ export default function SimpleBilling() {
             getOptionLabel={(option) => option.name}
             inputValue={productSearch}
             onInputChange={(_, value, reason) => {
-              if (reason === "reset") return;
-              void handleProductSearch(value);
+              if (shouldIgnoreProductSearchChange(reason)) return;
+              void handleProductSearch(unwrapQuickAddName(value));
             }}
             clearOnBlur={false}
             filterOptions={(opts) => opts}
             onChange={(_, option) => {
               if (option) {
-                if (option.id === -9999) {
-                  setQuickAddName(productSearch);
+                if (option.id === QUICK_ADD_PRODUCT_ID) {
+                  setQuickAddName(unwrapQuickAddName(option.name || productSearch));
+                  setProductSearch("");
                   setQuickAddOpen(true);
                 } else {
                   const selected = resolvePortalProduct(option.id);
@@ -855,11 +853,11 @@ export default function SimpleBilling() {
               }
             }}
             renderOption={(props, option) => {
-              if (option.id === -9999) {
+              if (option.id === QUICK_ADD_PRODUCT_ID) {
                 return (
                   <Box component="li" {...props} key={option.id} sx={{ py: 1.5, px: 2, color: "primary.main" }}>
                     <Typography variant="body2" color="primary" fontWeight={700}>
-                      {option.name}
+                      {quickAddMenuLabel(option.name)}
                     </Typography>
                   </Box>
                 );
@@ -1403,7 +1401,8 @@ export default function SimpleBilling() {
             onRemoveLine={(idx) => setLines((prev) => prev.filter((_, i) => i !== idx))}
             productSearch={productSearch}
             onQuickAddProduct={(name) => {
-              setQuickAddName(name);
+              setQuickAddName(unwrapQuickAddName(name));
+              setProductSearch("");
               setQuickAddOpen(true);
             }}
             productOptions={products.map((p) => ({

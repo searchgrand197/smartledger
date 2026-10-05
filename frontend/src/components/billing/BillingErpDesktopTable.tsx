@@ -18,7 +18,13 @@ import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
 import PercentOutlinedIcon from "@mui/icons-material/PercentOutlined";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { formatCurrency } from "@/utils/format";
-import { lineAmountWithDisc } from "@/utils/money";
+import { lineAmountWithDisc, lineProfit } from "@/utils/money";
+import {
+  QUICK_ADD_PRODUCT_ID,
+  quickAddMenuLabel,
+  shouldIgnoreProductSearchChange,
+  unwrapQuickAddName,
+} from "@/utils/quickAddProduct";
 import { decimalNumberFieldProps, integerNumberFieldProps, parseDecimalInput } from "@/utils/numberField";
 import type { BillLineField } from "@/types";
 import type { BillLineRow } from "./BillingLineTable";
@@ -188,14 +194,15 @@ function ErpProductSearch({
     if (exact) onSelectProduct(exact.id);
   };
 
+  const typedName = unwrapQuickAddName(productSearch ?? "");
   const options = [...productOptions];
-  if (productSearch && productSearch.trim()) {
-    const query = productSearch.trim().toLowerCase();
+  if (typedName) {
+    const query = typedName.toLowerCase();
     const exactMatch = productOptions.some((p) => p.name.toLowerCase() === query);
     if (!exactMatch) {
       options.push({
-        id: -9999,
-        name: `+ Add "${productSearch.trim()}" as new product`,
+        id: QUICK_ADD_PRODUCT_ID,
+        name: typedName,
         code: "QUICK_ADD",
         priceText: "",
       } as any);
@@ -212,15 +219,15 @@ function ErpProductSearch({
       getOptionLabel={(option) => option.name}
       inputValue={productSearch ?? ""}
       onInputChange={(_, value, reason) => {
-        if (reason === "reset") return;
-        onProductSearchChange(value);
+        if (shouldIgnoreProductSearchChange(reason)) return;
+        onProductSearchChange(unwrapQuickAddName(value));
       }}
       clearOnBlur={false}
       filterOptions={(opts) => opts}
       onChange={(_, option) => {
         if (option) {
-          if (option.id === -9999) {
-            onQuickAddProduct?.(productSearch ?? "");
+          if (option.id === QUICK_ADD_PRODUCT_ID) {
+            onQuickAddProduct?.(unwrapQuickAddName(option.name || typedName));
           } else {
             onSelectProduct(option.id);
           }
@@ -229,7 +236,7 @@ function ErpProductSearch({
       onKeyDown={(e) => {
         if (e.key === "Enter") {
           e.preventDefault();
-          const trimmed = (productSearch ?? "").trim();
+          const trimmed = typedName;
           const exact = productOptions.find(
             (o) => o.code.toLowerCase() === trimmed.toLowerCase() || String(o.id) === trimmed
           );
@@ -239,8 +246,8 @@ function ErpProductSearch({
           }
           if (options.length > 0) {
             const first = options[0];
-            if (first.id === -9999) {
-              onQuickAddProduct?.(productSearch ?? "");
+            if (first.id === QUICK_ADD_PRODUCT_ID) {
+              onQuickAddProduct?.(unwrapQuickAddName(first.name || typedName));
             } else {
               onSelectProduct(first.id);
             }
@@ -253,11 +260,11 @@ function ErpProductSearch({
         listbox: { sx: { maxHeight: 320, py: 0.5 } },
       }}
       renderOption={(props, option) => {
-        if (option.id === -9999) {
+        if (option.id === QUICK_ADD_PRODUCT_ID) {
           return (
             <Box component="li" {...props} key={option.id} sx={{ py: 1.5, px: 2, color: "primary.main" }}>
               <Typography variant="body2" color="primary" fontWeight={700}>
-                {option.name}
+                {quickAddMenuLabel(option.name)}
               </Typography>
             </Box>
           );
@@ -430,7 +437,7 @@ function ErpLineRow({
     !ratesMatch(Number(line.rate), choices.globalRate) &&
     (choices.partyRate == null || !ratesMatch(Number(line.rate), choices.partyRate));
 
-  const profit = line.quantity * (line.rate - (line.purchase_rate || 0));
+  const profit = lineProfit(line);
   const marginPct = line.rate > 0 ? ((line.rate - (line.purchase_rate || 0)) / line.rate) * 100 : 0;
 
   const rateTooltip = choices

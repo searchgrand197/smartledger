@@ -172,7 +172,6 @@ export default function Products({
       } else {
         await productsApi.create(payload);
         toast.success(`"${savedName}" saved`);
-        setSearch(savedName);
       }
       closeForm();
       await qc.invalidateQueries({ queryKey: ["products"] });

@@ -101,6 +101,9 @@ def _collect_events(customer) -> list[dict]:
                 }
             )
             if sr.refund_paid and sr.refund_paid > 0:
+                # Extra collected on an exchange is a Payment, not cash paid out.
+                if sr.return_type == "exchange" and sr.exchange_net_amount > 0:
+                    continue
                 events.append(
                     {
                         "date": sr.return_date.date(),

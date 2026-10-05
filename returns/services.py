@@ -4,6 +4,7 @@ from django.db import transaction
 from django.db.models import Sum
 
 from billing.models import Bill, BillItem
+from billing.services import cancel_bill
 from core.utils import money, update_product_stock
 from payments.models import Payment
 from products.models import Product
@@ -72,6 +73,15 @@ def get_returnable_items(bill: Bill) -> list[dict]:
     return items
 
 
+def allocated_return_amount(bill: Bill, quantity: int, rate) -> Decimal:
+    """Share of bill total for this qty, so bill discount/round-off is not ignored."""
+    gross = money(Decimal(quantity) * Decimal(str(rate)))
+    subtotal = bill.subtotal or Decimal("0")
+    if subtotal <= 0:
+        return gross
+    return money(gross * (bill.total / subtotal))
+
+
 def _default_refund_mode(bill: Bill, return_type: str, requested: str | None) -> str:
     if requested and requested in dict(SalesReturn.REFUND_MODES):
         return requested
@@ -128,8 +138,8 @@ def _create_exchange_bill(
     exchange_bill.refresh_from_db()
     total = exchange_bill.total
 
-    if net_amount > 0:
-        pay_mode = refund_mode if refund_mode in ("cash", "upi") else "cash"
+    if net_amount > 0 and refund_mode in ("cash", "upi"):
+        pay_mode = refund_mode
         exchange_bill.paid_amount = min(net_amount, total)
         exchange_bill.payment_mode = pay_mode if exchange_bill.paid_amount >= total else "partial"
         exchange_bill.save(update_fields=["paid_amount", "payment_mode", "updated_at"])
@@ -142,6 +152,10 @@ def _create_exchange_bill(
                 mode=pay_mode,
                 notes=f"Exchange payment on {exchange_bill.bill_number}",
             )
+    elif net_amount > 0:
+        exchange_bill.paid_amount = Decimal("0")
+        exchange_bill.payment_mode = "credit"
+        exchange_bill.save(update_fields=["paid_amount", "payment_mode", "updated_at"])
     elif original_bill.bill_type == "simple" and net_amount < 0:
         exchange_bill.paid_amount = total
         exchange_bill.payment_mode = "store_credit"
@@ -180,7 +194,7 @@ def _parse_bill_return_items(bill: Bill, items: list[dict]) -> tuple[list[dict],
                 f"Cannot return {qty} of {bi.product.name}. Only {max_qty} returnable."
             )
         bi = bill_items[bill_item_id]
-        amount = money(Decimal(qty) * bi.rate)
+        amount = allocated_return_amount(bill, qty, bi.rate)
         subtotal += amount
         parsed_items.append(
             {
@@ -242,7 +256,8 @@ def _finalize_sales_return(
                     user=user,
                 )
         elif exchange_net > 0 and mode in ("cash", "upi"):
-            refund_paid = money(exchange_net)
+            # Extra is money received (already a Payment on the exchange bill), not a refund.
+            refund_paid = Decimal("0")
     else:
         if mode in ("cash", "upi"):
             refund_paid = total
@@ -435,6 +450,11 @@ def cancel_sales_return(sales_return: SalesReturn, *, user=None) -> SalesReturn:
             notes="Return cancelled — stock reversed",
             user=user,
         )
+
+    exchange_bill = sales_return.exchange_bill
+    if exchange_bill_id := getattr(sales_return, "exchange_bill_id", None):
+        if exchange_bill_id and exchange_bill and not exchange_bill.is_cancelled:
+            cancel_bill(exchange_bill, user=user)
 
     for txn in sales_return.store_credit_txns.all():
         bal = txn.customer.store_credit

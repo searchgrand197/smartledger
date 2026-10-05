@@ -1904,3 +1904,61 @@ INFO 2026-10-05 11:07:42,319 services 3215012 134184597168448 [Queue] Message en
 INFO 2026-10-05 11:07:43,937 services 3215012 134184541619904 [Queue] Message ID 1583 delivered successfully.
 INFO 2026-10-05 11:23:10,289 services 3215012 134184597168448 [Queue] Message enqueued: ID 1584 to 919050205943
 INFO 2026-10-05 11:23:12,445 services 3215012 134184541619904 [Queue] Message ID 1584 delivered successfully.
+INFO 2026-10-05 11:32:27,017 whatsapp_runtime 22888 17420 Installing WhatsApp sender dependencies in C:\Users\sharm\Documents\Intvice_technologies_projects\narnaund-smart-ledger\smartledger\message-sender
+INFO 2026-10-05 11:32:41,546 whatsapp_runtime 22888 17420 Starting WhatsApp sender on 127.0.0.1:8787
+INFO 2026-10-05 11:43:46,772 services 22888 22848 [Queue] Message enqueued: ID 1585 to 918295110043
+INFO 2026-10-05 11:43:49,734 services 22888 9016 [Queue] Message ID 1585 delivered successfully.
+INFO 2026-10-05 11:45:19,703 whatsapp_runtime 6236 27692 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 11:45:42,080 whatsapp_runtime 26304 1884 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 11:45:57,749 whatsapp_runtime 10316 24152 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:29:35,667 whatsapp_runtime 20248 16220 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:31:01,567 whatsapp_runtime 10812 15196 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:31:06,006 whatsapp_runtime 18572 13884 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:31:09,234 whatsapp_runtime 7000 18288 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:31:26,765 whatsapp_runtime 26960 16916 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:31:29,955 whatsapp_runtime 26496 11388 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:31:38,554 whatsapp_runtime 15544 11268 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:31:42,890 whatsapp_runtime 23496 7284 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:31:46,088 whatsapp_runtime 25272 6420 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:31:59,027 whatsapp_runtime 14752 20112 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:32:03,241 whatsapp_runtime 10028 16012 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:32:08,694 whatsapp_runtime 24836 13372 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:32:13,368 whatsapp_runtime 22576 12592 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:32:22,329 whatsapp_runtime 18656 10188 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:32:25,645 whatsapp_runtime 21372 19448 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:32:31,202 whatsapp_runtime 15564 3584 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:32:34,359 whatsapp_runtime 24616 16980 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:32:38,602 whatsapp_runtime 16876 2884 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:32:41,978 whatsapp_runtime 15292 12640 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:33:29,839 whatsapp_runtime 15324 24544 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:33:38,793 services 15324 11424 [Queue] Message enqueued: ID 1 to 919876543210
+INFO 2026-10-05 12:33:58,549 whatsapp_runtime 19852 18036 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:34:14,546 whatsapp_runtime 26964 26104 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:34:50,863 whatsapp_runtime 25268 22700 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:34:54,426 whatsapp_runtime 9980 19060 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:35:07,359 whatsapp_runtime 4980 7096 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:40:36,599 whatsapp_runtime 7000 2432 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:40:48,929 whatsapp_runtime 23936 12424 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:48:29,125 whatsapp_runtime 23684 13660 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:55:20,668 whatsapp_runtime 7596 21232 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:55:22,333 whatsapp_runtime 3744 21428 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:56:00,036 whatsapp_runtime 18056 6616 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:56:29,296 whatsapp_runtime 24360 6344 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:56:36,816 whatsapp_runtime 23644 7256 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:56:42,146 whatsapp_runtime 16536 27740 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:56:54,048 whatsapp_runtime 14732 26708 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:57:05,816 whatsapp_runtime 28428 11140 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:57:07,437 whatsapp_runtime 2956 15256 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 12:57:08,817 whatsapp_runtime 2476 24240 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 13:01:24,222 whatsapp_runtime 22656 14900 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 13:01:27,962 whatsapp_runtime 20900 24632 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 13:01:30,019 whatsapp_runtime 13728 3420 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 13:01:42,614 whatsapp_runtime 9524 20792 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 13:09:03,601 services 9524 28128 [Queue] Message enqueued: ID 1 to 917027547926
+INFO 2026-10-05 13:09:05,868 services 9524 27268 [Queue] Message ID 1 delivered successfully.
+INFO 2026-10-05 13:20:57,895 whatsapp_runtime 26284 27780 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 13:21:08,771 whatsapp_runtime 19696 9572 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 13:22:09,219 whatsapp_runtime 6580 18744 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 13:22:20,059 whatsapp_runtime 7456 5904 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 13:25:41,311 whatsapp_runtime 1360 14032 WhatsApp sender already running on 127.0.0.1:8787
+INFO 2026-10-05 13:29:24,112 whatsapp_runtime 12168 5548 WhatsApp sender already running on 127.0.0.1:8787

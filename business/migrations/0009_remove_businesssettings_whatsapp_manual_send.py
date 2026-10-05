@@ -10,8 +10,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='businesssettings',
-            name='whatsapp_manual_send',
-        ),
+        # Duplicate of 0009_..._and_more; keep graph, do not remove the field twice.
     ]

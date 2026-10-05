@@ -15,7 +15,7 @@ from suppliers.models import Supplier
 
 
 def dashboard_summary():
-    today = timezone.now().date()
+    today = timezone.localdate()
     month_start = today.replace(day=1)
 
     today_sales = Bill.objects.filter(created_at__date=today, is_cancelled=False).aggregate(
@@ -47,10 +47,10 @@ def dashboard_summary():
     recent_payments = Payment.objects.select_related("customer").order_by("-created_at")[:10]
 
     today_returns = SalesReturn.objects.filter(
-        return_date__date=today, is_deleted=False, is_cancelled=False, customer__is_wholesale=True
+        return_date__date=today, is_deleted=False, is_cancelled=False
     )
     month_returns = SalesReturn.objects.filter(
-        return_date__date__gte=month_start, is_deleted=False, is_cancelled=False, customer__is_wholesale=True
+        return_date__date__gte=month_start, is_deleted=False, is_cancelled=False
     )
     today_return_total = today_returns.aggregate(total=Coalesce(Sum("total"), Decimal("0")))["total"]
     month_return_total = month_returns.aggregate(total=Coalesce(Sum("total"), Decimal("0")))["total"]
@@ -93,7 +93,7 @@ def dashboard_summary():
 
 
 def chart_data():
-    today = timezone.now().date()
+    today = timezone.localdate()
     six_months_ago = today.replace(day=1) - timezone.timedelta(days=180)
 
     monthly_sales = (
@@ -147,13 +147,20 @@ def chart_data():
 
 
 def daily_sales_report(date=None):
-    date = date or timezone.now().date()
+    date = date or timezone.localdate()
     bills = Bill.objects.filter(created_at__date=date, is_cancelled=False)
+    returns = SalesReturn.objects.filter(
+        return_date__date=date, is_deleted=False, is_cancelled=False
+    )
+    return_total = returns.aggregate(t=Coalesce(Sum("total"), Decimal("0")))["t"]
+    return_profit = _return_profit(returns)
+    bill_profit = bills.aggregate(t=Coalesce(Sum("total_profit"), Decimal("0")))["t"]
     return {
         "date": date.isoformat(),
         "bill_count": bills.count(),
         "total_sales": bills.aggregate(t=Coalesce(Sum("total"), Decimal("0")))["t"],
-        "total_profit": bills.aggregate(t=Coalesce(Sum("total_profit"), Decimal("0")))["t"],
+        "total_profit": bill_profit - return_profit,
+        "returns_amount": return_total,
         "total_collected": Payment.objects.filter(created_at__date=date).aggregate(
             t=Coalesce(Sum("amount"), Decimal("0"))
         )["t"],
@@ -169,11 +176,33 @@ def profit_report(date_from=None, date_to=None):
         qs = qs.filter(created_at__date__gte=date_from)
     if date_to:
         qs = qs.filter(created_at__date__lte=date_to)
+    returns = SalesReturn.objects.filter(is_deleted=False, is_cancelled=False)
+    if date_from:
+        returns = returns.filter(return_date__date__gte=date_from)
+    if date_to:
+        returns = returns.filter(return_date__date__lte=date_to)
+    return_total = returns.aggregate(t=Coalesce(Sum("total"), Decimal("0")))["t"]
+    return_cost = _return_cost(returns)
+    total_sales = qs.aggregate(t=Coalesce(Sum("total"), Decimal("0")))["t"]
+    total_cost = qs.aggregate(t=Coalesce(Sum("total_cost"), Decimal("0")))["t"]
     return {
-        "total_sales": qs.aggregate(t=Coalesce(Sum("total"), Decimal("0")))["t"],
-        "total_cost": qs.aggregate(t=Coalesce(Sum("total_cost"), Decimal("0")))["t"],
-        "total_profit": qs.aggregate(t=Coalesce(Sum("total_profit"), Decimal("0")))["t"],
+        "total_sales": total_sales - return_total,
+        "total_cost": total_cost - return_cost,
+        "total_profit": (total_sales - return_total) - (total_cost - return_cost),
     }
+
+
+def _return_cost(returns_qs) -> Decimal:
+    items = SalesReturnItem.objects.filter(sales_return__in=returns_qs).select_related("product")
+    cost = Decimal("0")
+    for item in items:
+        cost += Decimal(item.quantity) * (item.product.purchase_price or Decimal("0"))
+    return cost
+
+
+def _return_profit(returns_qs) -> Decimal:
+    return_total = returns_qs.aggregate(t=Coalesce(Sum("total"), Decimal("0")))["t"]
+    return return_total - _return_cost(returns_qs)
 
 
 def stock_report():
@@ -212,7 +241,7 @@ def purchase_report(date_from=None, date_to=None):
 
 
 def _return_base_qs(date_from=None, date_to=None):
-    qs = SalesReturn.objects.filter(is_deleted=False, is_cancelled=False, customer__is_wholesale=True).select_related(
+    qs = SalesReturn.objects.filter(is_deleted=False, is_cancelled=False).select_related(
         "customer", "original_bill", "created_by"
     )
     if date_from:
@@ -250,7 +279,6 @@ def returns_by_product_report(date_from=None, date_to=None):
     qs = SalesReturnItem.objects.filter(
         sales_return__is_deleted=False,
         sales_return__is_cancelled=False,
-        sales_return__customer__is_wholesale=True,
     ).select_related("product", "sales_return")
     if date_from:
         qs = qs.filter(sales_return__return_date__date__gte=date_from)

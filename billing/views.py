@@ -13,6 +13,7 @@ from core.renderers import PDFRenderer
 from customers.models import Customer
 from ledger.services import get_customer_balance
 from payments.models import Payment
+from payments.services import replace_bill_sale_payments
 from products.models import Product
 
 from .models import Bill, BillItem
@@ -198,7 +199,7 @@ class SimpleBillCreateView(APIView):
 
         if paid > 0:
             pay_mode = requested_mode if requested_mode in ("cash", "upi") else "cash"
-            Payment.objects.create(
+            payment = Payment.objects.create(
                 organization=org,
                 customer=bill_customer,
                 bill=bill,
@@ -206,6 +207,8 @@ class SimpleBillCreateView(APIView):
                 mode=pay_mode,
                 notes=f"Cash sale {bill.bill_number}",
             )
+            if bill_at is not None:
+                Payment.objects.filter(pk=payment.pk).update(created_at=bill_at)
 
         try:
             from core.whatsapp import send_bill_pdf_to_whatsapp
@@ -496,41 +499,19 @@ class BillUpdateView(APIView):
                 bill.save(update_fields=["customer", "discount_amount", "round_off", "notes", "bill_number", "updated_at"])
                 bill.recalculate()
 
-                total = bill.total
-                paid = Decimal(str(data.get("paid_amount", 0) or 0))
-                if paid < 0:
-                    paid = Decimal("0")
-                if paid > total:
-                    paid = total
-                bill.paid_amount = paid
-
                 requested_mode = data.get("payment_mode") or "cash"
-                if paid <= 0:
-                    bill.payment_mode = "credit"
-                elif paid >= total:
-                    bill.payment_mode = requested_mode if requested_mode in ("cash", "upi") else "cash"
-                else:
-                    bill.payment_mode = "partial"
-                bill.save(update_fields=["customer", "discount_amount", "round_off", "notes", "bill_number", "paid_amount", "payment_mode", "updated_at"])
-
-                # Re-sync Payment
-                Payment.objects.filter(bill=bill).delete()
-                if paid > 0:
-                    pay_mode = requested_mode if requested_mode in ("cash", "upi", "bank", "cheque") else "cash"
-                    Payment.objects.create(
-                        organization=org,
-                        customer=bill_customer,
-                        bill=bill,
-                        amount=paid,
-                        mode=pay_mode,
-                        notes=f"Cash sale {bill.bill_number} (edited)",
-                    )
-
                 bill_at = data.get("bill_at")
+                replace_bill_sale_payments(
+                    bill,
+                    paid=data.get("paid_amount", 0),
+                    mode=requested_mode,
+                    organization=org,
+                    customer=bill_customer,
+                    notes=f"Cash sale {bill.bill_number} (edited)",
+                    created_at=bill_at or bill.created_at,
+                )
                 if bill_at is not None:
                     Bill.objects.filter(pk=bill.pk).update(created_at=bill_at)
-                    if bill.payment_mode != "credit":
-                        Payment.objects.filter(bill=bill).update(created_at=bill_at)
 
         else: # party bill
             ser = BillCreateSerializer(data=request.data)
@@ -575,44 +556,19 @@ class BillUpdateView(APIView):
                 bill.save(update_fields=["customer", "discount_amount", "discount_percent", "round_off", "notes", "updated_at"])
                 bill.recalculate()
 
-                total = bill.total
-                paid = Decimal(str(data.get("paid_amount", 0) or 0))
-                if paid < 0:
-                    paid = Decimal("0")
-                if paid > total:
-                    paid = total
-                bill.paid_amount = paid
-
                 requested_mode = data.get("payment_mode") or "credit"
-                if paid <= 0:
-                    bill.payment_mode = "credit"
-                elif paid >= total:
-                    bill.payment_mode = requested_mode if requested_mode in ("cash", "upi") else "cash"
-                else:
-                    bill.payment_mode = "partial"
-                bill.save(update_fields=["customer", "discount_amount", "discount_percent", "round_off", "notes", "paid_amount", "payment_mode", "updated_at"])
-
-                # Re-sync Payment
-                Payment.objects.filter(bill=bill).delete()
-                if paid > 0:
-                    pay_mode = requested_mode if requested_mode in ("cash", "upi", "bank", "cheque") else "cash"
-                    payment = Payment.objects.create(
-                        organization=org,
-                        customer=customer,
-                        bill=bill,
-                        amount=paid,
-                        mode=pay_mode,
-                        notes=f"Payment on {bill.bill_number} (edited)",
-                    )
-                    # Sync payment created_at to bill created_at
-                    if bill.created_at:
-                        Payment.objects.filter(pk=payment.pk).update(created_at=bill.created_at)
-
                 bill_at = data.get("bill_at")
+                replace_bill_sale_payments(
+                    bill,
+                    paid=data.get("paid_amount", 0),
+                    mode=requested_mode,
+                    organization=org,
+                    customer=customer,
+                    notes=f"Payment on {bill.bill_number} (edited)",
+                    created_at=bill_at or bill.created_at,
+                )
                 if bill_at is not None:
                     Bill.objects.filter(pk=bill.pk).update(created_at=bill_at)
-                    if paid > 0:
-                        Payment.objects.filter(bill=bill).update(created_at=bill_at)
 
                 # Sync party rates
                 sync_party_rates_from_bill(bill)

@@ -274,3 +274,116 @@ class SalesReturnTests(TestCase):
                 os.environ["WHATSAPP_API_TOKEN"] = old_token
             if old_id is not None:
                 os.environ["WHATSAPP_PHONE_NUMBER_ID"] = old_id
+
+    def test_return_allocates_bill_discount(self):
+        from ledger.services import get_customer_balance
+
+        self.bill.discount_amount = Decimal("100")
+        self.bill.save(update_fields=["discount_amount"])
+        self.bill.recalculate()
+        self.assertEqual(self.bill.total, Decimal("900.00"))
+        sr = create_sales_return(
+            bill=self.bill,
+            return_type="credit_note",
+            refund_mode="ledger_credit",
+            items=[{"bill_item_id": self.bill.items.first().id, "quantity": 10}],
+            user=self.user,
+        )
+        self.assertEqual(sr.total, Decimal("900.00"))
+        self.assertEqual(get_customer_balance(self.customer), Decimal("0.00"))
+
+    def test_exchange_cash_does_not_double_count(self):
+        from ledger.services import get_customer_balance
+        from payments.models import Payment
+
+        small = Bill.objects.create(
+            organization=self.org, customer=self.customer, bill_type="party", payment_mode="credit"
+        )
+        BillItem.objects.create(bill=small, product=self.product, quantity=1, rate=Decimal("100"))
+        small.refresh_from_db()
+        sr = create_sales_return(
+            bill=small,
+            return_type="exchange",
+            refund_mode="cash",
+            items=[{"bill_item_id": small.items.first().id, "quantity": 1}],
+            exchange_items=[{"product": self.product.id, "quantity": 3, "rate": Decimal("100")}],
+            user=self.user,
+        )
+        sr.refresh_from_db()
+        self.assertEqual(sr.refund_paid, Decimal("0"))
+        self.assertTrue(
+            Payment.objects.filter(bill=sr.exchange_bill, amount=Decimal("200")).exists()
+        )
+        # setUp 1000 + original 100 - return 100 + new 300 - cash 200 = 1100
+        self.assertEqual(get_customer_balance(self.customer), Decimal("1100.00"))
+
+    def test_exchange_ledger_credit_does_not_post_cash(self):
+        from ledger.services import get_customer_balance
+        from payments.models import Payment
+        from returns.models import SalesReturn
+
+        small = Bill.objects.create(
+            organization=self.org, customer=self.customer, bill_type="party", payment_mode="credit"
+        )
+        BillItem.objects.create(bill=small, product=self.product, quantity=1, rate=Decimal("100"))
+        sr = create_sales_return(
+            bill=small,
+            return_type="exchange",
+            refund_mode="ledger_credit",
+            items=[{"bill_item_id": small.items.first().id, "quantity": 1}],
+            exchange_items=[{"product": self.product.id, "quantity": 3, "rate": Decimal("100")}],
+            user=self.user,
+        )
+        sr.refresh_from_db()
+        self.assertEqual(sr.refund_paid, Decimal("0"))
+        self.assertFalse(Payment.objects.filter(bill=sr.exchange_bill).exists())
+        # setUp 1000 + small 100 - return 100 + new 300 = 1300
+        self.assertEqual(get_customer_balance(self.customer), Decimal("1300.00"))
+
+    def test_cancel_exchange_cancels_exchange_bill(self):
+        from ledger.services import get_customer_balance
+        from billing.models import Bill
+
+        small = Bill.objects.create(
+            organization=self.org, customer=self.customer, bill_type="party", payment_mode="credit"
+        )
+        BillItem.objects.create(bill=small, product=self.product, quantity=1, rate=Decimal("100"))
+        sr = create_sales_return(
+            bill=small,
+            return_type="exchange",
+            refund_mode="ledger_credit",
+            items=[{"bill_item_id": small.items.first().id, "quantity": 1}],
+            exchange_items=[{"product": self.product.id, "quantity": 3, "rate": Decimal("100")}],
+            user=self.user,
+        )
+        exchange_id = sr.exchange_bill_id
+        cancel_sales_return(sr, user=self.user)
+        exchange = Bill.all_objects.get(pk=exchange_id)
+        self.assertTrue(exchange.is_cancelled)
+        self.assertEqual(get_customer_balance(self.customer), Decimal("1100.00"))
+
+    def test_payment_delete_syncs_bill_paid(self):
+        from payments.models import Payment
+        from payments.services import sync_bill_paid_from_payments
+
+        self.bill.paid_amount = Decimal("1000")
+        self.bill.save(update_fields=["paid_amount"])
+        pay = Payment.objects.create(
+            organization=self.org,
+            customer=self.customer,
+            bill=self.bill,
+            amount=Decimal("1000"),
+            mode="cash",
+        )
+        pay.delete()
+        sync_bill_paid_from_payments(self.bill)
+        self.bill.refresh_from_db()
+        self.assertEqual(self.bill.paid_amount, Decimal("0.00"))
+        self.assertEqual(self.bill.payment_mode, "credit")
+        from customers.portal_retail import resolve_portal_retail_customer
+
+        found = resolve_portal_retail_customer(self.org, self.customer.shop_name, "")
+        self.customer.refresh_from_db()
+        self.assertTrue(self.customer.is_wholesale)
+        self.assertNotEqual(found.pk, self.customer.pk)
+        self.assertFalse(found.is_wholesale)

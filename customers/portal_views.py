@@ -761,6 +761,9 @@ class CustomerPortalCustomersView(CustomerPortalMixin, APIView):
                 "shop_name": c.shop_name,
                 "owner_name": c.owner_name,
                 "phone": c.phone,
+                "area": c.area,
+                "opening_balance": c.opening_balance,
+                "credit_limit": c.credit_limit,
                 "current_due": get_customer_balance(c),
             })
         return Response(rows)
@@ -870,6 +873,7 @@ class CustomerPortalCustomerPaymentsView(CustomerPortalMixin, APIView):
             return Response({"detail": "Unauthorized."}, status=401)
 
         from payments.serializers import PaymentCreateSerializer, PaymentSerializer
+        from payments.services import sync_bill_paid_from_payments
         ser = PaymentCreateSerializer(data=request.data)
         ser.is_valid(raise_exception=True)
         data = ser.validated_data
@@ -889,12 +893,6 @@ class CustomerPortalCustomerPaymentsView(CustomerPortalMixin, APIView):
         bill = None
         if data.get("bill"):
             bill = Bill.objects.get(pk=data["bill"], organization=customer.organization)
-            bill.paid_amount += data["amount"]
-            if bill.paid_amount >= bill.total:
-                bill.payment_mode = "cash"
-            else:
-                bill.payment_mode = "partial"
-            bill.save(update_fields=["paid_amount", "payment_mode", "updated_at"])
 
         create_kwargs = dict(
             organization=customer.organization,
@@ -910,6 +908,8 @@ class CustomerPortalCustomerPaymentsView(CustomerPortalMixin, APIView):
             create_kwargs["created_at"] = data["created_at"]
 
         payment = Payment.objects.create(**create_kwargs)
+        if bill is not None:
+            sync_bill_paid_from_payments(bill)
         return Response(PaymentSerializer(payment).data, status=201)
 
     def put(self, request, pk=None):
@@ -926,9 +926,11 @@ class CustomerPortalCustomerPaymentsView(CustomerPortalMixin, APIView):
             return Response({"detail": "Payment not found."}, status=404)
 
         from payments.serializers import PaymentSerializer, PaymentUpdateSerializer
+        from payments.services import sync_bill_paid_from_payments
         ser = PaymentUpdateSerializer(data=request.data)
         ser.is_valid(raise_exception=True)
         data = ser.validated_data
+        old_bill = payment.bill
 
         if "customer" in data:
             target_customer = Customer.objects.get(pk=data["customer"], organization=customer.organization)
@@ -947,6 +949,9 @@ class CustomerPortalCustomerPaymentsView(CustomerPortalMixin, APIView):
             payment.created_at = data["created_at"]
 
         payment.save()
+        sync_bill_paid_from_payments(old_bill)
+        if payment.bill_id != getattr(old_bill, "id", None):
+            sync_bill_paid_from_payments(payment.bill)
         return Response(PaymentSerializer(payment).data)
 
     def delete(self, request, pk=None):
@@ -955,11 +960,14 @@ class CustomerPortalCustomerPaymentsView(CustomerPortalMixin, APIView):
             return Response({"detail": "Unauthorized."}, status=401)
 
         try:
-            payment = Payment.objects.get(pk=pk, organization=customer.organization)
+            payment = Payment.objects.select_related("bill").get(pk=pk, organization=customer.organization)
         except Payment.DoesNotExist:
             return Response({"detail": "Payment not found."}, status=404)
 
+        from payments.services import sync_bill_paid_from_payments
+        bill = payment.bill
         payment.delete()
+        sync_bill_paid_from_payments(bill)
         return Response({"detail": "Payment deleted."}, status=204)
 
 
@@ -1115,47 +1123,24 @@ class CustomerPortalBillUpdateView(CustomerPortalMixin, APIView):
             bill.save(update_fields=["customer", "discount_amount", "round_off", "notes", "bill_number", "updated_at"])
             bill.recalculate()
 
-            # 5. Handle payment
-            total = bill.total
-            paid = Decimal(str(data.get("paid_amount", 0) or 0))
-            if paid < 0:
-                paid = Decimal("0")
-            if paid > total:
-                paid = total
-            bill.paid_amount = paid
-
+            from payments.services import replace_bill_sale_payments
             requested_mode = data.get("payment_mode") or "cash"
-            if paid <= 0:
-                bill.payment_mode = "credit"
-            elif paid >= total:
-                bill.payment_mode = requested_mode if requested_mode in ("cash", "upi") else "cash"
-            else:
-                bill.payment_mode = "partial"
-            bill.save(update_fields=["customer", "discount_amount", "round_off", "notes", "bill_number", "paid_amount", "payment_mode", "updated_at"])
-
-            # Delete old payments linked to this bill
-            Payment.objects.filter(bill=bill).delete()
-
-            if paid > 0:
-                pay_mode = requested_mode if requested_mode in ("cash", "upi") else "cash"
-                Payment.objects.create(
-                    organization=customer.organization,
-                    customer=bill_customer,
-                    bill=bill,
-                    amount=paid,
-                    mode=pay_mode,
-                    notes=f"Cash sale {bill.bill_number} (edited)",
-                )
-
-            # Handle datetime update if provided
             bill_at = data.get("bill_at")
             if bill_at is not None:
                 from django.utils import timezone
                 if timezone.is_naive(bill_at):
                     bill_at = timezone.make_aware(bill_at, timezone.get_current_timezone())
+            replace_bill_sale_payments(
+                bill,
+                paid=data.get("paid_amount", 0),
+                mode=requested_mode,
+                organization=customer.organization,
+                customer=bill_customer,
+                notes=f"Cash sale {bill.bill_number} (edited)",
+                created_at=bill_at or bill.created_at,
+            )
+            if bill_at is not None:
                 Bill.objects.filter(pk=bill.pk).update(created_at=bill_at)
-                if bill.payment_mode != "credit":
-                    Payment.objects.filter(bill=bill).update(created_at=bill_at)
 
         bill.refresh_from_db()
         res_data = BillSerializer(bill).data

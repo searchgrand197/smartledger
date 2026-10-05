@@ -15,6 +15,7 @@ from ledger.services import get_customer_balance
 from .models import Payment
 from .print_data import build_payment_print_data
 from .serializers import PaymentCreateSerializer, PaymentSerializer, PaymentUpdateSerializer
+from .services import sync_bill_paid_from_payments
 
 
 class PaymentDetailView(APIView):
@@ -32,6 +33,7 @@ class PaymentDetailView(APIView):
         ser = PaymentUpdateSerializer(data=request.data)
         ser.is_valid(raise_exception=True)
         data = ser.validated_data
+        old_bill = payment.bill
 
         if "customer" in data:
             from core.tenant import require_organization
@@ -52,11 +54,16 @@ class PaymentDetailView(APIView):
             payment.created_at = data["created_at"]
 
         payment.save()
+        sync_bill_paid_from_payments(old_bill)
+        if payment.bill_id != getattr(old_bill, "id", None):
+            sync_bill_paid_from_payments(payment.bill)
         return Response(PaymentSerializer(payment).data)
 
     def delete(self, request, pk):
-        payment = Payment.objects.get(pk=pk)
+        payment = Payment.objects.select_related("bill").get(pk=pk)
+        bill = payment.bill
         payment.delete()
+        sync_bill_paid_from_payments(bill)
         return Response({"detail": "Payment deleted."}, status=204)
 
 
@@ -93,12 +100,6 @@ class PaymentListCreateView(APIView):
         bill = None
         if data.get("bill"):
             bill = Bill.objects.get(pk=data["bill"], organization=org)
-            bill.paid_amount += data["amount"]
-            if bill.paid_amount >= bill.total:
-                bill.payment_mode = "cash"
-            else:
-                bill.payment_mode = "partial"
-            bill.save(update_fields=["paid_amount", "payment_mode", "updated_at"])
 
         create_kwargs = dict(
             organization=org,
@@ -114,6 +115,8 @@ class PaymentListCreateView(APIView):
             create_kwargs["created_at"] = data["created_at"]
 
         payment = Payment.objects.create(**create_kwargs)
+        if bill is not None:
+            sync_bill_paid_from_payments(bill)
         return Response(PaymentSerializer(payment).data, status=201)
 
 

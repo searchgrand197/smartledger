@@ -22,10 +22,10 @@ class CustomerLedgerView(APIView):
         date_to = request.query_params.get("date_to")
 
         if period == "today":
-            today = timezone.now().date()
+            today = timezone.localdate()
             date_from = date_to = today.isoformat()
         elif period == "month":
-            today = timezone.now().date()
+            today = timezone.localdate()
             date_from = today.replace(day=1).isoformat()
             date_to = today.isoformat()
 

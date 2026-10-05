@@ -12,7 +12,7 @@ export function lineAmount(qty: number, rate: number): number {
   return roundMoney((Number(qty) || 0) * (Number(rate) || 0));
 }
 
-export function lineAmountWithDisc(line: {
+type PricedLine = {
   quantity: number;
   rate: number;
   pieces_per_pack?: number;
@@ -20,7 +20,22 @@ export function lineAmountWithDisc(line: {
   length_per_piece_m?: number;
   loose_qty?: number;
   disc_percent?: number;
-}): number {
+  purchase_rate?: number;
+};
+
+export function lineStockQty(line: PricedLine): number {
+  const qty = Number(line.quantity) || 0;
+  const loose = Number(line.loose_qty) || 0;
+  const pieceLenFt = Number(line.length_per_piece_m || 0) * 3.28084;
+  if (line.allow_length_sale && pieceLenFt > 0) {
+    const totalFt = qty * pieceLenFt + loose;
+    return Math.max(1, Math.ceil(totalFt / pieceLenFt));
+  }
+  const ppp = line.pieces_per_pack && line.pieces_per_pack > 0 ? line.pieces_per_pack : 1;
+  return Math.max(1, Math.round(qty * ppp + loose));
+}
+
+export function lineAmountWithDisc(line: PricedLine): number {
   const qty = Number(line.quantity) || 0;
   const rate = Number(line.rate) || 0;
   const loose = Number(line.loose_qty) || 0;
@@ -32,6 +47,11 @@ export function lineAmountWithDisc(line: {
   const pct = Number(line.disc_percent) || 0;
   if (pct > 0) return roundMoney(base * (1 - pct / 100));
   return roundMoney(base);
+}
+
+export function lineProfit(line: PricedLine): number {
+  const purchase = Number(line.purchase_rate) || 0;
+  return roundMoney(lineAmountWithDisc(line) - lineStockQty(line) * purchase);
 }
 
 export function sumLineAmounts(

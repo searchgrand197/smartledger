@@ -116,7 +116,8 @@ class SalesReturnItem(models.Model):
         verbose_name_plural = "Sales Return Items"
 
     def save(self, *args, **kwargs):
-        self.amount = Decimal(self.quantity) * self.original_rate
+        if self.amount is None or self.amount == Decimal("0"):
+            self.amount = Decimal(self.quantity) * self.original_rate
         super().save(*args, **kwargs)
 
 

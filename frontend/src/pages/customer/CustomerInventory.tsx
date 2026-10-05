@@ -177,7 +177,6 @@ export default function CustomerInventory() {
       } else {
         await portalApi.createProduct(payload);
         toast.success(`"${savedName}" saved`);
-        setSearch(savedName);
       }
       closeForm();
       await qc.invalidateQueries({ queryKey: ["customer-portal-products"] });

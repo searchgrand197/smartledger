@@ -4,20 +4,57 @@ import django.utils.timezone
 from django.db import migrations, models
 
 
+def drop_whatsapp_manual_send_if_exists(apps, schema_editor):
+    """Idempotent: field already gone on shops that applied the other 0009."""
+    connection = schema_editor.connection
+    table = "business_businesssettings"
+    with connection.cursor() as cursor:
+        existing = {
+            col.name
+            for col in connection.introspection.get_table_description(cursor, table)
+        }
+        if "whatsapp_manual_send" not in existing:
+            return
+        if connection.vendor == "postgresql":
+            cursor.execute(
+                "ALTER TABLE business_businesssettings DROP COLUMN IF EXISTS whatsapp_manual_send"
+            )
+        else:
+            cursor.execute(
+                "ALTER TABLE business_businesssettings DROP COLUMN whatsapp_manual_send"
+            )
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('business', '0008_businesssettings_whatsapp_manual_send'),
+        ("business", "0008_businesssettings_whatsapp_manual_send"),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='businesssettings',
-            name='whatsapp_manual_send',
+        migrations.SeparateDatabaseAndState(
+            state_operations=[
+                migrations.RemoveField(
+                    model_name="businesssettings",
+                    name="whatsapp_manual_send",
+                ),
+            ],
+            database_operations=[
+                migrations.RunPython(
+                    drop_whatsapp_manual_send_if_exists,
+                    migrations.RunPython.noop,
+                ),
+            ],
         ),
-        migrations.AlterField(
-            model_name='businesssettings',
-            name='updated_at',
-            field=models.DateTimeField(default=django.utils.timezone.now),
+        migrations.SeparateDatabaseAndState(
+            state_operations=[
+                migrations.AlterField(
+                    model_name="businesssettings",
+                    name="updated_at",
+                    field=models.DateTimeField(default=django.utils.timezone.now),
+                ),
+            ],
+            # Column already matches models.py on the live shop DB; skip table rebuild.
+            database_operations=[],
         ),
     ]

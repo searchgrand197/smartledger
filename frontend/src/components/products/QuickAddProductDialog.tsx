@@ -14,6 +14,7 @@ import toast from "react-hot-toast";
 import { productsApi } from "@/api/services";
 import { portalApi } from "@/api/portal";
 import { AppDialog } from "@/components/ui";
+import { unwrapQuickAddName } from "@/utils/quickAddProduct";
 
 const STOCK_UNITS = ["Pc", "Kg", "g", "Feet", "Inch", "Meter", "Box", "Bag", "Ltr", "Set", "Dozen"];
 
@@ -57,7 +58,7 @@ export default function QuickAddProductDialog({
   useEffect(() => {
     if (open) {
       setForm({
-        name: initialName,
+        name: unwrapQuickAddName(initialName),
         categoryName: "",
         sale_price: 0,
         retail_price: 0,
@@ -91,7 +92,8 @@ export default function QuickAddProductDialog({
   };
 
   const handleSave = async () => {
-    if (!form.name.trim()) {
+    const productName = unwrapQuickAddName(form.name);
+    if (!productName) {
       toast.error("Product name is required");
       return;
     }
@@ -102,7 +104,7 @@ export default function QuickAddProductDialog({
       const retail = form.retailSameAsWholesale ? wholesale : (Number(form.retail_price) || 0);
 
       const payload = new FormData();
-      payload.append("name", form.name.trim());
+      payload.append("name", productName);
       payload.append("brand", "");
       payload.append("current_stock", String(form.current_stock));
       payload.append("minimum_stock", String(Math.max(1, Math.round(form.current_stock * 0.2))));
@@ -122,7 +124,7 @@ export default function QuickAddProductDialog({
         ? await portalApi.createProduct(payload)
         : await productsApi.create(payload);
 
-      toast.success(`Product "${form.name.trim()}" added successfully!`);
+      toast.success(`Product "${productName}" added successfully!`);
       
       // Invalidate queries so that standard product autocomplete/lists get the new product
       await qc.invalidateQueries({ queryKey: ["products"] });

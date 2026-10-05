@@ -30,7 +30,7 @@ def resolve_portal_retail_customer(
     has_phone = bool(clean_phone and clean_phone != "0000000000")
 
     base_qs = (
-        Customer.objects.filter(organization=organization, is_active=True)
+        Customer.objects.filter(organization=organization, is_active=True, is_wholesale=False)
         .exclude(code="CUS-WALK")
         .filter(shop_name__iexact=clean_name)
         .order_by("id")
@@ -54,8 +54,7 @@ def resolve_portal_retail_customer(
     if existing:
         update_fields: list[str] = []
         if existing.is_wholesale:
-            existing.is_wholesale = False
-            update_fields.append("is_wholesale")
+            return existing
         if (
             has_phone
             and existing.phone in ("", "0000000000")

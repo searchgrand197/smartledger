@@ -1,5 +1,5 @@
 import type { BillLine } from "@/types";
-import { roundMoney } from "@/utils/money";
+import { lineAmountWithDisc, lineStockQty, roundMoney } from "@/utils/money";
 
 export type BillItemPayload = {
   product: number;
@@ -7,21 +7,11 @@ export type BillItemPayload = {
   rate: number;
 };
 
-/** Build API bill line — rates/qty normalized so backend validation never fails. */
+/** Build API bill line — qty is stock pieces; rate bakes in pack/length/line discount. */
 export function toBillPayloadItem(l: BillLine): BillItemPayload {
-  if (l.allow_length_sale && Number(l.length_per_piece_m || 0) > 0) {
-    const pieceLenFt = Number(l.length_per_piece_m) * 3.28084;
-    const totalFt = l.quantity * pieceLenFt + (l.loose_qty || 0);
-    const stockQty = Math.max(1, Math.ceil(totalFt / pieceLenFt));
-    const amount = roundMoney(totalFt * l.rate);
-    const payloadRate = roundMoney(amount / stockQty);
-    return { product: l.product, quantity: stockQty, rate: payloadRate };
-  }
-  return {
-    product: l.product,
-    quantity: Math.max(1, Math.round(l.quantity * (l.pieces_per_pack || 1) + (l.loose_qty || 0))),
-    rate: roundMoney(l.rate),
-  };
+  const quantity = lineStockQty(l);
+  const amount = lineAmountWithDisc(l);
+  return { product: l.product, quantity, rate: roundMoney(amount / quantity) };
 }
 
 export function formatApiError(err: unknown, fallback: string): string {

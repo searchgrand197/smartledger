@@ -15,6 +15,12 @@ import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useSta
 import BillingErpDesktopTable from "./BillingErpDesktopTable";
 import { formatCurrency } from "@/utils/format";
 import { lineAmountWithDisc } from "@/utils/money";
+import {
+  QUICK_ADD_PRODUCT_ID,
+  quickAddMenuLabel,
+  shouldIgnoreProductSearchChange,
+  unwrapQuickAddName,
+} from "@/utils/quickAddProduct";
 import { decimalNumberFieldProps, integerNumberFieldProps, parseDecimalInput } from "@/utils/numberField";
 import type { BillLine, BillLineField } from "@/types";
 
@@ -152,14 +158,15 @@ function ProductSearchField({
 >) {
   if (!onProductSearchChange || !onSelectProduct) return null;
 
+  const typedName = unwrapQuickAddName(productSearch ?? "");
   const options = [...productOptions];
-  if (productSearch && productSearch.trim()) {
-    const query = productSearch.trim().toLowerCase();
+  if (typedName) {
+    const query = typedName.toLowerCase();
     const exactMatch = productOptions.some((p) => p.name.toLowerCase() === query);
     if (!exactMatch) {
       options.push({
-        id: -9999,
-        name: `+ Add "${productSearch.trim()}" as new product`,
+        id: QUICK_ADD_PRODUCT_ID,
+        name: typedName,
         code: "QUICK_ADD",
         priceText: "",
       } as any);
@@ -175,15 +182,15 @@ function ProductSearchField({
       getOptionLabel={(option) => option.name}
       inputValue={productSearch ?? ""}
       onInputChange={(_, value, reason) => {
-        if (reason === "reset") return;
-        onProductSearchChange(value);
+        if (shouldIgnoreProductSearchChange(reason)) return;
+        onProductSearchChange(unwrapQuickAddName(value));
       }}
       clearOnBlur={false}
       filterOptions={(opts) => opts}
       onChange={(_, option) => {
         if (option) {
-          if (option.id === -9999) {
-            onQuickAddProduct?.(productSearch ?? "");
+          if (option.id === QUICK_ADD_PRODUCT_ID) {
+            onQuickAddProduct?.(unwrapQuickAddName(option.name || typedName));
           } else {
             onSelectProduct(option.id);
           }
@@ -193,19 +200,19 @@ function ProductSearchField({
         if (e.key === "Enter" && options.length > 0) {
           e.preventDefault();
           const first = options[0];
-          if (first.id === -9999) {
-            onQuickAddProduct?.(productSearch ?? "");
+          if (first.id === QUICK_ADD_PRODUCT_ID) {
+            onQuickAddProduct?.(unwrapQuickAddName(first.name || typedName));
           } else {
             onSelectProduct(first.id);
           }
         }
       }}
       renderOption={(props, option) => {
-        if (option.id === -9999) {
+        if (option.id === QUICK_ADD_PRODUCT_ID) {
           return (
             <Box component="li" {...props} key={option.id} sx={{ py: 1.5, px: 2, color: "primary.main" }}>
               <Typography variant="body2" color="primary" fontWeight={700}>
-                {option.name}
+                {quickAddMenuLabel(option.name)}
               </Typography>
             </Box>
           );

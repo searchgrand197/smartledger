@@ -45,11 +45,20 @@ import { loadInvoicePrintData } from "@/utils/invoicePrint";
 import type { InvoicePrintData } from "@/types/invoice";
 import { formatCurrency } from "@/utils/format";
 import {
+  QUICK_ADD_PRODUCT_ID,
+  quickAddMenuLabel,
+  shouldIgnoreProductSearchChange,
+  unwrapQuickAddName,
+} from "@/utils/quickAddProduct";
+import {
   sumLineAmounts,
   billTotal,
   roundMoney,
+  lineAmountWithDisc,
+  lineProfit,
 } from "@/utils/money";
 import { toBillPayloadItem, formatApiError } from "@/utils/billPayload";
+import { billItemToEditFields } from "@/utils/billLine";
 import { useWhatsAppSendGuard } from "@/components/billing/WhatsAppDisconnectedDialog";
 import BillingLineTable, { type BillingLineTableHandle } from "@/components/billing/BillingLineTable";
 import { AppOutlinedField } from "@/components/ui";
@@ -120,10 +129,14 @@ export default function Billing() {
 
   const subtotal = sumLineAmounts(lines);
   const total = billTotal(subtotal, discount, 0, roundOff);
+  const partyOutstanding =
+    context?.outstanding_balance != null
+      ? Number(context.outstanding_balance)
+      : customer?.current_due != null
+        ? Number(customer.current_due)
+        : undefined;
   const dueAmount = roundMoney(Math.max(0, total - paidAmount));
-  const totalProfit = roundMoney(
-    lines.reduce((s, l) => s + l.quantity * (l.rate - (l.purchase_rate || 0)), 0)
-  );
+  const totalProfit = roundMoney(lines.reduce((s, l) => s + lineProfit(l), 0));
 
   const openPaymentDialog = () => {
     if (!customer) {
@@ -659,26 +672,15 @@ export default function Billing() {
                 const prodRes = await productsApi.get(item.product);
                 const prod = prodRes.data as Product;
 
-                let qty = Number(item.quantity) || 0;
-                let loose = 0;
-                if (prod.pieces_per_pack && prod.pieces_per_pack > 1) {
-                  qty = Math.floor(item.quantity / prod.pieces_per_pack);
-                  loose = item.quantity % prod.pieces_per_pack;
-                }
-
+                const packed = billItemToEditFields(item, prod);
                 return {
                   product: prod.id,
                   product_name: prod.name,
                   product_code: prod.code,
-                  quantity: qty,
-                  rate: Number(item.rate),
+                  ...packed,
                   purchase_rate: Number(prod.purchase_price ?? item.purchase_rate),
                   mrp: Math.round(Number(prod.sale_price)),
                   pack: prod.unit || "Pc",
-                  pieces_per_pack: prod.pieces_per_pack && prod.pieces_per_pack > 0 ? prod.pieces_per_pack : 1,
-                  allow_length_sale: Boolean(prod.allow_length_sale),
-                  length_per_piece_m: Number(prod.length_per_piece_m || 0),
-                  loose_qty: loose,
                   disc_percent: 0,
                   current_stock: prod.current_stock,
                 };
@@ -815,10 +817,10 @@ export default function Billing() {
             {customer && (
               <Typography
                 className={`billing-mobile-party-balance ${
-                  context?.outstanding_balance && context.outstanding_balance > 0 ? "due" : "clean"
+                  partyOutstanding && partyOutstanding > 0 ? "due" : "clean"
                 }`}
               >
-                Balance: {formatCurrency(context?.outstanding_balance || 0)}
+                Balance: {formatCurrency(partyOutstanding || 0)}
               </Typography>
             )}
           </Box>
@@ -839,13 +841,14 @@ export default function Billing() {
                 stockText: "",
                 priceText: formatCurrency(p.sale_price),
               }));
-              if (productSearch && productSearch.trim()) {
-                const query = productSearch.trim().toLowerCase();
+              const typedName = unwrapQuickAddName(productSearch);
+              if (typedName) {
+                const query = typedName.toLowerCase();
                 const exactMatch = productList.some((p) => p.name.toLowerCase() === query);
                 if (!exactMatch) {
                   base.push({
-                    id: -9999,
-                    name: `+ Add "${productSearch.trim()}" as new product`,
+                    id: QUICK_ADD_PRODUCT_ID,
+                    name: typedName,
                     code: "QUICK_ADD",
                     stockText: "",
                     priceText: "",
@@ -857,15 +860,16 @@ export default function Billing() {
             getOptionLabel={(option) => option.name}
             inputValue={productSearch}
             onInputChange={(_, value, reason) => {
-              if (reason === "reset") return;
-              setProductSearch(value);
+              if (shouldIgnoreProductSearchChange(reason)) return;
+              setProductSearch(unwrapQuickAddName(value));
             }}
             clearOnBlur={false}
             filterOptions={(opts) => opts}
             onChange={(_, option) => {
               if (option) {
-                if (option.id === -9999) {
-                  setQuickAddName(productSearch);
+                if (option.id === QUICK_ADD_PRODUCT_ID) {
+                  setQuickAddName(unwrapQuickAddName(option.name || productSearch));
+                  setProductSearch("");
                   setQuickAddOpen(true);
                 } else {
                   const selected = productList.find((p) => p.id === option.id);
@@ -874,11 +878,11 @@ export default function Billing() {
               }
             }}
             renderOption={(props, option) => {
-              if (option.id === -9999) {
+              if (option.id === QUICK_ADD_PRODUCT_ID) {
                 return (
                   <Box component="li" {...props} key={option.id} sx={{ py: 1.5, px: 2, color: "primary.main" }}>
                     <Typography variant="body2" color="primary" fontWeight={700}>
-                      {option.name}
+                      {quickAddMenuLabel(option.name)}
                     </Typography>
                   </Box>
                 );
@@ -954,7 +958,7 @@ export default function Billing() {
             </Box>
           ) : (
             lines.map((line, idx) => {
-              const amount = line.quantity * line.rate * (1 - (line.disc_percent || 0) / 100);
+              const amount = lineAmountWithDisc(line);
               return (
                 <Box
                   key={idx}
@@ -1155,7 +1159,7 @@ export default function Billing() {
           roundOff={roundOff}
           onRoundOffChange={setRoundOff}
           customerName={customer?.shop_name}
-          partyBalance={context?.outstanding_balance}
+          partyBalance={partyOutstanding}
           initialPaid={paidAmount}
           initialMode={paymentMode}
           onConfirm={handlePaymentConfirm}
@@ -1445,7 +1449,8 @@ export default function Billing() {
             onFocusRate={setSelectedProductId}
             productSearch={productSearch}
             onQuickAddProduct={(name) => {
-              setQuickAddName(name);
+              setQuickAddName(unwrapQuickAddName(name));
+              setProductSearch("");
               setQuickAddOpen(true);
             }}
             productOptions={productList.map((p) => ({
@@ -1510,7 +1515,7 @@ export default function Billing() {
           subtotal={subtotal}
           profit={totalProfit}
           total={total}
-          partyBalance={context?.outstanding_balance}
+          partyBalance={partyOutstanding}
           hasCustomer={Boolean(customer)}
           onOpenPayment={openPaymentDialog}
           onSave={() => requestSaveBill(false)}
@@ -1536,7 +1541,7 @@ export default function Billing() {
         roundOff={roundOff}
         onRoundOffChange={setRoundOff}
         customerName={customer?.shop_name}
-        partyBalance={context?.outstanding_balance}
+        partyBalance={partyOutstanding}
         initialPaid={paidAmount}
         initialMode={paymentMode}
         onConfirm={handlePaymentConfirm}

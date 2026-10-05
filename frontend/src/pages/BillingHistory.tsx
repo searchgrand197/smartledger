@@ -24,7 +24,7 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import toast from "react-hot-toast";
 
-import { billingApi } from "@/api/services";
+import { billingApi, customersApi } from "@/api/services";
 import { useAuthStore } from "@/store/authStore";
 import BillCancelAction from "@/components/billing/BillCancelAction";
 import BillViewDialog from "@/components/billing/BillViewDialog";
@@ -32,7 +32,7 @@ import { PageShell, PageHeader, StatCard, AppTable, LoadingState } from "@/compo
 import type { TableColumn } from "@/components/ui/AppTable";
 import { formatCurrency, formatDate } from "@/utils/format";
 import { openInvoicePrintWindow } from "@/utils/print";
-import type { Bill } from "@/types";
+import type { Bill, Customer } from "@/types";
 
 export default function BillingHistory() {
   const navigate = useNavigate();
@@ -60,22 +60,40 @@ export default function BillingHistory() {
 
   const bills = (billsData as Bill[]) || [];
 
+  const { data: partyRows } = useQuery({
+    queryKey: ["customers-outstanding", organizationId],
+    queryFn: async () => {
+      const [wholesale, retail] = await Promise.all([
+        customersApi.listAll({ is_wholesale: "true" }),
+        customersApi.listAll({ is_wholesale: "false" }),
+      ]);
+      return [...(wholesale as Customer[]), ...(retail as Customer[])];
+    },
+  });
+
+  // Opening balances count even when that party has no sale yet.
+  const outstandingDues = useMemo(() => {
+    const seen = new Set<number>();
+    let total = 0;
+    for (const party of partyRows || []) {
+      if (!party || party.code === "CUS-WALK" || seen.has(party.id)) continue;
+      seen.add(party.id);
+      const due = Number(party.current_due) || 0;
+      if (due > 0) total += due;
+    }
+    return total;
+  }, [partyRows]);
+
   // Calculate statistics from the filtered set of bills
   const stats = useMemo(() => {
     let sales = 0;
     let paid = 0;
-    let due = 0;
     let activeCount = 0;
 
     bills.forEach((b) => {
       if (!b.is_cancelled) {
-        const totalVal = Number(b.total) || 0;
-        const paidVal = Number(b.paid_amount) || 0;
-        const dueVal = Number(b.due_amount) || (totalVal - paidVal);
-
-        sales += totalVal;
-        paid += paidVal;
-        due += dueVal;
+        sales += Number(b.total) || 0;
+        paid += Number(b.paid_amount) || 0;
         activeCount += 1;
       }
     });
@@ -84,7 +102,6 @@ export default function BillingHistory() {
       totalBills: activeCount,
       totalSales: sales,
       totalPaid: paid,
-      totalDue: due,
     };
   }, [bills]);
 
@@ -255,7 +272,7 @@ export default function BillingHistory() {
         />
         <StatCard
           title="Outstanding Dues"
-          value={formatCurrency(stats.totalDue)}
+          value={formatCurrency(outstandingDues)}
           icon={<TrendingUpIcon />}
           color="var(--color-warning)"
         />
